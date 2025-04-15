@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #111, #1b1b1b);
+    color: #e0e0e0;
+    padding: 20px;
+}
+
+/* Header styles */
+header {
+    background-color: #00c853;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* Main layout */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Coupon card styles */
+.coupon {
+    background: #1e1e1e;
+    border: 2px solid #00c853;
+    border-radius: 15px;
+    padding: 25px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 8px 15px rgba(0, 255, 128, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.coupon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 255, 128, 0.15);
+}
+
+.coupon h3 {
+    color: #00e676;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.coupon p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+/* Button styling */
+button {
+    background-color: #00e676;
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #00c853;
+    transform: scale(1.05);
+}
