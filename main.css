@@ -165,13 +165,13 @@ html {
     color: #369e62;
   }
   .sliderItem:nth-child(2) .sliderPrice {
-    color: white;
+    color: rgb(187, 62, 62);
   }
   .sliderItem:nth-child(3) .sliderPrice {
-    color: teal;
+    color: rgb(140, 194, 93);
   }
   .sliderItem:nth-child(4) .sliderPrice {
-    color: cornflowerblue;
+    color: rgb(214, 215, 216);
   }
   .sliderItem:nth-child(5) .sliderPrice {
     color: cornsilk;
