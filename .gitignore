@@ -1,0 +1,19 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# VS Code settings (if using VS Code)
+.vscode/
+
+# Node stuff (if added later)
+node_modules/
+
+# Env files (for future APIs or secrets)
+.env
+
+# Build or dist folders (if you add bundlers later)
+dist/
+build/
