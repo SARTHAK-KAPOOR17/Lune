@@ -181,12 +181,4 @@ document.getElementById("BuyNow").addEventListener("click", function(){
   } else {
     cart.push(cartItem);
   }
-
-  // Save back to localStorage
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  // Redirect to cart page
-  window.location.href = "cart.html";
 });
-
-
