@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shoe Store - Return Order</title>
+    <link rel="stylesheet" type="text/css" href="return.css">
+</head>
+<body>
+
+    <h2>Shoe Store - Return Order Form</h2>
+
+    <form action="/submit-return" method="post">
+        <label for="orderNumber">Order Number:</label>
+        <input type="text" id="orderNumber" name="orderNumber" required><br><br>
+
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required><br><br>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone"><br><br>
+
+        <label for="item">Item to Return:</label>
+        <input type="text" id="item" name="item" required><br><br>
+
+        <label for="reason">Reason for Return:</label><br>
+        <textarea id="reason" name="reason" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="returnMethod">Preferred Return Method:</label>
+        <select id="returnMethod" name="returnMethod">
+            <option value="pickup">Schedule a Pickup</option>
+            <option value="dropoff">Drop off at Store</option>
+        </select><br><br>
+
+        <input type="submit" value="Submit Return Request">
+    </form>
+
+</body>
+</html>
