@@ -5,47 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shoe Store Coupons</title>
     <link rel="stylesheet" href="coupon.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Toast Styling */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        /* Animation on body */
+        body {
+            animation: fadeBody 1s ease-in;
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        @keyframes fadeBody {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 10px;
+            background: #111;
+            color: white;
+        }
+
+        header span {
+            color: #f0c14b;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            color: #bbb;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 40px 20px;
+        }
+
+        .coupon, .bank-offers {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .coupon h2, .bank-offers h2 {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .code {
+            background: #f0c14b;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btn {
+            background: #111;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #333;
+        }
+
+        .bank-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #111;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <div class="toast" id="toast">Message</div>
+
+    <header class="animate__animated animate__fadeInDown">
         <h1>Shoe Store <span>Coupons</span></h1>
+        <p class="tagline">Get the best deals on your favorite shoes</p>
     </header>
 
     <main>
-        <section class="coupon">
+        <section class="coupon animate__animated animate__fadeInUp animate__delay-1s">
             <h2>🎉 20% Off Everything</h2>
             <p>Use Code: <span class="code">SHOES20</span></p>
-            <button class="btn" onclick="redeemCoupon('SHOES20')">Redeem</button>
+            <button class="btn" onclick="showToast('🎉 Code SHOES20 applied!')">Redeem</button>
         </section>
 
-        <section class="coupon">
+        <section class="coupon animate__animated animate__fadeInUp animate__delay-2s">
             <h2>🛍️ Buy 1 Get 1 Free</h2>
             <p>Use Code: <span class="code">BADMOSH</span></p>
-            <button class="btn" onclick="redeemCoupon('BADMOSH')">Redeem</button>
+            <button class="btn" onclick="showToast('🛍️ Code BADMOSH applied!')">Redeem</button>
         </section>
 
-        <section class="bank-offers">
+        <section class="bank-offers animate__animated animate__fadeInUp animate__delay-3s">
             <h2>💳 Bank Offers</h2>
             <div class="bank-buttons">
-                <button class="btn bank-btn" onclick="bankOffer('SBI')">SBI - 25% Off</button>
-                <button class="btn bank-btn" onclick="bankOffer('HDFC')">HDFC - 18% Off</button>
-                <button class="btn bank-btn" onclick="bankOffer('Kotak')">Kotak - 50% Off</button>
+                <button class="btn bank-btn" onclick="showToast('SBI Bank Offer: 25% Off ✅')">SBI - 25% Off</button>
+                <button class="btn bank-btn" onclick="showToast('HDFC Bank Offer: 18% Off ✅')">HDFC - 18% Off</button>
+                <button class="btn bank-btn" onclick="showToast('Kotak Bank Offer: 50% Off 🔥')">Kotak - 50% Off</button>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="animate__animated animate__fadeInUp animate__delay-4s">
         <p>&copy; 2025 Shoe Store. All rights reserved.</p>
     </footer>
 
     <script>
-        function redeemCoupon(code) {
-            alert(`🎉 Coupon code "${code}" has been redeemed!`);
-        }
-
-        function bankOffer(bankName) {
-            alert(`✅ You selected the ${bankName} Bank Offer!`);
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 3000);
         }
     </script>
 </body>
