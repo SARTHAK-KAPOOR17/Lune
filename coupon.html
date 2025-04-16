@@ -1,44 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="coupon.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shoe Store Coupons</title>
-   <link rel="stylesheet" href="coupon.css">
-    
+    <link rel="stylesheet" href="coupon.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <i><h1>Welcome to Shoe Store Coupons</h1></i>
+        <h1>Shoe Store <span>Coupons</span></h1>
     </header>
+
     <main>
         <section class="coupon">
-            <h3>Get 20% Off!</h3>
-            <p>Use code: SHOES20</p>
-            <button onclick="redeemCoupon()">Redeem Coupon</button>
-        </section>
-        <section class="coupon">
-            <h3>Buy 1 Get 1 Free!!!!</h3>
-            <p>Use code:BaDmOsH</p>
-            <button onclick="redeemCoupon()">Redeem Coupon</button>
+            <h2>🎉 20% Off Everything</h2>
+            <p>Use Code: <span class="code">SHOES20</span></p>
+            <button class="btn" onclick="redeemCoupon('SHOES20')">Redeem</button>
         </section>
 
-        <section class="banks">
-            <h3>Bank Offers</h3>
-            <button onclick="bankOffer('SBI')">SBI</button>
-            <button onclick="bankOffer('HDFC')">HDFC</button>
-            <button onclick="bankOffer('Kotak')">Kotak </button>
+        <section class="coupon">
+            <h2>🛍️ Buy 1 Get 1 Free</h2>
+            <p>Use Code: <span class="code">BADMOSH</span></p>
+            <button class="btn" onclick="redeemCoupon('BADMOSH')">Redeem</button>
+        </section>
+
+        <section class="bank-offers">
+            <h2>💳 Bank Offers</h2>
+            <div class="bank-buttons">
+                <button class="btn bank-btn" onclick="bankOffer('SBI')">SBI - 25% Off</button>
+                <button class="btn bank-btn" onclick="bankOffer('HDFC')">HDFC - 18% Off</button>
+                <button class="btn bank-btn" onclick="bankOffer('Kotak')">Kotak - 50% Off</button>
+            </div>
         </section>
     </main>
 
+    <footer>
+        <p>&copy; 2025 Shoe Store. All rights reserved.</p>
+    </footer>
+
     <script>
-        function redeemCoupon() {
-            alert("Your coupon has been redeemed!");
+        function redeemCoupon(code) {
+            alert(`🎉 Coupon code "${code}" has been redeemed!`);
         }
 
         function bankOffer(bankName) {
-            alert(`You selected ${bankName} Bank Offer!`);
+            alert(`✅ You selected the ${bankName} Bank Offer!`);
         }
     </script>
 </body>
