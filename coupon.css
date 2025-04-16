@@ -7,15 +7,15 @@
 /* Body styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #111, #1b1b1b);
+    background: linear-gradient(135deg, #8ba79e, #070707);
     color: #e0e0e0;
     padding: 20px;
 }
 
 /* Header styles */
 header {
-    background-color: #00c853;
-    color: black;
+    /* background-color: #d7ebd2; */
+    color: rgb(0, 0, 0);
     padding: 20px;
     text-align: center;
     border-radius: 10px;
@@ -38,7 +38,7 @@ main {
 /* Coupon card styles */
 .coupon {
     background: #1e1e1e;
-    border: 2px solid #00c853;
+    border: 2px solid #7ba08b;
     border-radius: 15px;
     padding: 25px;
     width: 300px;
@@ -53,7 +53,7 @@ main {
 }
 
 .coupon h3 {
-    color: #00e676;
+    color: #5d967b;
     margin-bottom: 10px;
     font-size: 1.8rem;
 }
@@ -66,8 +66,8 @@ main {
 
 /* Button styling */
 button {
-    background-color: #00e676;
-    color: black;
+    background-color: #a1b7ad;
+    color: rgb(0, 0, 0);
     border: none;
     padding: 12px 20px;
     border-radius: 25px;
@@ -78,6 +78,6 @@ button {
 }
 
 button:hover {
-    background-color: #00c853;
+    background-color: #6d907c;
     transform: scale(1.05);
 }
