@@ -136,4 +136,49 @@ close.addEventListener("click", () => {
   payment.style.display = "none";
 });
 
+document.getElementById("BuyNow").addEventListener("click", function(){
+  // Get selected color
+  let selectedColorIndex = 0;
+  currentProductColors.forEach((color, idx) => {
+    if (color.style.border === "2px solid #000" || color.style.outline === "2px solid #000") {
+      selectedColorIndex = idx;
+    }
+  });
 
+  // Get selected size
+  let selectedSize = null;
+  currentProductSizes.forEach((size) => {
+    if (size.style.backgroundColor === "black") {
+      selectedSize = size.textContent;
+    }
+  });
+
+  // Fallbacks
+  if (!selectedSize) selectedSize = currentProductSizes[0].textContent;
+
+  // Prepare cart item
+  const cartItem = {
+    id: choosenProduct.id,
+    title: choosenProduct.title,
+    price: choosenProduct.price,
+    color: choosenProduct.colors[selectedColorIndex].code,
+    img: choosenProduct.colors[selectedColorIndex].img,
+    size: selectedSize,
+    quantity: 1
+  };
+
+  // Get cart from localStorage
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Check if item already exists (same id, color, size)
+  const existingIndex = cart.findIndex(item =>
+    item.id === cartItem.id &&
+    item.color === cartItem.color &&
+    item.size === cartItem.size
+  );
+  if (existingIndex > -1) {
+    cart[existingIndex].quantity += 1;
+  } else {
+    cart.push(cartItem);
+  }
+});
