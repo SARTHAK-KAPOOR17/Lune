@@ -546,7 +546,6 @@ html {
   
     .gallery{
       display: none;
-      transition: transform 0.3s ease-in-out;
     }
   
     .newSeason{
