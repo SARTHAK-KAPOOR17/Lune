@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shoe Store - Customer Rating</title>
+</head>
+<body>
+
+  <h1>Shoe Store - Customer Rating</h1>
+
+  <form action="/submit-rating" method="post">
+
+    <label for="shoe">Select Shoe:</label>
+    <select id="shoe" name="shoe">
+      <option value="sneakers">Sneakers</option>
+      <option value="boots">Boots</option>
+      <option value="sandals">Sandals</option>
+      <option value="loafers">Loafers</option>
+      <option value="heels">Heels</option>
+    </select>
+
+    <br><br>
+
+    <label>Rating:</label><br>
+    <input type="radio" id="star5" name="rating" value="5">
+    <label for="star5">5 Stars</label><br>
+    <input type="radio" id="star4" name="rating" value="4">
+    <label for="star4">4 Stars</label><br>
+    <input type="radio" id="star3" name="rating" value="3">
+    <label for="star3">3 Stars</label><br>
+    <input type="radio" id="star2" name="rating" value="2">
+    <label for="star2">2 Stars</label><br>
+    <input type="radio" id="star1" name="rating" value="1">
+    <label for="star1">1 Star</label><br>
+
+    <br>
+
+    <label for="comment">Leave a comment:</label><br>
+    <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Your feedback..."></textarea>
+
+    <br><br>
+
+    <input type="submit" value="Submit Rating">
+
+  </form>
+
+</body>
+</html>
