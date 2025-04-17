@@ -465,4 +465,14 @@ html {
     font-size: 14px;
   }
   
+  @media (max-width: 768px) {
+    .navTop, .navBottom, .features {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .sliderTitle, .sliderPrice {
+      font-size: 32px;
+    }
+  }
   
