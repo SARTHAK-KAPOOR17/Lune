@@ -3,6 +3,43 @@
 <head>
     <title>Shoe Store - Return Order</title>
     <link rel="stylesheet" type="text/css" href="return.css">
+    <style>
+        /* Basic CSS for the additional elements */
+        .additional-info {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .additional-info label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .additional-info input[type="text"],
+        .additional-info input[type="number"],
+        .additional-info select {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .additional-info .checkbox-group label {
+            display: inline-block;
+            margin-right: 15px;
+            font-weight: normal;
+        }
+
+        .additional-info input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -31,6 +68,48 @@
             <option value="pickup">Schedule a Pickup</option>
             <option value="dropoff">Drop off at Store</option>
         </select><br><br>
+
+        <div class="additional-info">
+            <h3>Additional Information (Optional)</h3>
+            <label for="quantity">Quantity to Return:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1"><br><br>
+
+            <label for="size">Size of Item Returned:</label>
+            <input type="text" id="size" name="size"><br><br>
+
+            <label for="color">Color of Item Returned:</label>
+            <input type="text" id="color" name="color"><br><br>
+
+            <label for="originalPurchaseDate">Original Purchase Date:</label>
+            <input type="date" id="originalPurchaseDate" name="originalPurchaseDate"><br><br>
+
+            <label for="condition">Condition of Item:</label>
+            <select id="condition" name="condition">
+                <option value="">Select Condition</option>
+                <option value="new">New</option>
+                <option value="like_new">Like New</option>
+                <option value="slightly_used">Slightly Used</option>
+                <option value="damaged">Damaged</option>
+            </select><br><br>
+
+            <label>Do you have the original packaging?</label><br>
+            <div class="checkbox-group">
+                <input type="radio" id="originalPackagingYes" name="originalPackaging" value="yes">
+                <label for="originalPackagingYes">Yes</label>
+                <input type="radio" id="originalPackagingNo" name="originalPackaging" value="no">
+                <label for="originalPackagingNo">No</label>
+            </div><br><br>
+
+            <label for="refundPreference">Preferred Refund Method:</label>
+            <select id="refundPreference" name="refundPreference">
+                <option value="">Select Refund Method</option>
+                <option value="original_payment">Original Payment Method</option>
+                <option value="store_credit">Store Credit</option>
+            </select><br><br>
+
+            <label for="comments">Additional Comments:</label><br>
+            <textarea id="comments" name="comments" rows="3" cols="50"></textarea><br><br>
+        </div>
 
         <input type="submit" value="Submit Return Request">
     </form>
