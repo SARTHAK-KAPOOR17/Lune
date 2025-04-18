@@ -2,48 +2,170 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shoe Store - Customer Rating</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: rgb(169, 182, 186); 
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: linear-gradient(to right, rgba(169, 182, 186, 0.8), rgba(124, 148, 153, 0.8));
+      margin: 0;
+    }
+
+    /* Form Container Styles */
+    .form-container {
+      background-color: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .form-container:hover {
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Heading */
+    h1 {
+      font-size: 2.5em;
+      color: #4CAF50;
+      margin-bottom: 20px;
+    }
+
+    /* Label and Input Fields */
+    label {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    select, input[type="radio"], textarea {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: 2px solid #ddd;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    select:focus, input[type="radio"]:focus, textarea:focus {
+      border-color: #4CAF50;
+    }
+
+    /* Submit Button Styles */
+    input[type="submit"] {
+      padding: 12px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background-color 0.3s;
+      width: 100%;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    /* Additional styles for the rating */
+    .rating-labels {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+    }
+
+    .rating-labels label {
+      font-size: 1.2em;
+    }
+
+    .rating-options {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+    }
+
+    .rating-options input {
+      width: auto;
+      margin-right: 10px;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      .form-container {
+        padding: 30px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+    }
+
+  </style>
 </head>
 <body>
 
-  <h1>Customer Feedback</h1>
+  <div class="form-container">
+    <h1>Customer Feedback</h1>
 
-  <form action="/submit-rating" method="post">
+    <form action="/submit-rating" method="post">
+      <!-- Shoe Selection -->
+      <label for="shoe">Select Shoe:</label>
+      <select id="shoe" name="shoe">
+        <option value="sneakers">Sneakers</option>
+        <option value="boots">Boots</option>
+        <option value="sandals">Sandals</option>
+        <option value="loafers">Loafers</option>
+        <option value="heels">Heels</option>
+        <option value="sports">Sports</option>
+      </select>
 
-    <label for="shoe">Select Shoe:</label>
-    <select id="shoe" name="shoe">
-      <option value="sneakers">Sneakers</option>
-      <option value="boots">Boots</option>
-      <option value="sandals">Sandals</option>
-      <option value="loafers">Loafers</option>
-      <option value="heels">Heels</option>
-      <option value="Sports">Sports</option>
-    </select>
+      <!-- Rating Selection -->
+      <label>Rating:</label>
+      <div class="rating-options">
+        <input type="radio" id="star5" name="rating" value="5">
+        <label for="star5">5 Stars</label>
+        
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4">4 Stars</label>
+        
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3">3 Stars</label>
+        
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2">2 Stars</label>
+        
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1">1 Star</label>
+      </div>
 
-    <br><br>
+      <!-- Comment Section -->
+      <label for="comment">Leave a comment:</label>
+      <textarea id="comment" name="comment" rows="4" placeholder="Your feedback..."></textarea>
 
-    <label>Rating:</label><br>
-    <input type="radio" id="star5" name="rating" value="5">
-    <label for="star5">5 Stars</label><br>
-    <input type="radio" id="star4" name="rating" value="4">
-    <label for="star4">4 Stars</label><br>
-    <input type="radio" id="star3" name="rating" value="3">
-    <label for="star3">3 Stars</label><br>
-    <input type="radio" id="star2" name="rating" value="2">
-    <label for="star2">2 Stars</label><br>
-    <input type="radio" id="star1" name="rating" value="1">
-    <label for="star1">1 Star</label><br>
-
-    <br>
-
-    <label for="comment">Leave a comment:</label><br>
-    <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Your feedback..."></textarea>
-
-    <br><br>
-
-    <input type="submit" value="Submit Rating">
-
-  </form>
+      <!-- Submit Button -->
+      <input type="submit" value="Submit Rating">
+    </form>
+  </div>
 
 </body>
 </html>
