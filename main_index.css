@@ -579,9 +579,12 @@ html {
     }
   }
 
+<<<<<<<< HEAD:main_index.css
 .footerMenu .fMenuTitle .fList li:hover{
   color: #000;
   cursor: pointer;
 
 
 }
+========
+>>>>>>>> 027a524a43441a86dc2ccc9526e345327aca32b2:main.css
