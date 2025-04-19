@@ -358,8 +358,8 @@ html {
   }
   
   .productButton:hover {
-    background-color: white;
-    color: black;
+    background-color: rgb(18, 200, 69);
+    color: rgb(28, 74, 11);
   }
   
   .gallery {
