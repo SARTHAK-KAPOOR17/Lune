@@ -1,7 +1,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f0f2f5, #e2e6ec);
+    background: linear-gradient(135deg, #da981e, #43e41b);
     margin: 0;
     padding: 40px 20px;
     animation: fadeIn 1s ease-in;
@@ -15,12 +15,12 @@ h2 {
 }
 
 form {
+    background: linear-gradient(135deg, #e59292, #364baa);
     max-width: 650px;
     margin: 0 auto;
-    background: #fff;
     padding: 40px;
     border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 40px rgba(124, 230, 75, 0.1);
     animation: popup 0.7s ease-in-out;
     transition: transform 0.3s ease;
 }
