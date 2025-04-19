@@ -1,511 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shoe Store - Advanced Customer Rating</title>
-  <!-- Include Font Awesome for Star Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <!-- Include Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Feedback Form</title>
   <style>
-    /* Advanced Reset with Modern CSS */
-    :root {
-      --primary-color: #4CAF50;
-      --primary-hover: #3e8e41;
-      --secondary-color: #f39c12;
-      --dark-color: #2c3e50;
-      --light-color: #ecf0f1;
-      --gray-color: #95a5a6;
-      --danger-color: #e74c3c;
-      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-      --shadow-hover: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    }
-
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
 
-    /* Body Styles with Gradient Animation */
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(-45deg, #a9b6ba, #7c9499, #b8c7cc, #9db4b9);
-      background-size: 400% 400%;
-      color: var(--dark-color);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      animation: gradientBG 15s ease infinite;
-    }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Form Container with Glass Morphism Effect */
-    .form-container {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 40px;
-      box-shadow: var(--shadow);
-      width: 100%;
-      max-width: 650px;
-      text-align: center;
-      transition: var(--transition);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .form-container:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-5px);
-    }
-
-    /* Heading with Gradient Text */
-    h1 {
-      font-size: 2.5em;
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 25px;
-      font-weight: 600;
-      position: relative;
-      padding-bottom: 15px;
-    }
-
-    h1::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-      border-radius: 2px;
-    }
-
-    /* Form Group Styling */
-    .form-group {
-      margin-bottom: 25px;
-      text-align: left;
-    }
-
-    /* Label Styling */
-    label {
-      font-size: 1.1em;
-      margin-bottom: 8px;
-      display: block;
-      color: var(--dark-color);
-      font-weight: 500;
-    }
-
-    /* Input Fields with Floating Labels */
-    .input-container {
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    select, textarea, input[type="text"], input[type="email"] {
-      width: 100%;
-      padding: 12px 15px;
-      font-size: 1em;
-      border-radius: 8px;
-      border: 2px solid #ddd;
-      outline: none;
-      transition: var(--transition);
-      background-color: rgba(255, 255, 255, 0.8);
-      font-family: 'Poppins', sans-serif;
-    }
-
-    select:focus, textarea:focus, input[type="text"]:focus, input[type="email"]:focus {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-    }
-
-    /* Rating Stars with Animation */
-    .rating {
+      padding: 0;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      height: 100vh;
       display: flex;
+      align-items: center;
       justify-content: center;
-      margin: 25px 0;
-      cursor: pointer;
     }
 
-    .rating i {
-      font-size: 2.5em;
-      color: var(--gray-color);
-      transition: var(--transition);
-      margin: 0 5px;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .rating i:hover,
-    .rating i.hovered {
-      transform: scale(1.2);
-      color: var(--secondary-color);
-    }
-
-    .rating i.active {
-      color: var(--secondary-color);
-      animation: bounce 0.5s;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-    }
-
-    /* Character Counter for Textarea */
-    .char-counter {
-      text-align: right;
-      font-size: 0.8em;
-      color: var(--gray-color);
-      margin-top: -15px;
-      margin-bottom: 15px;
-    }
-
-    .char-counter.warning {
-      color: var(--danger-color);
-    }
-
-    /* Submit Button with Ripple Effect */
-    .submit-btn {
-      position: relative;
-      overflow: hidden;
-      padding: 14px 20px;
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1.1em;
-      font-weight: 500;
-      transition: var(--transition);
+    .form-card {
+      background: #c9c0c0;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      max-width: 500px;
       width: 100%;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .submit-btn:hover {
-      background-color: var(--primary-hover);
-      box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-    }
-
-    .submit-btn:active {
-      transform: translateY(2px);
-    }
-
-    .ripple {
-      position: absolute;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.7);
-      transform: scale(0);
-      animation: ripple 0.6s linear;
-      pointer-events: none;
-    }
-
-    @keyframes ripple {
-      to {
-        transform: scale(4);
-        opacity: 0;
-      }
-    }
-
-    /* Success Message */
-    .success-message {
-      display: none;
-      padding: 20px;
-      background-color: #d4edda;
-      color: #155724;
-      border-radius: 8px;
-      margin-top: 20px;
-      animation: fadeIn 0.5s;
+      animation: fadeIn 1s ease-in-out;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Shoe Preview Section */
-    .shoe-preview {
-      margin: 20px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
     }
 
-    .shoe-image {
-      width: 150px;
-      height: 150px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      transition: var(--transition);
-      margin-bottom: 15px;
-    }
-
-    .shoe-name {
+    label {
+      display: block;
+      margin-top: 15px;
       font-weight: 600;
-      color: var(--dark-color);
-      font-size: 1.2em;
+      color: #444;
     }
 
-    /* Responsive Design with Media Queries */
-    @media screen and (max-width: 768px) {
-      .form-container {
-        padding: 30px;
-        margin: 20px;
-      }
-
-      h1 {
-        font-size: 2em;
-      }
-
-      .rating i {
-        font-size: 2em;
-      }
+    input, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-top: 8px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background-color: #f9f9f9;
+      transition: border-color 0.3s ease;
     }
 
-    @media screen and (max-width: 480px) {
-      .form-container {
-        padding: 25px 20px;
-      }
+    input:focus, textarea:focus {
+      border-color: #6a11cb;
+      outline: none;
+    }
 
-      h1 {
-        font-size: 1.8em;
-      }
+    textarea {
+      resize: none;
+      min-height: 100px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #5d0ecc, #1c63e2);
     }
   </style>
 </head>
 <body>
 
-  <div class="form-container">
-    <h1>Customer Feedback</h1>
+  <div class="form-card">
+    <h2>We Value Your Feedback</h2>
+    <form action="submit_feedback.php" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required>
 
-    <form id="feedbackForm">
-      <!-- Customer Information -->
-      <div class="form-group">
-        <div class="input-container">
-          <label for="name">Your Name:</label>
-          <input type="text" id="name" name="name" placeholder="John Doe" required>
-        </div>
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required>
 
-        <!--<div class="input-container">
-          <label for="email">Email Address:</label>
-          <input type="email" id="email" name="email" placeholder="john@example.com" required>
-        </div>
-      </div>-->
+      <label for="feedback">Your Feedback</label>
+      <textarea id="feedback" name="feedback" required></textarea>
 
-      <!-- Shoe Selection with Preview -->
-      <div class="form-group">
-        <label for="shoe">Select Shoe:</label>
-        <select id="shoe" name="shoe" required>
-          <option value="" disabled selected>Choose a shoe</option>
-          <option value="sneakers" data-image="https://example.com/sneakers.jpg">Sneakers</option>
-          <option value="boots" data-image="https://example.com/boots.jpg">Boots</option>
-          <option value="sandals" data-image="https://example.com/sandals.jpg">Sandals</option>
-          <option value="loafers" data-image="https://example.com/loafers.jpg">Loafers</option>
-          <option value="heels" data-image="https://example.com/heels.jpg">Heels</option>
-          <option value="sports" data-image="https://example.com/sports.jpg">Sports Shoes</option>
-        </select>
-        
-        <div class="shoe-preview">
-          <div class="shoe-image" id="shoePreview"></div>
-          <div class="shoe-name" id="shoeName"></div>
-        </div>
-      </div>
-
-      <!-- Rating Selection with Star Icons -->
-      <div class="form-group">
-        <label>Rating:</label>
-        <div class="rating" id="rating">
-          <i class="fas fa-star" data-value="1"></i>
-          <i class="fas fa-star" data-value="2"></i>
-          <i class="fas fa-star" data-value="3"></i>
-          <i class="fas fa-star" data-value="4"></i>
-          <i class="fas fa-star" data-value="5"></i>
-        </div>
-        <input type="hidden" id="ratingValue" name="rating" value="0" required>
-      </div>
-
-      <!-- Comment Section with Character Counter -->
-      <div class="form-group">
-        <label for="comment">Your Feedback:</label>
-        <textarea id="comment" name="comment" rows="5" placeholder="Tell us about your experience..." maxlength="500" required></textarea>
-        <div class="char-counter"><span id="charCount">0</span>/500</div>
-      </div>
-
-      <!-- Submit Button -->
-      <button type="submit" class="submit-btn" id="submitBtn">
-        Submit Feedback
-      </button>
-
-      <!-- Success Message -->
-      <div class="success-message" id="successMessage">
-        <i class="fas fa-check-circle"></i> Thank you for your feedback! We appreciate your time.
-      </div>
+      <button type="submit">Send Feedback</button>
     </form>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // DOM Elements
-      const form = document.getElementById('feedbackForm');
-      const ratingStars = document.querySelectorAll('.rating i');
-      const ratingInput = document.getElementById('ratingValue');
-      const commentTextarea = document.getElementById('comment');
-      const charCount = document.getElementById('charCount');
-      const submitBtn = document.getElementById('submitBtn');
-      const successMessage = document.getElementById('successMessage');
-      const shoeSelect = document.getElementById('shoe');
-      const shoePreview = document.getElementById('shoePreview');
-      const shoeName = document.getElementById('shoeName');
-
-      // Current rating value
-      let currentRating = 0;
-      let hoverRating = 0;
-
-      // Shoe images data (in a real app, this would come from a database)
-      const shoeImages = {
-        sneakers: 'https://via.placeholder.com/300x200?text=Sneakers',
-        boots: 'https://via.placeholder.com/300x200?text=Boots',
-        sandals: 'https://via.placeholder.com/300x200?text=Sandals',
-        loafers: 'https://via.placeholder.com/300x200?text=Loafers',
-        heels: 'https://via.placeholder.com/300x200?text=Heels',
-        sports: 'https://via.placeholder.com/300x200?text=Sports+Shoes'
-      };
-
-      // Update shoe preview when selection changes
-      shoeSelect.addEventListener('change', function() {
-        const selectedShoe = this.value;
-        if (selectedShoe) {
-          shoePreview.style.backgroundImage = `url(${shoeImages[selectedShoe]})`;
-          shoeName.textContent = this.options[this.selectedIndex].text;
-        }
-      });
-
-      // Rating stars interaction
-      ratingStars.forEach(star => {
-        star.addEventListener('mouseover', () => {
-          const value = parseInt(star.getAttribute('data-value'));
-          hoverRating = value;
-          updateStars();
-        });
-
-        star.addEventListener('mouseout', () => {
-          hoverRating = 0;
-          updateStars();
-        });
-
-        star.addEventListener('click', () => {
-          currentRating = parseInt(star.getAttribute('data-value'));
-          ratingInput.value = currentRating;
-          updateStars();
-          
-          // Add bounce animation to the clicked star
-          star.classList.add('animate-bounce');
-          setTimeout(() => {
-            star.classList.remove('animate-bounce');
-          }, 500);
-        });
-      });
-
-      function updateStars() {
-        ratingStars.forEach(star => {
-          const value = parseInt(star.getAttribute('data-value'));
-          
-          star.classList.remove('active', 'hovered');
-          
-          if (hoverRating > 0) {
-            if (value <= hoverRating) {
-              star.classList.add('hovered');
-            }
-          } else if (value <= currentRating) {
-            star.classList.add('active');
-          }
-        });
-      }
-
-      // Character counter for comments
-      commentTextarea.addEventListener('input', function() {
-        const count = this.value.length;
-        charCount.textContent = count;
-        
-        // Change color when approaching limit
-        const counter = document.querySelector('.char-counter');
-        if (count > 450) {
-          counter.classList.add('warning');
-        } else {
-          counter.classList.remove('warning');
-        }
-      });
-
-      // Ripple effect for submit button
-      submitBtn.addEventListener('click', function(e) {
-        // Only create ripple if form is valid
-        if (form.checkValidity()) {
-          const rect = this.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          
-          const ripple = document.createElement('span');
-          ripple.classList.add('ripple');
-          ripple.style.left = `${x}px`;
-          ripple.style.top = `${y}px`;
-          
-          this.appendChild(ripple);
-          
-          setTimeout(() => {
-            ripple.remove();
-          }, 600);
-        }
-      });
-
-      // Form submission
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Validate rating
-        if (currentRating === 0) {
-          alert('Please select a rating');
-          return;
-        }
-        
-        // Simulate form submission (in a real app, this would be an AJAX call)
-        setTimeout(() => {
-          form.style.display = 'none';
-          successMessage.style.display = 'block';
-          
-          // Reset form after 3 seconds (for demo purposes)
-          setTimeout(() => {
-            form.reset();
-            form.style.display = 'block';
-            successMessage.style.display = 'none';
-            currentRating = 0;
-            ratingInput.value = '0';
-            updateStars();
-            charCount.textContent = '0';
-            document.querySelector('.char-counter').classList.remove('warning');
-          }, 3000);
-        }, 1000);
-      });
-
-      // Initialize shoe preview if a shoe is already selected
-      if (shoeSelect.value) {
-        shoeSelect.dispatchEvent(new Event('change'));
-      }
-    });
-  </script>
 </body>
 </html>
