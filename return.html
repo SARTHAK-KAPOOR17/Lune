@@ -77,24 +77,7 @@
             }
         });
     </script>
-    <h2>Shoe Store - Return Order Form</h2>
-
-    <form action="/submit-return" method="post" enctype="multipart/form-data">
-        <!-- form content remains the same -->
-    </form>
-
-    <script>
-        const returnMethod = document.getElementById('returnMethod');
-        const pickupDetails = document.getElementById('pickupDetails');
-
-        returnMethod.addEventListener('change', function() {
-            if (this.value === 'pickup') {
-                pickupDetails.classList.add('show');
-            } else {
-                pickupDetails.classList.remove('show');
-            }
-        });
-    </script>
+    
 
 </body>
 </html>
