@@ -1,49 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Shoe Store - Customer Rating</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Feedback Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-card {
+      background: #c9c0c0;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-top: 8px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background-color: #f9f9f9;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #6a11cb;
+      outline: none;
+    }
+
+    textarea {
+      resize: none;
+      min-height: 100px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #5d0ecc, #1c63e2);
+    }
+  </style>
 </head>
 <body>
 
-  <h1>Shoe Store - Customer Rating</h1>
+  <div class="form-card">
+    <h2>We Value Your Feedback</h2>
+    <form action="submit_feedback.php" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required>
 
-  <form action="/submit-rating" method="post">
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required>
 
-    <label for="shoe">Select Shoe:</label>
-    <select id="shoe" name="shoe">
-      <option value="sneakers">Sneakers</option>
-      <option value="boots">Boots</option>
-      <option value="sandals">Sandals</option>
-      <option value="loafers">Loafers</option>
-      <option value="heels">Heels</option>
-      <option value="Sports">Sports</option>
-    </select>
+      <label for="feedback">Your Feedback</label>
+      <textarea id="feedback" name="feedback" required></textarea>
 
-    <br><br>
-
-    <label>Rating:</label><br>
-    <input type="radio" id="star5" name="rating" value="5">
-    <label for="star5">5 Stars</label><br>
-    <input type="radio" id="star4" name="rating" value="4">
-    <label for="star4">4 Stars</label><br>
-    <input type="radio" id="star3" name="rating" value="3">
-    <label for="star3">3 Stars</label><br>
-    <input type="radio" id="star2" name="rating" value="2">
-    <label for="star2">2 Stars</label><br>
-    <input type="radio" id="star1" name="rating" value="1">
-    <label for="star1">1 Star</label><br>
-
-    <br>
-
-    <label for="comment">Leave a comment:</label><br>
-    <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Your feedback..."></textarea>
-
-    <br><br>
-
-    <input type="submit" value="Submit Rating">
-
-  </form>
+      <button type="submit">Send Feedback</button>
+    </form>
+  </div>
 
 </body>
 </html>
