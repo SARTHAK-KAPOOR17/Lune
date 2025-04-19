@@ -2,8 +2,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     line-height: 1.6;
-    background-color: #7fc5ce; 
-    color: #bfd568;
+    background: linear-gradient(to right, #bce625, #26b52b);
+    color: #bede42;
     padding: 30px;
     display: flex;
     justify-content: center;
@@ -13,16 +13,16 @@ body {
 
 .container {
     max-width: 750px;
-    background-color: #a7ee97;
+    background-color: #dfc9cc;
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(213, 76, 154, 0.15);
     margin: 20px;
     border-top: 5px solid #d56c64; 
 }
 
 h1, h2 {
-    color: #6094bf; 
+    color: #e54113; 
     text-align: center;
     margin-bottom: 30px;
 }
@@ -53,14 +53,14 @@ h2 {
 }
 
 .contact-info a:hover {
-    color: #388e3c; 
+    color: #2dee37; 
 }
 
 .contact-form label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #673ab7; 
+    color: #34ba39; 
 }
 
 .contact-form input[type="text"],
@@ -93,7 +93,7 @@ h2 {
 
 .contact-form button {
     background-color: #ff9800; 
-    color: white;
+    color: rgb(234, 203, 203);
     padding: 12px 25px;
     border: none;
     border-radius: 10px;
@@ -104,7 +104,7 @@ h2 {
 }
 
 .contact-form button:hover {
-    background-color: #f57c00; 
+    background-color: #2bce5c; 
     transform: translateY(-2px);
 }
 
@@ -141,7 +141,7 @@ h2 {
 }
 
 .map-container p a {
-    color: #00bcd4; 
+    color: #8dd733; 
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
