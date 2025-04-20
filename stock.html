@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shoe Store Stock Indicator</title>
+  <style>
+    .stock-indicator {
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .in-stock {
+      background-color: #d4edda;
+      color: #329e4c;
+    }
+
+    .low-stock {
+      background-color: #fff3cd;
+      color: #6d5305;
+    }
+
+    .out-of-stock {
+      background-color: #f8d7da;
+      color: #7e1923;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Nike Air Max 270</h2>
+  <p>Size: 10</p>
+  <div id="stockStatus" class="stock-indicator"></div>
+
+  <script>
+    const stock = 3;
+
+    const stockDiv = document.getElementById('stockStatus');
+
+    if (stock > 5) {
+      stockDiv.textContent = 'In Stock';
+      stockDiv.classList.add('in-stock');
+    } else if (stock > 0) {
+      stockDiv.textContent = 'Low Stock';
+      stockDiv.classList.add('low-stock');
+    } else {
+      stockDiv.textContent = 'Out of Stock';
+      stockDiv.classList.add('out-of-stock');
+    }
+  </script>
+
+</body>
+</html>
