@@ -108,7 +108,7 @@ h1, h2 {
 }
 
 .contact-form button:hover {
-    background-color: #2e7d32;
+    background-color: #36b7c8;
     transform: translateY(-2px);
 }
 
@@ -135,7 +135,7 @@ h1, h2 {
 }
 
 .map-container p {
-    background-color: #f1f8e9;
+    background-color: #c3ea96;
     text-align: center;
     padding: 10px;
     font-size: 0.95rem;
@@ -173,7 +173,7 @@ h1, h2 {
 }
 
 .social-links a:hover {
-    color: #ff5722;
+    color: #3f22ff;
     text-decoration: underline;
 }
 
