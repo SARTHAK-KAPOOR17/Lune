@@ -1,0 +1,142 @@
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #da981e, #43e41b);
+    margin: 0;
+    padding: 40px 20px;
+    animation: fadeIn 1s ease-in;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    animation: bounceIn 1s ease-out;
+}
+
+form {
+    background: linear-gradient(135deg, #e59292, #364baa);
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(124, 230, 75, 0.1);
+    animation: popup 0.7s ease-in-out;
+    transition: transform 0.3s ease;
+}
+
+form:hover {
+    transform: translateY(-4px);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #34495e;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="file"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+    font-size: 15px;
+    background-color: #fafafa;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+    outline: none;
+    background-color: #fff;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #2c3e50;
+    text-shadow: 0 0 3px rgba(44, 62, 80, 0.2);
+}
+
+#pickupDetails {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+#pickupDetails.show {
+    max-height: 300px;
+    opacity: 1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popup {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
