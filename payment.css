@@ -1,0 +1,104 @@
+.payment {
+    width: 400px;
+    padding: 20px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+}
+
+.payTitle {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #444;
+    margin-top: 15px;
+}
+
+.payInput {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+    font-size: 14px;
+}
+
+.payInput:focus {
+    border-color: #007BFF;
+}
+
+.cardIcons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #f8f8f8, #e0e0e0, #f8f8f8);
+    background-size: 200% 100%;
+    animation: gradientAnimation 1.5s linear infinite;
+}
+
+.cardIcon {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: #f8f8f8;
+}
+
+.cardInfo {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.payInput.sm {
+    flex: 1;
+}
+
+.payButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.payButton:hover {
+    background-color: #0056b3;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 20px;
+    color: #999;
+    transition: color 0.3s, transform 0.3s;
+    transform: scale(1);
+}
+
+.close:hover {
+    color: #333;
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #333;
+}
