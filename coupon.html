@@ -4,35 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shoe Store Coupons</title>
-    <link rel="stylesheet" href="coupon.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-bg: #f4f6fb;
+            --primary-dark: #1e2a38;
+            --accent: #ff6b35;
+            --card-bg: linear-gradient(to bottom right, #ffffff, #eef1f6);
+            --text-dark: #2d2d2d;
+        }
+
         /* Toast Styling */
         .toast {
             position: fixed;
             bottom: 30px;
             left: 50%;
-            transform: translateX(-50%);
-            background: #333;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--primary-dark);
             color: #fff;
             padding: 12px 20px;
-            border-radius: 5px;
+            border-radius: 8px;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease, transform 0.4s ease;
             z-index: 1000;
+            font-size: 0.95rem;
         }
 
         .toast.show {
             opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
-        /* Animation on body */
         body {
             animation: fadeBody 1s ease-in;
             font-family: 'Inter', sans-serif;
-            background: #f5f7fa;
-            color: #333;
+            background: var(--primary-bg);
+            color: var(--text-dark);
             margin: 0;
             padding: 0;
         }
@@ -42,21 +50,42 @@
             to { opacity: 1; }
         }
 
+        @keyframes slideFadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-entry {
+            opacity: 0;
+            animation: slideFadeUp 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.4s; }
+        .delay-2 { animation-delay: 0.8s; }
+        .delay-3 { animation-delay: 1.2s; }
+        .delay-4 { animation-delay: 1.6s; }
+
         header {
             text-align: center;
             padding: 40px 20px 10px;
-            background: #111;
+            background: var(--primary-dark);
             color: white;
         }
 
         header span {
-            color: #f0c14b;
+            color: var(--accent);
         }
 
         .tagline {
             font-size: 1.1rem;
             margin-top: 10px;
-            color: #bbb;
+            color: #d0d6de;
         }
 
         main {
@@ -68,30 +97,38 @@
         }
 
         .coupon, .bank-offers {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg);
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
             padding: 30px;
             width: 90%;
             max-width: 500px;
             text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .coupon:hover, .bank-offers:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
         }
 
         .coupon h2, .bank-offers h2 {
             margin-bottom: 10px;
             font-weight: 600;
+            color: var(--primary-dark);
         }
 
         .code {
-            background: #f0c14b;
-            padding: 5px 10px;
+            background: var(--accent);
+            color: white;
+            padding: 6px 12px;
             border-radius: 6px;
             font-weight: bold;
             letter-spacing: 1px;
         }
 
         .btn {
-            background: #111;
+            background: var(--primary-dark);
             color: #fff;
             border: none;
             padding: 12px 20px;
@@ -99,12 +136,13 @@
             cursor: pointer;
             font-size: 1rem;
             margin-top: 15px;
-            transition: transform 0.3s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
         }
 
         .btn:hover {
             transform: scale(1.05);
-            background: #333;
+            background: #324052;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
         .bank-buttons {
@@ -117,9 +155,13 @@
         footer {
             text-align: center;
             padding: 20px;
-            background: #111;
+            background: var(--primary-dark);
             color: #fff;
             font-size: 0.9rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -132,19 +174,19 @@
     </header>
 
     <main>
-        <section class="coupon animate__animated animate__fadeInUp animate__delay-1s">
+        <section class="coupon animate-entry delay-1">
             <h2>🎉 20% Off Everything</h2>
             <p>Use Code: <span class="code">SHOES20</span></p>
             <button class="btn" onclick="showToast('🎉 Code SHOES20 applied!')">Redeem</button>
         </section>
 
-        <section class="coupon animate__animated animate__fadeInUp animate__delay-2s">
+        <section class="coupon animate-entry delay-2">
             <h2>🛍️ Buy 1 Get 1 Free</h2>
             <p>Use Code: <span class="code">BADMOSH</span></p>
             <button class="btn" onclick="showToast('🛍️ Code BADMOSH applied!')">Redeem</button>
         </section>
 
-        <section class="bank-offers animate__animated animate__fadeInUp animate__delay-3s">
+        <section class="bank-offers animate-entry delay-3">
             <h2>💳 Bank Offers</h2>
             <div class="bank-buttons">
                 <button class="btn bank-btn" onclick="showToast('SBI Bank Offer: 25% Off ✅')">SBI - 25% Off</button>
@@ -154,7 +196,7 @@
         </section>
     </main>
 
-    <footer class="animate__animated animate__fadeInUp animate__delay-4s">
+    <footer class="animate-entry delay-4">
         <p>&copy; 2025 Shoe Store. All rights reserved.</p>
     </footer>
 
