@@ -9,8 +9,8 @@ html {
   }
   
   nav {
-    background-color: #111;
-    color: white;
+    background-color: #55d894;
+    color: rgb(11, 19, 86);
     padding: 20px 50px;
   }
   
@@ -23,7 +23,7 @@ html {
   .search {
     display: flex;
     align-items: center;
-    background-color: gray;
+    background-color: rgb(138, 166, 51);
     padding: 10px 20px;
     border-radius: 10px;
   }
@@ -38,7 +38,7 @@ html {
     border: none; 
     border-radius: 5px; 
     background-color: #519f28; 
-    color: white; 
+    color: rgb(158, 2, 2); 
   }
   
   button:hover {
@@ -51,12 +51,12 @@ html {
   }
   
   .searchInput::placeholder {
-    color: lightgray;
+    color: rgb(33, 235, 235);
   }
   
   .limitedOffer {
     font-size: 20px;
-    border-bottom: 2px solid green;
+    border-bottom: 2px solid rgb(161, 78, 93);
     cursor: pointer;
   }
   
@@ -69,7 +69,7 @@ html {
   .menuItem {
     margin-right: 50px;
     cursor: pointer;
-    color: lightgray;
+    color: rgb(5, 53, 2);
     font-weight: 400;
   }
   
