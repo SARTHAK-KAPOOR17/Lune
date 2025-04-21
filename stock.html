@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,7 +13,7 @@
 
     .in-stock {
       background-color: #d4edda;
-      color: #329e4c;
+      color: #2b773c;
     }
 
     .low-stock {
@@ -48,6 +48,162 @@
       stockDiv.textContent = 'Out of Stock';
       stockDiv.classList.add('out-of-stock');
     }
+  </script>
+
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shoe Store Stock Indicator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    .product-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin: auto;
+    }
+
+    .product-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .stock-indicator {
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .in-stock {
+      background-color: #d4edda;
+      color: #2b773c;
+    }
+
+    .low-stock {
+      background-color: #fff3cd;
+      color: #6d5305;
+    }
+
+    .out-of-stock {
+      background-color: #f8d7da;
+      color: #7e1923;
+    }
+
+    .price {
+      font-size: 1.2em;
+      color: #333;
+      margin: 10px 0;
+    }
+
+    .quantity-label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    select {
+      margin-top: 5px;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .add-to-cart {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .add-to-cart:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="product-card">
+    <h2>Nike Air Max 270</h2>
+    <img src="Lune/images/jordan2.png" alt="Nike Air Max 270" class="product-image">
+    <p>Size: 10</p>
+    <p class="price">$129.99</p>
+    <p>Experience all-day comfort and bold style with the Nike Air Max 270. Featuring a large Air unit for cushioning and a sleek upper for a modern look.</p>
+
+    <div id="stockStatus" class="stock-indicator"></div>
+
+    <label class="quantity-label" for="quantity">Quantity:</label>
+    <select id="quantity">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+
+    <button class="add-to-cart" id="addToCart">Add to Cart</button>
+  </div>
+
+  <script>
+    let stock = 3;
+
+    const stockDiv = document.getElementById('stockStatus');
+    const addToCartBtn = document.getElementById('addToCart');
+    const quantitySelect = document.getElementById('quantity');
+
+    function updateStockIndicator() {
+      stockDiv.className = 'stock-indicator';
+
+      if (stock > 5) {
+        stockDiv.textContent = 'In Stock';
+        stockDiv.classList.add('in-stock');
+        addToCartBtn.disabled = false;
+      } else if (stock > 0) {
+        stockDiv.textContent = 'Low Stock';
+        stockDiv.classList.add('low-stock');
+        addToCartBtn.disabled = false;
+      } else {
+        stockDiv.textContent = 'Out of Stock';
+        stockDiv.classList.add('out-of-stock');
+        addToCartBtn.disabled = true;
+      }
+    }
+
+    quantitySelect.addEventListener('change', () => {
+      const selectedQty = parseInt(quantitySelect.value);
+      const remainingStock = stock - selectedQty;
+
+      if (remainingStock < 0) {
+        stockDiv.textContent = 'Not enough stock';
+        stockDiv.className = 'stock-indicator out-of-stock';
+        addToCartBtn.disabled = true;
+      } else {
+        updateStockIndicator();
+        addToCartBtn.disabled = false;
+      }
+    });
+
+    updateStockIndicator();
   </script>
 
 </body>
