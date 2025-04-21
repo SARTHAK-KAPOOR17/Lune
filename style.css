@@ -13,7 +13,33 @@ html {
     color: rgb(11, 19, 86);
     padding: 20px 50px;
   }
+  .search-container {
+    animation: float 3s ease-in-out infinite;
+  }
   
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  .search-bar {
+    width: 200px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+  }
+  
+  .search-bar:focus {
+    width: 300px;
+    border-color: #6c63ff;
+    box-shadow: 0 0 8px rgba(108, 99, 255, 0.6);
+    outline: none;
+  }
+    
   .navTop {
     display: flex;
     align-items: center;
