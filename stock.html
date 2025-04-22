@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -67,6 +67,195 @@
     });
 
     updateStockIndicator();
+  </script>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shoe Store Stock Indicator</title>
+  <link rel="stylesheet" href="stock.css">
+  <style>
+    /* Adding blue background color to the body */
+    body {
+      background-color: #007BFF; /* Blue background color */
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .product-card {
+      background-color: #fff; /* White background for the product card */
+      padding: 20px;
+      margin: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-images {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .product-image {
+      max-width: 150px;
+      margin: 0 10px;
+    }
+
+    .price {
+      color: #f4a261; /* A nice color for the price */
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .discount-price {
+      color: #d9534f; /* Red color for the discounted price */
+      font-size: 1.5em;
+      font-weight: bold;
+      text-decoration: line-through; /* Striking through the original price */
+      margin-left: 10px;
+    }
+
+    .stock-indicator {
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+
+    .in-stock {
+      color: green;
+    }
+
+    .low-stock {
+      color: orange;
+    }
+
+    .out-of-stock {
+      color: red;
+    }
+
+    .quantity-label {
+      margin-right: 10px;
+    }
+
+    .add-to-cart {
+      background-color: #28a745; /* Green button color */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    .add-to-cart:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="product-card">
+    <h2>Nike Air Max 270</h2>
+
+    <!-- Multiple images -->
+    <div class="product-images">
+      <img src="Lune/images/jordan2.png" alt="Nike Air Max 270 Front View" class="product-image">
+    </div>
+
+    <p>Size: 10</p>
+    <p class="price">₹1169.99</p> <!-- Original price in rupees -->
+    <p class="discount-price">₹1299.99</p> <!-- Discounted price in rupees -->
+    <p>Experience all-day comfort and bold style with the Nike Air Max 270. Featuring a large Air unit for cushioning and a sleek upper for a modern look.</p>
+
+    
+    <label class="quantity-label" for="quantity">Quantity:</label>
+    <select id="quantity">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+
+    <button class="add-to-cart" id="addToCart">Add to Cart</button>
+  </div>
+
+
+    <div class="product-card">
+    <h2>Sparx Sport Shoes</h2>
+    <div class="product-images">
+      <img src="https://tse1.mm.bing.net/th?id=OIP.318XMQkgW0YDg-e6JizYjAHaFs&pid=Api&rs=1&c=1&qlt=95&w=151&h=116" alt="sparx sport shoes" class="product-image">
+    </div>
+
+    <p>Size: 10</p>
+    <p class="price">₹1169.99</p> <!-- Original price in rupees -->
+    <p class="discount-price">₹1299.99</p> <!-- Discounted price in rupees -->
+    <p>Read real customer reviews on Sparx Footwear. Discover the best options, prices, comfort, durability, and overall satisfaction for both men and women’s shoes.</p>
+
+    <div id="stockStatus" class="stock-indicator"></div>
+
+    <label class="quantity-label" for="quantity">Quantity:</label>
+    <select id="quantity">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+
+    <button class="add-to-cart" id="addToCart">Add to Cart</button>
+  </div>
+
+  <script>
+    let stock = 3;
+
+    const stockDiv = document.getElementById('stockStatus');
+    const addToCartBtn = document.getElementById('addToCart');
+    const quantitySelect = document.getElementById('quantity');
+
+    function updateStockIndicator() {
+      stockDiv.className = 'stock-indicator';
+
+      if (stock > 5) {
+        stockDiv.textContent = 'In Stock';
+        stockDiv.classList.add('in-stock');
+        addToCartBtn.disabled = false;
+      } else if (stock > 0) {
+        stockDiv.textContent = 'Low Stock';
+        stockDiv.classList.add('low-stock');
+        addToCartBtn.disabled = false;
+      } else {
+        stockDiv.textContent = 'Out of Stock';
+        stockDiv.classList.add('out-of-stock');
+        addToCartBtn.disabled = true;
+      }
+    }
+
+    quantitySelect.addEventListener('change', () => {
+      const selectedQty = parseInt(quantitySelect.value);
+      const remainingStock = stock - selectedQty;
+
+      if (remainingStock < 0) {
+        stockDiv.textContent = 'Not enough stock';
+        stockDiv.className = 'stock-indicator out-of-stock';
+        addToCartBtn.disabled = true;
+      } else {
+        updateStockIndicator();
+        addToCartBtn.disabled = false;
+      }
+    });
+
+    addToCartBtn.addEventListener('click', () => {
+      const selectedQty = parseInt(quantitySelect.value);
+      if (stock >= selectedQty) {
+        stock -= selectedQty; // Decrease the stock after adding to cart
+        updateStockIndicator();
+      }
+    });
+
+    updateStockIndicator(); // Initial stock update on page load
   </script>
 
 </body>
