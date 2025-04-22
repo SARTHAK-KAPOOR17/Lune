@@ -221,6 +221,23 @@ main.return-page {
     background-position-y: 50%;
 }
 
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .search-bar {
+    padding: 8px 12px;
+    border: 1px solid #c91717;
+    border-radius: 20px;
+    width: 200px;
+    outline: none;
+  }
+  
+  .searchIcon {
+    cursor: pointer;
+  }
 .return-actions {
     margin-bottom: 20px;
     text-align: center;
