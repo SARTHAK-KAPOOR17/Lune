@@ -12,3 +12,8 @@
     }
   });
 
+  alert("✅ Please click on the complete order button to confirm your order.");
+  alert("✅ Payment Successful! Thank you for your purchase.");
+  // Simulate payment logic
+  
+
