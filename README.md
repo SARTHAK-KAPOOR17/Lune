@@ -26,4 +26,17 @@ Clone the repository
 
 Open index.html in your browser
 
-Explore, add items, use coupons, and enjoy the Lune experience!
+
+## 🚀 New Features
+
+### 💳 Payment Gateway Integration
+- Integrated a secure and reliable payment gateway to handle transactions.
+- Supports real-time payment verification and user-friendly error handling.
+- Ensures safe checkout experience for users.
+
+### ✅ Order Completion Animation
+- Added a sleek order success animation post-payment.
+- Enhances user satisfaction with visual confirmation of successful orders.
+- Responsive and smooth animation across devices.
+
+
