@@ -1,212 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shoe Store Coupons</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-bg: #f4f6fb;
-            --primary-dark: #1e2a38;
-            --accent: #ff6b35;
-            --card-bg: linear-gradient(to bottom right, #ffffff, #eef1f6);
-            --text-dark: #2d2d2d;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shoe Store Coupons</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --primary-bg: #f4f6fb;
+      --primary-dark: #1e2a38;
+      --accent: #ff6b35;
+      --card-bg: linear-gradient(to bottom right, #ffffff, #eef1f6);
+      --text-dark: #2d2d2d;
+    }
 
-        /* Toast Styling */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            background: var(--primary-dark);
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            opacity: 0;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            z-index: 1000;
-            font-size: 0.95rem;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--primary-bg);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+    }
 
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
+    header {
+      text-align: center;
+      padding: 40px 20px 10px;
+      background: var(--primary-dark);
+      color: white;
+    }
 
-        body {
-            animation: fadeBody 1s ease-in;
-            font-family: 'Inter', sans-serif;
-            background: var(--primary-bg);
-            color: var(--text-dark);
-            margin: 0;
-            padding: 0;
-        }
+    header span {
+      color: var(--accent);
+    }
 
-        @keyframes fadeBody {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    .tagline {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      color: #d0d6de;
+    }
 
-        @keyframes slideFadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .hero-banner {
+      text-align: center;
+      padding: 60px 20px;
+      background: url('https://images.unsplash.com/photo-1528701800489-20beaf4c54b9?auto=format&fit=crop&w=1400&q=80') no-repeat center/cover;
+      color: white;
+    }
 
-        .animate-entry {
-            opacity: 0;
-            animation: slideFadeUp 0.8s ease-out forwards;
-        }
+    .hero-banner h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
 
-        .delay-1 { animation-delay: 0.4s; }
-        .delay-2 { animation-delay: 0.8s; }
-        .delay-3 { animation-delay: 1.2s; }
-        .delay-4 { animation-delay: 1.6s; }
+    .hero-banner p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
 
-        header {
-            text-align: center;
-            padding: 40px 20px 10px;
-            background: var(--primary-dark);
-            color: white;
-        }
+    .btn {
+      background: var(--primary-dark);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease;
+    }
 
-        header span {
-            color: var(--accent);
-        }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      padding: 40px 20px;
+    }
 
-        .tagline {
-            font-size: 1.1rem;
-            margin-top: 10px;
-            color: #d0d6de;
-        }
+    .coupon, .bank-offers {
+      background: var(--card-bg);
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      perspective: 1000px;
+      transition: transform 0.6s;
+    }
 
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            padding: 40px 20px;
-        }
+    .coupon:hover {
+      transform: rotateY(5deg);
+    }
 
-        .coupon, .bank-offers {
-            background: var(--card-bg);
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-            padding: 30px;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    .coupon h2, .bank-offers h2 {
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
 
-        .coupon:hover, .bank-offers:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-        }
+    .code {
+      background: var(--accent);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-right: 10px;
+    }
 
-        .coupon h2, .bank-offers h2 {
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
+    .bank-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
 
-        .code {
-            background: var(--accent);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: var(--primary-dark);
+      color: #fff;
+      font-size: 0.9rem;
+    }
 
-        .btn {
-            background: var(--primary-dark);
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 15px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
-        }
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--primary-dark);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 1000;
+      font-size: 0.95rem;
+    }
 
-        .btn:hover {
-            transform: scale(1.05);
-            background: #324052;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-        }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
-        .bank-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: var(--primary-dark);
-            color: #fff;
-            font-size: 0.9rem;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
-    <div class="toast" id="toast">Message</div>
+  <div class="toast" id="toast">Message</div>
 
-    <header class="animate__animated animate__fadeInDown">
-        <h1>Shoe Store <span>Coupons</span></h1>
-        <p class="tagline">Get the best deals on your favorite shoes</p>
-    </header>
+  <header>
+    <h1>Shoe Store <span>Coupons</span></h1>
+    <p class="tagline">Get the best deals on your favorite shoes</p>
+  </header>
 
-    <main>
-        <section class="coupon animate-entry delay-1">
-            <h2>🎉 20% Off Everything</h2>
-            <p>Use Code: <span class="code">SHOES20</span></p>
-            <button class="btn" onclick="showToast('🎉 Code SHOES20 applied!')">Redeem</button>
-        </section>
+  <section class="hero-banner">
+    <h1>Step Into Style</h1>
+    <p>Fresh kicks. Hot deals. Daily savings.</p>
+    <button class="btn" onclick="window.scrollTo({ top: document.querySelector('main').offsetTop, behavior: 'smooth' })">View Offers</button>
+  </section>
 
-        <section class="coupon animate-entry delay-2">
-            <h2>🛍️ Buy 1 Get 1 Free</h2>
-            <p>Use Code: <span class="code">BADMOSH</span></p>
-            <button class="btn" onclick="showToast('🛍️ Code BADMOSH applied!')">Redeem</button>
-        </section>
+  <main>
+    <section class="coupon animate-entry">
+      <h2>🎉 20% Off Everything</h2>
+      <p>Use Code: <span class="code">SHOES20</span>
+      <button class="btn" onclick="copyCode('SHOES20')">Copy</button></p>
+      <button class="btn" onclick="redeem('🎉 Code SHOES20 applied!')">Redeem</button>
+    </section>
 
-        <section class="bank-offers animate-entry delay-3">
-            <h2>💳 Bank Offers</h2>
-            <div class="bank-buttons">
-                <button class="btn bank-btn" onclick="showToast('SBI Bank Offer: 25% Off ✅')">SBI - 25% Off</button>
-                <button class="btn bank-btn" onclick="showToast('HDFC Bank Offer: 18% Off ✅')">HDFC - 18% Off</button>
-                <button class="btn bank-btn" onclick="showToast('Kotak Bank Offer: 50% Off 🔥')">Kotak - 50% Off</button>
-            </div>
-        </section>
-    </main>
+    <section class="coupon animate-entry">
+      <h2>🛍️ Buy 1 Get 1 Free</h2>
+      <p>Use Code: <span class="code">BADMOSH</span>
+      <button class="btn" onclick="copyCode('BADMOSH')">Copy</button></p>
+      <button class="btn" onclick="redeem('🛍️ Code BADMOSH applied!')">Redeem</button>
+    </section>
 
-    <footer class="animate-entry delay-4">
-        <p>&copy; 2025 Shoe Store. All rights reserved.</p>
-    </footer>
+    <section class="bank-offers animate-entry">
+      <h2>💳 Bank Offers</h2>
+      <div class="bank-buttons">
+        <button class="btn bank-btn" onclick="redeem('SBI Bank Offer: 25% Off ✅')">SBI - 25% Off</button>
+        <button class="btn bank-btn" onclick="redeem('HDFC Bank Offer: 18% Off ✅')">HDFC - 18% Off</button>
+        <button class="btn bank-btn" onclick="redeem('Kotak Bank Offer: 50% Off 🔥')">Kotak - 50% Off</button>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        function showToast(message) {
-            const toast = document.getElementById("toast");
-            toast.textContent = message;
-            toast.classList.add("show");
-            setTimeout(() => toast.classList.remove("show"), 3000);
+  <footer class="animate-entry">
+    <p>&copy; 2025 Shoe Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 3000);
+    }
+
+    function copyCode(code) {
+      navigator.clipboard.writeText(code).then(() => {
+        showToast(`✅ Code ${code} copied!`);
+      });
+    }
+
+    function redeem(message) {
+      showToast(message);
+      createConfetti();
+    }
+
+    function createConfetti() {
+      const emojis = ["🎉", "🛍️", "🔥", "💸", "✨"];
+      for (let i = 0; i < 20; i++) {
+        const span = document.createElement("span");
+        span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        span.style.position = "fixed";
+        span.style.left = Math.random() * 100 + "vw";
+        span.style.top = "-30px";
+        span.style.fontSize = "1.5rem";
+        span.style.zIndex = "999";
+        document.body.appendChild(span);
+        gsap.to(span, {
+          y: "100vh",
+          x: "+=" + (Math.random() * 100 - 50),
+          opacity: 0,
+          duration: 2 + Math.random() * 2,
+          ease: "power1.out",
+          onComplete: () => span.remove()
+        });
+      }
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray(".animate-entry").forEach((elem, index) => {
+      gsap.fromTo(elem,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: elem,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+          delay: index * 0.1
         }
-    </script>
+      );
+    });
+
+    gsap.from("header", {
+      y: -100,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out"
+    });
+
+    gsap.from("footer", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: "footer",
+        start: "top bottom"
+      }
+    });
+
+    gsap.utils.toArray(".btn").forEach((button) => {
+      button.addEventListener("mouseenter", () => {
+        gsap.to(button, { scale: 1.07, duration: 0.2, ease: "power1.out" });
+      });
+      button.addEventListener("mouseleave", () => {
+        gsap.to(button, { scale: 1.0, duration: 0.2, ease: "power1.out" });
+      });
+    });
+  </script>
 </body>
 </html>
