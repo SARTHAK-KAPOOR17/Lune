@@ -7,7 +7,7 @@
 
       setTimeout(() => {
         button.removeClass('animate');
-        window.location.href = "main.html";
+        window.location.href = "index.html";
       }, 10000); // match this with CSS animation timing
     }
   });
