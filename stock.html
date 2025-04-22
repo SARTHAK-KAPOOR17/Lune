@@ -86,10 +86,6 @@
       color: green;
     }
 
-    .low-stock {
-      color: orange;
-    }
-
     .out-of-stock {
       color: red;
     }
@@ -187,13 +183,9 @@
     function updateStockIndicator() {
       stockDiv.className = 'stock-indicator';
 
-      if (stock > 5) {
+      if (stock > 0) {
         stockDiv.textContent = 'In Stock';
         stockDiv.classList.add('in-stock');
-        addToCartBtn.disabled = false;
-      } else if (stock > 0) {
-        stockDiv.textContent = 'Low Stock';
-        stockDiv.classList.add('low-stock');
         addToCartBtn.disabled = false;
       } else {
         stockDiv.textContent = 'Out of Stock';
@@ -212,7 +204,7 @@
         addToCartBtn.disabled = true;
       } else {
         updateStockIndicator();
-        addToCartBtn.disabled = false;
+        addToCartBtn.disabled =false;
       }
     });
 
