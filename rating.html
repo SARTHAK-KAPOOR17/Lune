@@ -131,8 +131,11 @@
       <label for="shoeType">Type of Shoe</label>
       <select id="shoeType" name="shoeType" required>
         <option value="" disabled selected>Select a shoe type</option>
+        <option value="none">none</option>
         <option value="sneakers">Sneakers</option>
-       
+        <option value="boots">Boots</option>
+        <option value="loafers">Loafers</option>
+        <option value="heels">Heels</option>
         <option value="sandals">Sandals</option>
         <option value="formal">Formal Shoes</option>
         <option value="sports">Sports Shoes</option>
@@ -142,6 +145,7 @@
       <textarea id="feedback" name="feedback" required></textarea>
 
       <!-- Centered Star Rating -->
+      <label for="star-rating">star-rating :</label>
       <div class="star-rating-wrapper">
         <div class="star-rating">
           <input type="radio" name="rating" id="star5" value="5"><label for="star5">&#9733;</label>
@@ -151,6 +155,10 @@
           <input type="radio" name="rating" id="star1" value="1"><label for="star1">&#9733;</label>
         </div>
       </div>
+
+      <!-- Overall Review -->
+      <label for="overallReview">Overall Review</label>
+      <textarea id="overallReview" name="overallReview" placeholder="Share your overall experience..."></textarea>
 
       <button type="submit">Submit Feedback</button>
     </form>
