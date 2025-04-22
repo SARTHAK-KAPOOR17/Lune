@@ -2,54 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Shoe Store Stock Indicator</title>
+  <title>Shoe Store - Home</title>
   <link rel="stylesheet" href="stock.css">
   <style>
-    /* Adding blue background color to the body */
+    /* Global Styles */
     body {
       background-color: #4a5a6a; /* Blue background color */
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center; /* Centers horizontally */
-      align-items: flex-start; /* Aligns to the top of the screen */
-      height: 100vh; /* Full viewport height */
-      overflow-y: auto; /* Allows scrolling if content exceeds height */
-      text-align: center; /* Align text in the center */
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      height: 100vh;
+      overflow-y: auto;
     }
 
+    /* Hero Section */
+    .hero {
+      background-color: #1e3d59; /* Dark Blue */
+      color: white;
+      width: 100%;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: #f4a261;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: #e07648;
+    }
+
+    /* Container for products */
     .container {
-      width: 100%; /* Full width of the viewport */
-      max-width: 1200px; /* Maximum width for large screens */
+      width: 100%;
+      max-width: 1200px;
       display: flex;
-      flex-wrap: wrap; /* Allow wrapping of product cards */
-      justify-content: center; /* Center the products */
-      gap: 20px; /* Space between product cards */
-      padding-top: 20px; /* Adds padding at the top */
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding-top: 20px;
     }
 
-    /* Style for product card */
+    /* Product Card Styles */
     .product-card {
-      background-color: hsl(0, 33%, 95%); /* White background for the product card */
+      background-color: hsl(0, 33%, 95%);
       padding: 20px;
       margin: 15px;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 400px; /* Max width for product card */
+      max-width: 400px;
       text-align: left;
-      box-sizing: border-box; /* Prevent overflow */
-      transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+      box-sizing: border-box;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    /* Hover effect for product card */
     .product-card:hover {
-      transform: scale(1.05); /* Slightly enlarges the card */
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Adds a stronger shadow on hover */
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
 
-    /* Style for product images */
     .product-images {
       display: flex;
       justify-content: center;
@@ -61,22 +95,20 @@
       margin: 0 10px;
     }
 
-    /* Price styling */
     .price {
-      color: #f4a261; /* A nice color for the price */
+      color: #f4a261;
       font-size: 1.5em;
       font-weight: bold;
     }
 
     .discount-price {
-      color: #d9534f; /* Red color for the discounted price */
+      color: #d9534f;
       font-size: 1.5em;
       font-weight: bold;
-      text-decoration: line-through; /* Striking through the original price */
+      text-decoration: line-through;
       margin-left: 10px;
     }
 
-    /* Stock status styling */
     .stock-indicator {
       margin-top: 10px;
       font-size: 1.2em;
@@ -90,14 +122,12 @@
       color: red;
     }
 
-    /* Quantity label styling */
     .quantity-label {
       margin-right: 10px;
     }
 
-    /* Style for the Add to Cart button */
     .add-to-cart {
-      background-color: #28a745; /* Green button color */
+      background-color: #28a745;
       color: rgb(249, 243, 243);
       border: none;
       padding: 10px 20px;
@@ -105,38 +135,55 @@
       font-size: 1em;
       margin-top: 10px;
       border-radius: 5px;
-      transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
+      transition: background-color 0.3s, transform 0.3s;
     }
 
-    /* Hover effect for the Add to Cart button */
     .add-to-cart:hover {
-      background-color: #218838; /* Darker green for the button on hover */
-      transform: scale(1.1); /* Slightly increases the size of the button */
+      background-color: #218838;
+      transform: scale(1.1);
     }
 
-    /* Disabled button style */
     .add-to-cart:disabled {
       background-color: #df6868;
       cursor: not-allowed;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1e3d59;
+      color: white;
+      padding: 20px 0;
+      width: 100%;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 1.1em;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Welcome to Our Shoe Store</h1>
+    <p>Find your perfect pair of shoes at unbeatable prices. Stylish, comfortable, and durable shoes just for you.</p>
+    <button onclick="window.location.href='#products'">Shop Now</button>
+  </div>
+
+  <!-- Products Section -->
+  <div id="products" class="container">
     <div class="product-card">
       <h2>Nike Air Max 270</h2>
-
-      <!-- Multiple images -->
       <div class="product-images">
         <img src="Lune/images/jordan2.png" alt="Nike Air Max 270 Front View" class="product-image">
       </div>
-
       <p>Size: 8,9,10,<strike>11,12</strike></p>
-      <p class="price">₹1159.99</p> <!-- Original price in rupees -->
-      <p class="discount-price">₹1299.99</p> <!-- Discounted price in rupees -->
-      <p>Experience all-day comfort and bold style with the Nike Air Max 270. Featuring a large Air unit for cushioning and a sleek upper for a modern look.</p>
-
+      <p class="price">₹1159.99</p>
+      <p class="discount-price">₹1299.99</p>
+      <p>Experience all-day comfort and bold style with the Nike Air Max 270.</p>
       <label class="quantity-label" for="quantity">Quantity:</label>
       <select id="quantity">
         <option value="1">1</option>
@@ -144,23 +191,19 @@
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
-
       <button class="add-to-cart" id="addToCart">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <h2>Sparx Sport Shoes</h2>
       <div class="product-images">
-        <img src="https://tse1.mm.bing.net/th?id=OIP.318XMQkgW0YDg-e6JizYjAHaFs&pid=Api&rs=1&c=1&qlt=95&w=151&h=116" alt="sparx sport shoes" class="product-image">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.318XMQkgW0YDg-e6JizYjAHaFs&pid=Api&rs=1&c=1&qlt=95&w=151&h=116" alt="Sparx Sport Shoes" class="product-image">
       </div>
-
       <p>Size: 7,8,9,<strike>10</strike></p>
-      <p class="price">₹1130.99</p> <!-- Original price in rupees -->
-      <p class="discount-price">₹1299.99</p> <!-- Discounted price in rupees -->
-      <p>Discover the best options, prices, comfort, durability, and overall satisfaction for both men and women’s shoes.</p>
-
+      <p class="price">₹1130.99</p>
+      <p class="discount-price">₹1299.99</p>
+      <p>Discover comfort, durability, and style in Sparx Sport Shoes.</p>
       <div id="stockStatus" class="stock-indicator"></div>
-
       <label class="quantity-label" for="quantity">Quantity:</label>
       <select id="quantity">
         <option value="1">1</option>
@@ -168,10 +211,14 @@
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
-
       <button class="add-to-cart" id="addToCart">Add to Cart</button>
     </div>
   </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>© 2025 Shoe Store | All Rights Reserved</p>
+  </footer>
 
   <script>
     let stock = 3;
@@ -204,7 +251,7 @@
         addToCartBtn.disabled = true;
       } else {
         updateStockIndicator();
-        addToCartBtn.disabled =false;
+        addToCartBtn.disabled = false;
       }
     });
 
@@ -218,6 +265,5 @@
 
     updateStockIndicator(); // Initial stock update on page load
   </script>
-
 </body>
 </html>
