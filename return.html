@@ -5,9 +5,7 @@
     <link rel="stylesheet" type="text/css" href="return.css">
 </head>
 <body>
-
     <h2>Shoe Store - Return Order Form</h2>
-
     <form action="/submit-return" method="post" enctype="multipart/form-data">
         <label for="orderNumber">Order Number:</label>
         <input type="text" id="orderNumber" name="orderNumber" required><br><br>
@@ -32,17 +30,18 @@
             <option value="damaged">Damaged</option>
         </select><br><br>
 
+        <select id="condition" name="condition" required>
+            <option value="">--What u want--</option>
+            <option value="Return">Return</option>
+            <option value="exchange">Exchange</option>
+        </select>
+
         <label for="photo">Upload a Photo of the Item:</label>
         <input type="file" id="photo" name="photo" accept="image/*"><br><br>
 
         <label for="reason">Reason for Return:</label><br>
-        <textarea id="reason" name="reason" rows="4" cols="50" required></textarea><br><br>
+        <textarea id="reason" name="reason" placeholder="Enter words upto 50 words....." rows="4" cols="50" required></textarea><br><br>
 
-        <label for="returnMethod">Preferred Return Method:</label>
-        <select id="returnMethod" name="returnMethod" required>
-            <option value="pickup">Schedule a Pickup</option>
-            <option value="dropoff">Drop off at Store</option>
-        </select><br><br>
 
         <div id="pickupDetails" style="display: none;">
             <label for="pickupDate">Preferred Pickup Date:</label>
