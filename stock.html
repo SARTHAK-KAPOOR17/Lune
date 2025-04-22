@@ -1,77 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Shoe Store Stock Indicator</title>
-  <link rel="stylesheet" href="stock.css">
-  
-</head>
-<body>
-
-  <div class="product-card">
-    <h2>Nike Air Max 270</h2>
-    <img src="Lune/images/jordan2.png" alt="Nike Air Max 270" class="product-image">
-    <p>Size: 10</p>
-    <p class="price">$129.99</p>
-    <p>Experience all-day comfort and bold style with the Nike Air Max 270. Featuring a large Air unit for cushioning and a sleek upper for a modern look.</p>
-
-    <div id="stockStatus" class="stock-indicator"></div>
-
-    <label class="quantity-label" for="quantity">Quantity:</label>
-    <select id="quantity">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-    </select>
-
-    <button class="add-to-cart" id="addToCart">Add to Cart</button>
-  </div>
-
-  <script>
-    let stock = 3;
-
-    const stockDiv = document.getElementById('stockStatus');
-    const addToCartBtn = document.getElementById('addToCart');
-    const quantitySelect = document.getElementById('quantity');
-
-    function updateStockIndicator() {
-      stockDiv.className = 'stock-indicator';
-
-      if (stock > 5) {
-        stockDiv.textContent = 'In Stock';
-        stockDiv.classList.add('in-stock');
-        addToCartBtn.disabled = false;
-      } else if (stock > 0) {
-        stockDiv.textContent = 'Low Stock';
-        stockDiv.classList.add('low-stock');
-        addToCartBtn.disabled = false;
-      } else {
-        stockDiv.textContent = 'Out of Stock';
-        stockDiv.classList.add('out-of-stock');
-        addToCartBtn.disabled = true;
-      }
-    }
-
-    quantitySelect.addEventListener('change', () => {
-      const selectedQty = parseInt(quantitySelect.value);
-      const remainingStock = stock - selectedQty;
-
-      if (remainingStock < 0) {
-        stockDiv.textContent = 'Not enough stock';
-        stockDiv.className = 'stock-indicator out-of-stock';
-        addToCartBtn.disabled = true;
-      } else {
-        updateStockIndicator();
-        addToCartBtn.disabled = false;
-      }
-    });
-
-    updateStockIndicator();
-  </script>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,6 +11,19 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      display: flex;
+      justify-content: center; /* Centers horizontally */
+      align-items: center; /* Centers vertically */
+      height: 100vh; /* Full viewport height */
+      text-align: center; /* Align text in the center */
+    }
+
+    .container {
+      width: 80%; /* Width of the container */
+      max-width: 1000px; /* Maximum width for large screens */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .product-card {
@@ -93,6 +32,9 @@
       margin: 20px;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px; /* Max width for product card */
+      text-align: left;
     }
 
     .product-images {
@@ -160,52 +102,54 @@
 </head>
 <body>
 
-  <div class="product-card">
-    <h2>Nike Air Max 270</h2>
+  <div class="container">
+    <div class="product-card">
+      <h2>Nike Air Max 270</h2>
 
-    <!-- Multiple images -->
-    <div class="product-images">
-      <img src="Lune/images/jordan2.png" alt="Nike Air Max 270 Front View" class="product-image">
+      <!-- Multiple images -->
+      <div class="product-images">
+        <img src="Lune/images/jordan2.png" alt="Nike Air Max 270 Front View" class="product-image">
+      </div>
+
+      <p>Size: 8,9,10,<strike>11,12</strike></p>
+      <p class="price">₹1159.99</p> <!-- Original price in rupees -->
+      <p class="discount-price">₹1299.99</p> <!-- Discounted price in rupees -->
+      <p>Experience all-day comfort and bold style with the Nike Air Max 270. Featuring a large Air unit for cushioning and a sleek upper for a modern look.</p>
+
+      <label class="quantity-label" for="quantity">Quantity:</label>
+      <select id="quantity">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+
+      <button class="add-to-cart" id="addToCart">Add to Cart</button>
     </div>
-
-    <p>Size: 10</p>
-    <p class="price">₹1169.99</p> <!-- Original price in rupees -->
-    <p class="discount-price">₹1299.99</p> <!-- Discounted price in rupees -->
-    <p>Experience all-day comfort and bold style with the Nike Air Max 270. Featuring a large Air unit for cushioning and a sleek upper for a modern look.</p>
-
-    
-    <label class="quantity-label" for="quantity">Quantity:</label>
-    <select id="quantity">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-    </select>
-
-    <button class="add-to-cart" id="addToCart">Add to Cart</button>
-  </div>
-
 
     <div class="product-card">
-    <h2>Sparx Sport Shoes</h2>
-    <div class="product-images">
-      <img src="https://tse1.mm.bing.net/th?id=OIP.318XMQkgW0YDg-e6JizYjAHaFs&pid=Api&rs=1&c=1&qlt=95&w=151&h=116" alt="sparx sport shoes" class="product-image">
+      <h2>Sparx Sport Shoes</h2>
+      <div class="product-images">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.318XMQkgW0YDg-e6JizYjAHaFs&pid=Api&rs=1&c=1&qlt=95&w=151&h=116" alt="sparx sport shoes" class="product-image">
+      </div>
+
+      <p>Size: 10</p>
+      <p class="price">₹1130.99</p> <!-- Original price in rupees -->
+      <p class="discount-price">₹1299.99</p> <!-- Discounted price in rupees -->
+      <p>Discover the best options, prices, comfort, durability, and overall satisfaction for both men and women’s shoes.</p>
+
+      <div id="stockStatus" class="stock-indicator"></div>
+
+      <label class="quantity-label" for="quantity">Quantity:</label>
+      <select id="quantity">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+
+      <button class="add-to-cart" id="addToCart">Add to Cart</button>
     </div>
-
-    <p>Size: 10</p>
-    <p class="price">₹1169.99</p> <!-- Original price in rupees -->
-    <p class="discount-price">₹1299.99</p> <!-- Discounted price in rupees -->
-    <p>Read real customer reviews on Sparx Footwear. Discover the best options, prices, comfort, durability, and overall satisfaction for both men and women’s shoes.</p>
-
-    <div id="stockStatus" class="stock-indicator"></div>
-
-    <label class="quantity-label" for="quantity">Quantity:</label>
-    <select id="quantity">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-    </select>
-
-    <button class="add-to-cart" id="addToCart">Add to Cart</button>
   </div>
 
   <script>
