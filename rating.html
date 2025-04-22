@@ -48,7 +48,7 @@
       color: #444;
     }
 
-    input, textarea {
+    input, textarea, select {
       width: 100%;
       padding: 12px 15px;
       margin-top: 8px;
@@ -56,9 +56,11 @@
       border: 1px solid #ddd;
       background-color: #f9f9f9;
       transition: border-color 0.3s ease;
+      font-family: inherit;
+      font-size: 1rem;
     }
 
-    input:focus, textarea:focus {
+    input:focus, textarea:focus, select:focus {
       border-color: #6813c3;
       outline: none;
     }
@@ -124,6 +126,19 @@
 
       <label for="email">Your Email</label>
       <input type="email" id="email" name="email" required>
+
+      <!-- Dropdown for Shoe Types -->
+      <label for="shoeType">Type of Shoe</label>
+      <select id="shoeType" name="shoeType" required>
+        <option value="" disabled selected>Select a shoe type</option>
+        <option value="sneakers">Sneakers</option>
+        <option value="boots">Boots</option>
+        <option value="loafers">Loafers</option>
+        <option value="heels">Heels</option>
+        <option value="sandals">Sandals</option>
+        <option value="formal">Formal Shoes</option>
+        <option value="sports">Sports Shoes</option>
+      </select>
 
       <label for="feedback">Your Feedback</label>
       <textarea id="feedback" name="feedback" required></textarea>
