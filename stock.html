@@ -164,7 +164,8 @@
       font-size: 1em;
     }
 
-    .add-to-cart {
+    .add-to-cart,
+    .buy-now {
       background-color: #28a745;
       color: white;
       border: none;
@@ -176,7 +177,8 @@
       transition: background-color 0.3s, transform 0.3s;
     }
 
-    .add-to-cart:hover {
+    .add-to-cart:hover,
+    .buy-now:hover {
       background-color: #218838;
       transform: scale(1.05);
     }
@@ -184,6 +186,15 @@
     .add-to-cart:disabled {
       background-color: #c0392b;
       cursor: not-allowed;
+    }
+
+    .buy-now {
+      background-color: #f39c12;
+      margin-top: 10px;
+    }
+
+    .buy-now:hover {
+      background-color: #e67e22;
     }
 
     /* Footer */
@@ -267,6 +278,7 @@
         <option value="4">4</option>
       </select>
       <button class="add-to-cart" id="addToCart1">Add to Cart</button>
+      <button class="buy-now" onclick="window.location.href='#'">Buy Now</button> <!-- Buy Now Button -->
     </div>
 
     <!-- Sparx Sport Shoes -->
@@ -287,6 +299,7 @@
         <option value="4">4</option>
       </select>
       <button class="add-to-cart" id="addToCart2">Add to Cart</button>
+      <button class="buy-now" onclick="window.location.href='#'">Buy Now</button> <!-- Buy Now Button -->
     </div>
 
     <!-- Adidas Original Stan Smith -->
@@ -307,6 +320,7 @@
         <option value="4">4</option>
       </select>
       <button class="add-to-cart" id="addToCart2">Add to Cart</button>
+      <button class="buy-now" onclick="window.location.href='#'">Buy Now</button> <!-- Buy Now Button -->
     </div>
   </div>
 
