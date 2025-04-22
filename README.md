@@ -26,16 +26,7 @@ Clone the repository
 
 Open index.html in your browser
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-Explore, add items, use coupons, and enjoy the Lune experience!
-=======
-=======
->>>>>>> 1b5d675a5cc76b36eaad0d28483d037e6d657b27
-=======
->>>>>>> 1b5d675a5cc76b36eaad0d28483d037e6d657b27
-Explore, add items, use coupons, and enjoy the Lune experience!
+
 ## 🚀 New Features
 
 ### 💳 Payment Gateway Integration
@@ -48,11 +39,4 @@ Explore, add items, use coupons, and enjoy the Lune experience!
 - Enhances user satisfaction with visual confirmation of successful orders.
 - Responsive and smooth animation across devices.
 
-These enhancements aim to improve the user experience by providing a seamless checkout flow and clear post-purchase feedback.
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 1b5d675a5cc76b36eaad0d28483d037e6d657b27
-=======
->>>>>>> 1b5d675a5cc76b36eaad0d28483d037e6d657b27
-=======
->>>>>>> 1b5d675a5cc76b36eaad0d28483d037e6d657b27
+
