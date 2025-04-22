@@ -164,8 +164,7 @@
       font-size: 1em;
     }
 
-    .add-to-cart,
-    .buy-now {
+    .add-to-cart, .buy-now {
       background-color: #28a745;
       color: white;
       border: none;
@@ -177,24 +176,14 @@
       transition: background-color 0.3s, transform 0.3s;
     }
 
-    .add-to-cart:hover,
-    .buy-now:hover {
+    .add-to-cart:hover, .buy-now:hover {
       background-color: #218838;
       transform: scale(1.05);
     }
 
-    .add-to-cart:disabled {
+    .add-to-cart:disabled, .buy-now:disabled {
       background-color: #c0392b;
       cursor: not-allowed;
-    }
-
-    .buy-now {
-      background-color: #f39c12;
-      margin-top: 10px;
-    }
-
-    .buy-now:hover {
-      background-color: #e67e22;
     }
 
     /* Footer */
@@ -247,6 +236,46 @@
       background-color: transparent;
       border: none;
     }
+
+    /* Customer Info Modal */
+    .customer-info-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .customer-info-modal-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 300px;
+    }
+
+    .customer-info-modal-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .customer-info-modal-content button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -278,7 +307,7 @@
         <option value="4">4</option>
       </select>
       <button class="add-to-cart" id="addToCart1">Add to Cart</button>
-      <button class="buy-now" onclick="window.location.href='#'">Buy Now</button> <!-- Buy Now Button -->
+      <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now</button>
     </div>
 
     <!-- Sparx Sport Shoes -->
@@ -299,28 +328,7 @@
         <option value="4">4</option>
       </select>
       <button class="add-to-cart" id="addToCart2">Add to Cart</button>
-      <button class="buy-now" onclick="window.location.href='#'">Buy Now</button> <!-- Buy Now Button -->
-    </div>
-
-    <!-- Adidas Original Stan Smith -->
-    <div class="product-card">
-      <h2>Adidas Original Stan Smith</h2>
-      <div class="product-images">
-        <img src="https://s.yimg.com/fz/api/res/1.2/GZgpovKG9XU.iN2REPGXgw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTEzMDtxPTgwO3c9MTY2/https://s.yimg.com/zb/imgv1/c625f2be-8916-30d2-8cbf-0ec8ffbfcb2e/t_500x300" alt="Adidas original stan smith" class="product-image" onclick="openModal('https://s.yimg.com/fz/api/res/1.2/GZgpovKG9XU.iN2REPGXgw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTEzMDtxPTgwO3c9MTY2/https://s.yimg.com/zb/imgv1/c625f2be-8916-30d2-8cbf-0ec8ffbfcb2e/t_500x300')">
-      </div>
-      <p>Size: 7, 8, 9, 10</p>
-      <p class="price">₹7,749 <span class="discount-price">₹8,999</span></p>
-      <p class="description">The Adidas original stan smith stands out as a strong contender in the competitive stability shoe market</p>
-      <div id="stockStatus2" class="stock-indicator"></div>
-      <label class="quantity-label" for="quantity2">Quantity:</label>
-      <select id="quantity2">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-      <button class="add-to-cart" id="addToCart2">Add to Cart</button>
-      <button class="buy-now" onclick="window.location.href='#'">Buy Now</button> <!-- Buy Now Button -->
+      <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now</button>
     </div>
   </div>
 
@@ -332,30 +340,62 @@
     </div>
   </div>
 
+  <!-- Customer Information Modal -->
+  <div id="customerInfoModal" class="customer-info-modal">
+    <div class="customer-info-modal-content">
+      <h3>Enter Your Details</h3>
+      <form id="customerInfoForm" onsubmit="submitOrder(event)">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <input type="text" id="address" placeholder="Your Address" required>
+        <button type="submit">Submit Order</button>
+      </form>
+    </div>
+  </div>
+
   <!-- Footer Section -->
   <footer>
     <p>© 2025 Shoe Store | All Rights Reserved</p>
   </footer>
 
-  <!-- JavaScript for Modal -->
+  <!-- JavaScript for Modal and Buy Now -->
   <script>
-    // Open Modal
+    // Open Image Modal
     function openModal(imageSrc) {
       document.getElementById('modalImage').src = imageSrc;
       document.getElementById('imageModal').style.display = 'flex';
     }
 
-    // Close Modal
+    // Close Image Modal
     function closeModal() {
       document.getElementById('imageModal').style.display = 'none';
     }
 
-    // Close modal when clicking outside of image
-    window.onclick = function(event) {
-      if (event.target == document.getElementById('imageModal')) {
-        closeModal();
-      }
+    // Open Customer Info Modal (Buy Now)
+    function openCustomerInfoModal() {
+      document.getElementById('customerInfoModal').style.display = 'flex';
+    }
+
+    // Close Customer Info Modal
+    function closeCustomerInfoModal() {
+      document.getElementById('customerInfoModal').style.display = 'none';
+    }
+
+    // Handle Order Submission
+    function submitOrder(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+
+      // Here you can handle sending order details to a backend server, if needed.
+      alert(`Order submitted successfully! \nName: ${name} \nEmail: ${email} \nAddress: ${address}`);
+      
+      // Close the modal
+      closeCustomerInfoModal();
     }
   </script>
+
 </body>
 </html>
