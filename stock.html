@@ -13,17 +13,20 @@
       padding: 0;
       display: flex;
       justify-content: center; /* Centers horizontally */
-      align-items: center; /* Centers vertically */
+      align-items: flex-start; /* Aligns to the top of the screen */
       height: 100vh; /* Full viewport height */
+      overflow-y: auto; /* Allows scrolling if content exceeds height */
       text-align: center; /* Align text in the center */
     }
 
     .container {
-      width: 80%; /* Width of the container */
-      max-width: 1000px; /* Maximum width for large screens */
+      width: 100%; /* Full width of the viewport */
+      max-width: 1200px; /* Maximum width for large screens */
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-wrap: wrap; /* Allow wrapping of product cards */
+      justify-content: center; /* Center the products */
+      gap: 20px; /* Space between product cards */
+      padding-top: 20px; /* Adds padding at the top */
     }
 
     .product-card {
@@ -35,6 +38,7 @@
       width: 100%;
       max-width: 400px; /* Max width for product card */
       text-align: left;
+      box-sizing: border-box; /* Prevent overflow */
     }
 
     .product-images {
@@ -133,7 +137,7 @@
         <img src="https://tse1.mm.bing.net/th?id=OIP.318XMQkgW0YDg-e6JizYjAHaFs&pid=Api&rs=1&c=1&qlt=95&w=151&h=116" alt="sparx sport shoes" class="product-image">
       </div>
 
-      <p>Size: 10</p>
+      <p>Size: 7,8,9,<strike>10</strike></p>
       <p class="price">₹1130.99</p> <!-- Original price in rupees -->
       <p class="discount-price">₹1299.99</p> <!-- Discounted price in rupees -->
       <p>Discover the best options, prices, comfort, durability, and overall satisfaction for both men and women’s shoes.</p>
