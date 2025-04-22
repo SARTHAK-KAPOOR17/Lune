@@ -8,76 +8,82 @@
 </head>
 <body>
 
-  <div class="form-card">
-    <h2>Your Feedback</h2>
-    <form action="submit_feedback.php" method="POST" enctype="multipart/form-data">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required>
+  <div class="container">
 
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" required>
+    <!-- Feedback Form -->
+    <div class="form-card">
+      <h2>Your Feedback</h2>
+      <form action="submit_feedback.php" method="POST" enctype="multipart/form-data">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
 
-      <!-- Dropdown for Shoe Types -->
-      <label for="shoeType">Type of Shoe</label>
-      <select id="shoeType" name="shoeType" required>
-        <option value="" disabled selected>Select a shoe type</option>
-        <option value="sneakers">Sneakers</option>
-        <option value="boots">Boots</option>
-        <option value="loafers">Loafers</option>
-        <option value="heels">Heels</option>
-        <option value="sandals">Sandals</option>
-        <option value="formal">Formal Shoes</option>
-        <option value="sports">Sports Shoes</option>
-      </select>
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required>
 
-      <!--<label for="feedback">Your Feedback</label>
-      <textarea id="feedback" name="feedback" required></textarea>-->
+        <!-- Dropdown for Shoe Types -->
+        <label for="shoeType">Type of Shoe</label>
+        <select id="shoeType" name="shoeType" required>
+          <option value="" disabled selected>Select a shoe type</option>
+          <option value="sneakers">Sneakers</option>
+          <option value="boots">Boots</option>
+          <option value="loafers">Loafers</option>
+          <option value="heels">Heels</option>
+          <option value="sandals">Sandals</option>
+          <option value="formal">Formal Shoes</option>
+          <option value="sports">Sports Shoes</option>
+        </select>
 
-      <!-- Centered Star Rating -->
-      <label for="rating">Rate Us</label>
-      <div class="star-rating-wrapper">
-        <div class="star-rating">
-          <input type="radio" name="rating" id="star5" value="5"><label for="star5">&#9733;</label>
-          <input type="radio" name="rating" id="star4" value="4"><label for="star4">&#9733;</label>
-          <input type="radio" name="rating" id="star3" value="3"><label for="star3">&#9733;</label>
-          <input type="radio" name="rating" id="star2" value="2"><label for="star2">&#9733;</label>
-          <input type="radio" name="rating" id="star1" value="1"><label for="star1">&#9733;</label>
+        <!-- Centered Star Rating -->
+        <label for="rating">Rate Us</label>
+        <div class="star-rating-wrapper">
+          <div class="star-rating">
+            <input type="radio" name="rating" id="star5" value="5"><label for="star5">&#9733;</label>
+            <input type="radio" name="rating" id="star4" value="4"><label for="star4">&#9733;</label>
+            <input type="radio" name="rating" id="star3" value="3"><label for="star3">&#9733;</label>
+            <input type="radio" name="rating" id="star2" value="2"><label for="star2">&#9733;</label>
+            <input type="radio" name="rating" id="star1" value="1"><label for="star1">&#9733;</label>
+          </div>
         </div>
+
+        <!-- Overall Review -->
+        <label for="overallReview">Overall experience</label>
+        <textarea id="overallReview" name="overallReview" placeholder="Share your overall experience..."></textarea>
+
+        <!-- Image Upload -->
+        <label for="reviewImages">Upload Images (optional)</label>
+        <input type="file" id="reviewImages" name="reviewImages[]" accept="image/*" multiple>
+
+        <button type="submit">Submit Feedback</button>
+      </form>
+    </div>
+
+    <!-- Customer Reviews -->
+    <div class="form-card2">
+      <h2>Customer Reviews</h2>
+
+      <div>
+        <p><strong>Jane D.</strong> (Sneakers) - ★★★★★</p>
+        <p>"Absolutely loved these sneakers! Super comfy and stylish."</p>
+        <img src="sneaker1.jpg" alt="Sneaker Review Image" width="200"><br><br>
       </div>
 
-      <!-- Overall Review -->
-      <label for="overallReview">Overall experience</label>
-      <textarea id="overallReview" name="overallReview" placeholder="Share your overall experience..."></textarea>
+      <div>
+        <p><strong>Mark T.</strong> (Boots) - ★★★★☆</p>
+        <p>"The boots are great for hiking and look amazing."</p>
+        <img src="boots1.jpg" alt="Boots Review Image" width="200"><br><br>
+      </div>
 
-      <!-- Image Upload -->
-      <label for="reviewImages">Upload Images (optional)</label>
-      <input type="file" id="reviewImages" name="reviewImages[]" accept="image/*" multiple>
+      <div>
+        <p><strong>Emily R.</strong> (Heels) - ★★★★★</p>
+        <p>"Perfect fit and great design. Got many compliments!"</p>
+        <img src="heels1.jpg" alt="Heels Review Image" width="200"><br><br>
+      </div>
+    </div>
 
-      <button type="submit">Submit Feedback</button>
-    </form>
-  </div>
-  
-<div class="form-card2" style="margin-top: 20px;">
-  <h2>Customer Reviews</h2>
-
-  <div>
-    <p><strong>Jane D.</strong> (Sneakers) - ★★★★★</p>
-    <p>"Absolutely loved these sneakers! Super comfy and stylish."</p>
-    <img src="sneaker1.jpg" alt="Sneaker Review Image" width="200"><br><br>
   </div>
 
-  <div>
-    <p><strong>Mark T.</strong> (Boots) - ★★★★☆</p>
-    <p>"The boots are great for hiking and look amazing."</p>
-    <img src="boots1.jpg" alt="Boots Review Image" width="200"><br><br>
-  </div>
+</body>
 
-  <div>
-    <p><strong>Emily R.</strong> (Heels) - ★★★★★</p>
-    <p>"Perfect fit and great design. Got many compliments!"</p>
-    <img src="heels1.jpg" alt="Heels Review Image" width="200"><br><br>
-  </div>
-</div>
 
 </body>
 </html>
