@@ -17,7 +17,7 @@
 .search {
   display: flex;
   align-items: center;
-  background-color: rgb(138, 166, 51);
+  background-color: rgb(36, 194, 84);
   padding: 10px 20px;
   border-radius: 10px;
 }
@@ -25,7 +25,7 @@
 .search-bar {
   width: 200px;
   padding: 10px;
-  border: 2px solid #ccc;
+  border: 2px solid #d94c4c;
   border-radius: 20px;
   transition: all 0.4s ease;
 }
@@ -47,17 +47,17 @@
 }
 
 body {
-  background-color: #f5f5f5;
+  background-color: #c12020;
   color: #333;
 }
 
 nav {
   width: 100%;
-  background-color: #fff;
+  background-color: #269518;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(168, 9, 9, 0.1);
 }
 
 .navTop {
@@ -79,7 +79,7 @@ nav {
 
 .search-bar {
   padding: 8px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #c91717;
   border-radius: 20px;
   width: 200px;
   outline: none;
@@ -90,12 +90,12 @@ nav {
 }
 
 .limitedOffer {
-  color: crimson;
+  color: rgb(185, 205, 72);
   font-weight: bold;
 }
 
 button {
-  background-color: black;
+  background-color: rgb(13, 159, 88);
   color: white;
   padding: 10px 16px;
   border: none;
@@ -105,7 +105,7 @@ button {
 }
 
 button:hover {
-  background-color: crimson;
+  background-color: rgb(23, 207, 60);
 }
 
 .navBottom {
@@ -113,7 +113,7 @@ button:hover {
   justify-content: center;
   gap: 40px;
   padding: 10px 0;
-  background-color: #eee;
+  background-color: #94e068;
 }
 
 .menuItem {
@@ -123,7 +123,7 @@ button:hover {
 }
 
 .menuItem:hover {
-  color: crimson;
+  color: rgb(23, 214, 80);
 }
 
 .slider {
@@ -175,7 +175,7 @@ button:hover {
 
 .sliderPrice {
   font-size: 30px;
-  color: crimson;
+  color: rgb(187, 194, 49);
   z-index: 3;
 }
 
@@ -191,7 +191,7 @@ button:hover {
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 40px 20px;
-  background-color: #fff;
+  background-color: #b1e48a;
 }
 
 .feature {
@@ -216,7 +216,7 @@ button:hover {
   flex-wrap: wrap;
   justify-content: center;
   padding: 50px 20px;
-  background-color: #f9f9f9;
+  background-color: #65e282;
 }
 
 .productImg {
@@ -274,7 +274,7 @@ button:hover {
   flex-wrap: wrap;
   justify-content: center;
   padding: 50px 20px;
-  background-color: #fff;
+  background-color: #92e2cf;
 }
 
 .galleryItem {
@@ -301,7 +301,7 @@ button:hover {
   flex-wrap: wrap;
   justify-content: center;
   padding: 60px 20px;
-  background-color: #f2f2f2;
+  background-color: #a7cce3;
   align-items: center;
 }
 
@@ -311,6 +311,19 @@ button:hover {
   text-align: center;
   margin: 20px;
 }
+
+.sliderItem:nth-child(1) .sliderBg { background-color: #369e62; }
+  .sliderItem:nth-child(2) .sliderBg { background-color: rebeccapurple; }
+  .sliderItem:nth-child(3) .sliderBg { background-color: teal; }
+  .sliderItem:nth-child(4) .sliderBg { background-color: cornflowerblue; }
+  .sliderItem:nth-child(5) .sliderBg { background-color: rgb(124, 115, 80); }
+  
+  .sliderItem:nth-child(1) .sliderPrice { color: #369e62; }
+  .sliderItem:nth-child(2) .sliderPrice { color: rgb(187, 62, 62); }
+  .sliderItem:nth-child(3) .sliderPrice { color: rgb(140, 194, 93); }
+  .sliderItem:nth-child(4) .sliderPrice { color: rgb(214, 215, 216); }
+  .sliderItem:nth-child(5) .sliderPrice { color: cornsilk; }
+  
 
 .nsImg {
   width: 100%;
@@ -379,7 +392,7 @@ footer {
 
 .fButton {
   background-color: crimson;
-  color: white;
+  color: rgb(39, 200, 47);
   border: none;
   padding: 8px 16px;
   border-radius: 0 5px 5px 0;
