@@ -29,6 +29,7 @@
       padding-top: 20px; /* Adds padding at the top */
     }
 
+    /* Style for product card */
     .product-card {
       background-color: #fff; /* White background for the product card */
       padding: 20px;
@@ -39,8 +40,16 @@
       max-width: 400px; /* Max width for product card */
       text-align: left;
       box-sizing: border-box; /* Prevent overflow */
+      transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
     }
 
+    /* Hover effect for product card */
+    .product-card:hover {
+      transform: scale(1.05); /* Slightly enlarges the card */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Adds a stronger shadow on hover */
+    }
+
+    /* Style for product images */
     .product-images {
       display: flex;
       justify-content: center;
@@ -52,6 +61,7 @@
       margin: 0 10px;
     }
 
+    /* Price styling */
     .price {
       color: #f4a261; /* A nice color for the price */
       font-size: 1.5em;
@@ -66,6 +76,7 @@
       margin-left: 10px;
     }
 
+    /* Stock status styling */
     .stock-indicator {
       margin-top: 10px;
       font-size: 1.2em;
@@ -83,10 +94,12 @@
       color: red;
     }
 
+    /* Quantity label styling */
     .quantity-label {
       margin-right: 10px;
     }
 
+    /* Style for the Add to Cart button */
     .add-to-cart {
       background-color: #28a745; /* Green button color */
       color: white;
@@ -96,8 +109,16 @@
       font-size: 1em;
       margin-top: 10px;
       border-radius: 5px;
+      transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
     }
 
+    /* Hover effect for the Add to Cart button */
+    .add-to-cart:hover {
+      background-color: #218838; /* Darker green for the button on hover */
+      transform: scale(1.1); /* Slightly increases the size of the button */
+    }
+
+    /* Disabled button style */
     .add-to-cart:disabled {
       background-color: #9c2d2d;
       cursor: not-allowed;
