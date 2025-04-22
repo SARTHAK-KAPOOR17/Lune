@@ -85,6 +85,13 @@
     button:hover {
       background: linear-gradient(to right, #5d0ecc, #1c63e2);
     }
+
+    .star-rating-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
     .star-rating {
       direction: rtl;
       display: inline-flex;
@@ -103,14 +110,14 @@
     .star-rating input:checked ~ label,
     .star-rating label:hover,
     .star-rating label:hover ~ label {
-      color: gold;
+      color: rgb(224, 192, 15);
     }
   </style>
 </head>
 <body>
 
   <div class="form-card">
-    <h2> Your Feedback</h2>
+    <h2>Your Feedback</h2>
     <form action="submit_feedback.php" method="POST">
       <label for="name">Your Name</label>
       <input type="text" id="name" name="name" required>
@@ -120,6 +127,9 @@
 
       <label for="feedback">Your Feedback</label>
       <textarea id="feedback" name="feedback" required></textarea>
+
+      <!-- Centered Star Rating -->
+      <div class="star-rating-wrapper">
         <div class="star-rating">
           <input type="radio" name="rating" id="star5" value="5"><label for="star5">&#9733;</label>
           <input type="radio" name="rating" id="star4" value="4"><label for="star4">&#9733;</label>
@@ -127,11 +137,11 @@
           <input type="radio" name="rating" id="star2" value="2"><label for="star2">&#9733;</label>
           <input type="radio" name="rating" id="star1" value="1"><label for="star1">&#9733;</label>
         </div>
+      </div>
+
       <button type="submit">Submit Feedback</button>
     </form>
   </div>
 
 </body>
 </html>
-
-
