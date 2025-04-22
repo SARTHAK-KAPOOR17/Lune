@@ -8,7 +8,6 @@
   <style>
     /* Global Styles */
     body {
-      background: linear-gradient(120deg, #4a5a6a, #2e3b4e);
       font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 0;
@@ -16,6 +15,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      background-color: #f4f4f4; /* Simple light background color */
     }
 
     a {
@@ -25,7 +25,7 @@
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(to right, #1e3d59, #30475e);
+      background-color: #2e3b4e; /* Solid color background for the hero section */
       color: white;
       width: 100%;
       padding: 100px 20px;
@@ -67,8 +67,8 @@
       max-width: 1300px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
+      justify-content: space-between; /* Ensures items are side by side */
+      gap: 30px; /* Adds spacing between items */
       padding: 40px 0;
     }
 
@@ -78,10 +78,10 @@
       padding: 25px;
       border-radius: 16px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
+      width: 30%; /* Ensures three cards fit side by side */
       transition: all 0.3s ease-in-out;
       position: relative;
+      margin-bottom: 30px;
     }
 
     .product-card:hover {
@@ -188,7 +188,7 @@
 
     /* Footer */
     footer {
-      background-color: #1e3d59;
+      background-color: #2e3b4e;
       color: white;
       padding: 20px 0;
       width: 100%;
@@ -289,28 +289,26 @@
       <button class="add-to-cart" id="addToCart2">Add to Cart</button>
     </div>
 
-  </div>
-
-  <div class="product-card">
-    <h2>Sparx Sport Shoes</h2>
-    <div class="product-images">
-      <img src="https://tse1.mm.bing.net/th?id=OIP.FnAJC3PTNXZwi0vQsSy2pQHaJT&pid=Api&rs=1&c=1&qlt=95&w=93&h=116" alt="Adidas original stan smith" class="product-image" onclick="openModal('https:https://tse1.mm.bing.net/th?id=OIP.FnAJC3PTNXZwi0vQsSy2pQHaJT&pid=Api&rs=1&c=1&qlt=95&w=93&h=116')">
+    <!-- Adidas Original Stan Smith -->
+    <div class="product-card">
+      <h2>Adidas Original Stan Smith</h2>
+      <div class="product-images">
+        <img src="https://s.yimg.com/fz/api/res/1.2/GZgpovKG9XU.iN2REPGXgw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTEzMDtxPTgwO3c9MTY2/https://s.yimg.com/zb/imgv1/c625f2be-8916-30d2-8cbf-0ec8ffbfcb2e/t_500x300" alt="Adidas original stan smith" class="product-image" onclick="openModal('https://s.yimg.com/fz/api/res/1.2/GZgpovKG9XU.iN2REPGXgw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTEzMDtxPTgwO3c9MTY2/https://s.yimg.com/zb/imgv1/c625f2be-8916-30d2-8cbf-0ec8ffbfcb2e/t_500x300')">
+      </div>
+      <p>Size: 7, 8, 9, 10</p>
+      <p class="price">₹7,749 <span class="discount-price">₹8,999</span></p>
+      <p class="description">The Adidas original stan smith stands out as a strong contender in the competitive stability shoe market</p>
+      <div id="stockStatus2" class="stock-indicator"></div>
+      <label class="quantity-label" for="quantity2">Quantity:</label>
+      <select id="quantity2">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <button class="add-to-cart" id="addToCart2">Add to Cart</button>
     </div>
-    <p>Size: 7, 8, 9, 10</p>
-    <p class="price">₹7,749 <span class="discount-price">₹8,999</span></p>
-    <p class="description">The Adidas original stan smith stands out as a strong contender in the competitive stability shoe market</p>
-    <div id="stockStatus2" class="stock-indicator"></div>
-    <label class="quantity-label" for="quantity2">Quantity:</label>
-    <select id="quantity2">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-    </select>
-    <button class="add-to-cart" id="addToCart2">Add to Cart</button>
   </div>
-
-</div>
 
   <!-- Modal for Image View -->
   <div id="imageModal" class="modal">
