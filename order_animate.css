@@ -9,7 +9,22 @@
     --green: #16BF78;
     --sand: #DCB773;
     --sand-light: #EDD9A9;
+  background: linear-gradient(270deg, var(--primary), var(--primary-light), var(--dark));
+  background-size: 600% 600%;
+  animation: gradientAnimation 8s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
   .order {
     appearance: none;
     border: 0;

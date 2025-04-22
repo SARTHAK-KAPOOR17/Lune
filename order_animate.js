@@ -7,8 +7,13 @@
 
       setTimeout(() => {
         button.removeClass('animate');
-        window.location.href = "main.html";
+        window.location.href = "index.html";
       }, 10000); // match this with CSS animation timing
     }
   });
+
+  alert("✅ Please click on the complete order button to confirm your order.");
+  alert("✅ Payment Successful! Thank you for your purchase.");
+  // Simulate payment logic
+  
 
