@@ -4,28 +4,25 @@
   <meta charset="UTF-8">
   <title>Shoe Store - Home</title>
   <link rel="stylesheet" href="stock.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     /* Global Styles */
     body {
-      background: linear-gradient(120deg, #4a5a6a, #2e3b4e);
-      font-family: 'Montserrat', sans-serif;
+      background-color: #4a5a6a; /* Blue background color */
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      color: #333;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
+      flex-direction: column;
+      text-align: center;
+      height: 100vh;
+      overflow-y: auto;
     }
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(to right, #1e3d59, #30475e);
+      background-color: #1e3d59; /* Dark Blue */
       color: white;
       width: 100%;
       padding: 100px 20px;
@@ -33,60 +30,58 @@
     }
 
     .hero h1 {
-      font-size: 3.5em;
-      font-weight: 700;
-      margin-bottom: 15px;
+      font-size: 3em;
+      margin-bottom: 20px;
     }
 
     .hero p {
-      font-size: 1.3em;
-      margin-bottom: 25px;
-      opacity: 0.9;
+      font-size: 1.5em;
+      margin-bottom: 30px;
     }
 
     .hero button {
-      padding: 15px 35px;
-      font-size: 1.1em;
+      padding: 15px 30px;
+      font-size: 1.2em;
       background-color: #f4a261;
       border: none;
       color: white;
-      border-radius: 30px;
+      border-radius: 5px;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      transition: background-color 0.3s ease;
     }
 
     .hero button:hover {
       background-color: #e07648;
-      transform: scale(1.05);
     }
 
     /* Container for products */
     .container {
-      width: 90%;
-      max-width: 1300px;
+      width: 100%;
+      max-width: 1200px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 30px;
-      padding: 40px 0;
+      gap: 20px;
+      padding-top: 20px;
     }
 
     /* Product Card Styles */
     .product-card {
-      background-color: #fff;
-      padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      background-color: hsl(0, 33%, 95%);
+      padding: 20px;
+      margin: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 400px;
-      transition: all 0.3s ease-in-out;
-      position: relative;
+      text-align: left;
+      box-sizing: border-box;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
 
     .product-images {
@@ -96,74 +91,60 @@
     }
 
     .product-image {
-      max-width: 180px;
-      transition: transform 0.3s ease;
-    }
-
-    .product-card:hover .product-image {
-      transform: scale(1.1);
+      max-width: 150px;
+      margin: 0 10px;
     }
 
     .price {
-      color: #27ae60;
-      font-size: 1.6em;
-      font-weight: 700;
+      color: #f4a261;
+      font-size: 1.5em;
+      font-weight: bold;
     }
 
     .discount-price {
-      color: #e74c3c;
-      font-size: 1.3em;
-      font-weight: 600;
+      color: #d9534f;
+      font-size: 1.5em;
+      font-weight: bold;
       text-decoration: line-through;
       margin-left: 10px;
     }
 
     .stock-indicator {
       margin-top: 10px;
-      font-size: 1.1em;
+      font-size: 1.2em;
     }
 
     .in-stock {
-      color: #2ecc71;
+      color: green;
     }
 
     .out-of-stock {
-      color: #c0392b;
+      color: red;
     }
 
     .quantity-label {
-      display: block;
-      margin-top: 10px;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-
-    select {
-      padding: 8px 12px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 1em;
+      margin-right: 10px;
     }
 
     .add-to-cart {
       background-color: #28a745;
-      color: white;
+      color: rgb(249, 243, 243);
       border: none;
-      padding: 10px 25px;
-      font-size: 1em;
-      margin-top: 15px;
-      border-radius: 30px;
+      padding: 10px 20px;
       cursor: pointer;
+      font-size: 1em;
+      margin-top: 10px;
+      border-radius: 5px;
       transition: background-color 0.3s, transform 0.3s;
     }
 
     .add-to-cart:hover {
       background-color: #218838;
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
     .add-to-cart:disabled {
-      background-color: #c0392b;
+      background-color: #df6868;
       cursor: not-allowed;
     }
 
@@ -175,12 +156,16 @@
       width: 100%;
       text-align: center;
       margin-top: 50px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 1.1em;
     }
   </style>
 </head>
 <body>
+  
 
   <!-- Hero Section -->
   <div class="hero">
@@ -197,11 +182,14 @@
       <div class="product-images">
         <img src="Lune/images/jordan2.png" alt="Nike Air Max 270 Front View" class="product-image">
       </div>
-      <p>Size: 8, 9, 10, <strike>11, 12</strike></p>
-      <p class="price">₹1159.99 <span class="discount-price">₹1299.99</span></p>
+      <p>Size: 8,9,10,<strike>11,12</strike></p>
+      <p class="price">₹1159.99</p>
+      <p class="discount-price">₹1299.99</p>
       <p>Experience all-day comfort and bold style with the Nike Air Max 270.</p>
-      <div id="stockStatus1" class="stock-indicator"></div>
-      <label class="quantity-label" for="quantity1">Quantity:</label>
+
+      <div id="stockStatus1" class="stock-indicator"></div> <!-- Stock indicator added here -->
+      
+      <label class="quantity-label" for="quantity">Quantity:</label>
       <select id="quantity1">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -217,11 +205,12 @@
       <div class="product-images">
         <img src="https://tse1.mm.bing.net/th?id=OIP.318XMQkgW0YDg-e6JizYjAHaFs&pid=Api&rs=1&c=1&qlt=95&w=151&h=116" alt="Sparx Sport Shoes" class="product-image">
       </div>
-      <p>Size: 7, 8, 9, <strike>10</strike></p>
-      <p class="price">₹1130.99 <span class="discount-price">₹1299.99</span></p>
+      <p>Size: 7,8,9,<strike>10</strike></p>
+      <p class="price">₹1130.99</p>
+      <p class="discount-price">₹1299.99</p>
       <p>Discover comfort, durability, and style in Sparx Sport Shoes.</p>
       <div id="stockStatus2" class="stock-indicator"></div>
-      <label class="quantity-label" for="quantity2">Quantity:</label>
+      <label class="quantity-label" for="quantity">Quantity:</label>
       <select id="quantity2">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -237,13 +226,97 @@
     <p>© 2025 Shoe Store | All Rights Reserved</p>
   </footer>
 
-  <!-- JavaScript Code (same as before) -->
   <script>
-    let stock1 = 3;
-    let stock2 = 5;
+    let stock1 = 3; // Stock for Nike Air Max 270
+    let stock2 = 5; // Stock for Sparx Sport Shoes
 
     const stockDiv1 = document.getElementById('stockStatus1');
     const stockDiv2 = document.getElementById('stockStatus2');
     const addToCartBtn1 = document.getElementById('addToCart1');
     const addToCartBtn2 = document.getElementById('addToCart2');
-    const quantitySelect1 = document.getElementBy
+    const quantitySelect1 = document.getElementById('quantity1');
+    const quantitySelect2 = document.getElementById('quantity2');
+
+    // Update stock for Nike Air Max 270
+    function updateStockIndicator1() {
+      stockDiv1.className = 'stock-indicator';
+
+      if (stock1 > 0) {
+        stockDiv1.textContent = 'In Stock';
+        stockDiv1.classList.add('in-stock');
+        addToCartBtn1.disabled = false;
+      } else {
+        stockDiv1.textContent = 'Out of Stock';
+        stockDiv1.classList.add('out-of-stock');
+        addToCartBtn1.disabled = true;
+      }
+    }
+
+    // Update stock for Sparx Sport Shoes
+    function updateStockIndicator2() {
+      stockDiv2.className = 'stock-indicator';
+
+      if (stock2 > 0) {
+        stockDiv2.textContent = 'In Stock';
+        stockDiv2.classList.add('in-stock');
+        addToCartBtn2.disabled = false;
+      } else {
+        stockDiv2.textContent = 'Out of Stock';
+        stockDiv2.classList.add('out-of-stock');
+        addToCartBtn2.disabled = true;
+      }
+    }
+
+    // Handle quantity change for Nike Air Max 270
+    quantitySelect1.addEventListener('change', () => {
+      const selectedQty = parseInt(quantitySelect1.value);
+      const remainingStock = stock1 - selectedQty;
+
+      if (remainingStock < 0) {
+        stockDiv1.textContent = 'Not enough stock';
+        stockDiv1.className = 'stock-indicator out-of-stock';
+        addToCartBtn1.disabled = true;
+      } else {
+        updateStockIndicator1();
+        addToCartBtn1.disabled = false;
+      }
+    });
+
+    // Handle quantity change for Sparx Sport Shoes
+    quantitySelect2.addEventListener('change', () => {
+      const selectedQty = parseInt(quantitySelect2.value);
+      const remainingStock = stock2 - selectedQty;
+
+      if (remainingStock < 0) {
+        stockDiv2.textContent = 'Not enough stock';
+        stockDiv2.className = 'stock-indicator out-of-stock';
+        addToCartBtn2.disabled = true;
+      } else {
+        updateStockIndicator2();
+        addToCartBtn2.disabled = false;
+      }
+    });
+
+    // Handle Add to Cart for Nike Air Max 270
+    addToCartBtn1.addEventListener('click', () => {
+      const selectedQty = parseInt(quantitySelect1.value);
+      if (stock1 >= selectedQty) {
+        stock1 -= selectedQty; // Decrease the stock after adding to cart
+        updateStockIndicator1();
+      }
+    });
+
+    // Handle Add to Cart for Sparx Sport Shoes
+    addToCartBtn2.addEventListener('click', () => {
+      const selectedQty = parseInt(quantitySelect2.value);
+      if (stock2 >= selectedQty) {
+        stock2 -= selectedQty; // Decrease the stock after adding to cart
+        updateStockIndicator2();
+      }
+    });
+
+    updateStockIndicator1(); // Initial stock update for Nike Air Max 270
+    updateStockIndicator2(); // Initial stock update for Sparx Sport Shoes
+  </script>
+</body>
+</html>
