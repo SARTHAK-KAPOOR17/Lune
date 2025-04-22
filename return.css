@@ -1,142 +1,380 @@
-
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #da981e, #43e41b);
+    font-family: sans-serif;
     margin: 0;
-    padding: 40px 20px;
-    animation: fadeIn 1s ease-in;
-}
-
-h2 {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 30px;
-    animation: bounceIn 1s ease-out;
-}
-
-form {
-    background: linear-gradient(135deg, #e59292, #364baa);
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(124, 230, 75, 0.1);
-    animation: popup 0.7s ease-in-out;
-    transition: transform 0.3s ease;
-}
-
-form:hover {
-    transform: translateY(-4px);
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #34495e;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="file"],
-input[type="date"],
-textarea,
-select {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    transition: border 0.3s ease, box-shadow 0.3s ease;
-    font-size: 15px;
-    background-color: #fafafa;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
-    outline: none;
-    background-color: #fff;
-}
-
-textarea {
-    resize: vertical;
-}
-
-input[type="submit"] {
-    background-color: #3498db;
-    color: white;
-    padding: 14px 24px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-input[type="submit"]:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-}
-
-input[type="submit"]:active {
-    transform: scale(0.98);
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 a {
-    color: #3498db;
     text-decoration: none;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    color: #0071ce;
 }
 
 a:hover {
-    color: #2c3e50;
-    text-shadow: 0 0 3px rgba(44, 62, 80, 0.2);
+    text-decoration: underline;
 }
 
-#pickupDetails {
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
+header {
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
 }
 
-#pickupDetails.show {
-    max-height: 300px;
-    opacity: 1;
+.top-bar {
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.9em;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
 }
 
-@keyframes popup {
-    0% {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+.logo a {
+    display: block;
 }
 
-@keyframes bounceIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-40px);
-    }
-    60% {
-        opacity: 1;
-        transform: translateY(10px);
-    }
-    100% {
-        transform: translateY(0);
-    }
+.search-bar {
+    display: flex;
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.search-bar input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    font-size: 1em;
+}
+
+.search-bar button[type="submit"] {
+    background-color: #0071ce;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.search-bar button[type="submit"] svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    vertical-align: middle;
+}
+
+.account-links a {
+    margin-left: 15px;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.account-links a svg {
+    width: 24px;
+    height: 24px;
+    fill: #333;
+    vertical-align: middle;
+}
+
+.location-delivery {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 0.9em;
+}
+
+.location, .delivery {
+    display: flex;
+    align-items: center;
+}
+
+.location svg, .delivery svg {
+    width: 20px;
+    height: 20px;
+    fill: #777;
+    margin-right: 5px;
+}
+
+.location span, .delivery span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.breadcrumbs {
+    padding: 10px 0;
+    font-size: 0.8em;
+}
+
+.breadcrumbs span {
+    margin: 0 5px;
+    color: #777;
+}
+
+main.return-page {
+    padding: 20px;
+}
+
+.return-header h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.return-header p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.return-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-details {
+    display: flex;
+    align-items: center;
+}
+
+.item-details img {
+    margin-right: 15px;
+    border: 1px solid #eee;
+}
+
+.item-info h3 {
+    font-size: 1em;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.item-info p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.item-quantity {
+    display: flex;
+    align-items: center;
+}
+
+.item-quantity button {
+    border: 1px solid #ccc;
+    background-color: #eee;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.item-quantity input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    margin: 0 5px;
+}
+
+.item-quantity .quantity-label {
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 10px;
+}
+
+.return-reason {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.return-reason label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.return-reason select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: 97%;
+    background-position-y: 50%;
+}
+
+.return-actions {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.return-actions .proceed-button {
+    background-color: #0071ce;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+.back-to-top {
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9em;
+}
+
+.back-to-top a {
+    display: inline-flex;
+    align-items: center;
+    color: #0071ce;
+}
+
+.back-to-top svg {
+    width: 16px;
+    height: 16px;
+    fill: #0071ce;
+    margin-right: 5px;
+}
+
+footer {
+    background-color: #f0f0f0;
+    padding: 20px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.deals-inspiration {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.deals-inspiration h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.email-signup {
+    display: flex;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.email-signup input[type="email"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    font-size: 1em;
+}
+
+.email-signup button[type="submit"] {
+    background-color: #0071ce;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.quick-links {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.quick-links a {
+    display: inline-flex;
+    align-items: center;
+    color: #0071ce;
+    margin: 5px 0;
+}
+
+.quick-links svg {
+    width: 20px;
+    height: 20px;
+    fill: #0071ce;
+    margin-right: 8px;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-group h3 {
+    font-size: 1em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.footer-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-group li {
+    margin-bottom: 5px;
+}
+
+.footer-group a {
+    color: #666;
+}
+
+.connect-with-us {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.connect-with-us h3 {
+    font-size: 1em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 1.5em;
+    color: #0071ce;
+}
+
+.social-links svg {
+    width: 24px;
+    height: 24px;
+    fill: #0071ce;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8em;
+    color: #777;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
 }
