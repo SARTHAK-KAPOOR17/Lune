@@ -165,6 +165,7 @@
   </style>
 </head>
 <body>
+  
 
   <!-- Hero Section -->
   <div class="hero">
@@ -175,6 +176,7 @@
 
   <!-- Products Section -->
   <div id="products" class="container">
+    <!-- Nike Air Max 270 -->
     <div class="product-card">
       <h2>Nike Air Max 270</h2>
       <div class="product-images">
@@ -184,16 +186,20 @@
       <p class="price">₹1159.99</p>
       <p class="discount-price">₹1299.99</p>
       <p>Experience all-day comfort and bold style with the Nike Air Max 270.</p>
+
+      <div id="stockStatus1" class="stock-indicator"></div> <!-- Stock indicator added here -->
+      
       <label class="quantity-label" for="quantity">Quantity:</label>
-      <select id="quantity">
+      <select id="quantity1">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
-      <button class="add-to-cart" id="addToCart">Add to Cart</button>
+      <button class="add-to-cart" id="addToCart1">Add to Cart</button>
     </div>
 
+    <!-- Sparx Sport Shoes -->
     <div class="product-card">
       <h2>Sparx Sport Shoes</h2>
       <div class="product-images">
@@ -203,15 +209,15 @@
       <p class="price">₹1130.99</p>
       <p class="discount-price">₹1299.99</p>
       <p>Discover comfort, durability, and style in Sparx Sport Shoes.</p>
-      <div id="stockStatus" class="stock-indicator"></div>
+      <div id="stockStatus2" class="stock-indicator"></div>
       <label class="quantity-label" for="quantity">Quantity:</label>
-      <select id="quantity">
+      <select id="quantity2">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
-      <button class="add-to-cart" id="addToCart">Add to Cart</button>
+      <button class="add-to-cart" id="addToCart2">Add to Cart</button>
     </div>
   </div>
 
@@ -221,49 +227,96 @@
   </footer>
 
   <script>
-    let stock = 3;
+    let stock1 = 3; // Stock for Nike Air Max 270
+    let stock2 = 5; // Stock for Sparx Sport Shoes
 
-    const stockDiv = document.getElementById('stockStatus');
-    const addToCartBtn = document.getElementById('addToCart');
-    const quantitySelect = document.getElementById('quantity');
+    const stockDiv1 = document.getElementById('stockStatus1');
+    const stockDiv2 = document.getElementById('stockStatus2');
+    const addToCartBtn1 = document.getElementById('addToCart1');
+    const addToCartBtn2 = document.getElementById('addToCart2');
+    const quantitySelect1 = document.getElementById('quantity1');
+    const quantitySelect2 = document.getElementById('quantity2');
 
-    function updateStockIndicator() {
-      stockDiv.className = 'stock-indicator';
+    // Update stock for Nike Air Max 270
+    function updateStockIndicator1() {
+      stockDiv1.className = 'stock-indicator';
 
-      if (stock > 0) {
-        stockDiv.textContent = 'In Stock';
-        stockDiv.classList.add('in-stock');
-        addToCartBtn.disabled = false;
+      if (stock1 > 0) {
+        stockDiv1.textContent = 'In Stock';
+        stockDiv1.classList.add('in-stock');
+        addToCartBtn1.disabled = false;
       } else {
-        stockDiv.textContent = 'Out of Stock';
-        stockDiv.classList.add('out-of-stock');
-        addToCartBtn.disabled = true;
+        stockDiv1.textContent = 'Out of Stock';
+        stockDiv1.classList.add('out-of-stock');
+        addToCartBtn1.disabled = true;
       }
     }
 
-    quantitySelect.addEventListener('change', () => {
-      const selectedQty = parseInt(quantitySelect.value);
-      const remainingStock = stock - selectedQty;
+    // Update stock for Sparx Sport Shoes
+    function updateStockIndicator2() {
+      stockDiv2.className = 'stock-indicator';
+
+      if (stock2 > 0) {
+        stockDiv2.textContent = 'In Stock';
+        stockDiv2.classList.add('in-stock');
+        addToCartBtn2.disabled = false;
+      } else {
+        stockDiv2.textContent = 'Out of Stock';
+        stockDiv2.classList.add('out-of-stock');
+        addToCartBtn2.disabled = true;
+      }
+    }
+
+    // Handle quantity change for Nike Air Max 270
+    quantitySelect1.addEventListener('change', () => {
+      const selectedQty = parseInt(quantitySelect1.value);
+      const remainingStock = stock1 - selectedQty;
 
       if (remainingStock < 0) {
-        stockDiv.textContent = 'Not enough stock';
-        stockDiv.className = 'stock-indicator out-of-stock';
-        addToCartBtn.disabled = true;
+        stockDiv1.textContent = 'Not enough stock';
+        stockDiv1.className = 'stock-indicator out-of-stock';
+        addToCartBtn1.disabled = true;
       } else {
-        updateStockIndicator();
-        addToCartBtn.disabled = false;
+        updateStockIndicator1();
+        addToCartBtn1.disabled = false;
       }
     });
 
-    addToCartBtn.addEventListener('click', () => {
-      const selectedQty = parseInt(quantitySelect.value);
-      if (stock >= selectedQty) {
-        stock -= selectedQty; // Decrease the stock after adding to cart
-        updateStockIndicator();
+    // Handle quantity change for Sparx Sport Shoes
+    quantitySelect2.addEventListener('change', () => {
+      const selectedQty = parseInt(quantitySelect2.value);
+      const remainingStock = stock2 - selectedQty;
+
+      if (remainingStock < 0) {
+        stockDiv2.textContent = 'Not enough stock';
+        stockDiv2.className = 'stock-indicator out-of-stock';
+        addToCartBtn2.disabled = true;
+      } else {
+        updateStockIndicator2();
+        addToCartBtn2.disabled = false;
       }
     });
 
-    updateStockIndicator(); // Initial stock update on page load
+    // Handle Add to Cart for Nike Air Max 270
+    addToCartBtn1.addEventListener('click', () => {
+      const selectedQty = parseInt(quantitySelect1.value);
+      if (stock1 >= selectedQty) {
+        stock1 -= selectedQty; // Decrease the stock after adding to cart
+        updateStockIndicator1();
+      }
+    });
+
+    // Handle Add to Cart for Sparx Sport Shoes
+    addToCartBtn2.addEventListener('click', () => {
+      const selectedQty = parseInt(quantitySelect2.value);
+      if (stock2 >= selectedQty) {
+        stock2 -= selectedQty; // Decrease the stock after adding to cart
+        updateStockIndicator2();
+      }
+    });
+
+    updateStockIndicator1(); // Initial stock update for Nike Air Max 270
+    updateStockIndicator2(); // Initial stock update for Sparx Sport Shoes
   </script>
 </body>
 </html>
