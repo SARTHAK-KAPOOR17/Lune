@@ -7,78 +7,137 @@
 </head>
 <body>
 
-  <div class="header">
-    <h2>Lune's</h2>
-  </div>
-
-  <div class="container">
-    <div class="section">
-      <h1>Order #787706614</h1>
-      <p>Placed April 19, 2025</p>
+  <header class="topbar">
+    <div class="logo">Lowe’s</div>
+    <form class="search">
+      <input type="text" placeholder="What are you looking for?">
+      <button type="submit">Search</button>
+    </form>
+    <div class="user-icons">
+      <i>&#128722;</i>
+      <i>&#128100;</i>
     </div>
-
-    <div class="section info-box">
-      Order Status: <strong>Shipped</strong><br>
-      <small>Track your shipment to see your order status every step of the way.</small>
+  </header>
+  
+  <main class="container">
+  
+    <h1>Order #787706614</h1>
+    <p>Placed October 19, 2023</p>
+  
+    <div class="banner">
+      Track your shipment to see every step of the way. You’ll get email updates once it’s out for delivery.
     </div>
-
-    <div class="section">
-      <div class="section-title">Delivery</div>
-      <p>Delivered to: John Newhouse</p>
-      <p>ETA: April 19–20</p>
+  
+    <div class="tracker">
+      <div class="step active"><span>Ordered</span></div>
+      <div class="step active"><span>Shipped</span></div>
+      <div class="step"><span>Out for Delivery</span></div>
+      <div class="step"><span>Delivered</span></div>
+    </div>
+  
+    <section class="section">
+      <h2>Delivery</h2>
+      <p>Delivered to: <strong>John Newhouse</strong></p>
+      <p>ETA: <strong>Oct 19 – Oct 20</strong></p>
       <a href="#" class="button">Track Package</a>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Items in This Order</div>
+    </section>
+  
+    <section class="section">
+      <h2>Items in this Order</h2>
+  
       <div class="product">
-        <img src="images/jordan.png" alt="Product">
-        <div>
-          <p><strong>Jordan</strong></p>
-          <p>₹9,999</p>
-          <a href="cart.html" class="button">Buy It Again</a>
+        <img src="www.lowes.com_online-returns_method_19a66309-a4ec-45c5-98a7-630b0315d974(Bayamrd XS)-524f0e093aab747f5df1a92bc9e444bd.avif" alt="">
+        <div class="product-info">
+          <p><strong>Bayamrd XS – Liquid Fertilizer 32‑oz</strong></p>
+          <p>$24.98</p>
+          <a href="#" class="button-outline">Buy it Again</a>
         </div>
       </div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Payment Method</div>
-      <p>**** **** **** 1234</p>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Order Summary</div>
-      <table class="summary-table">
-        <tr><td>Subtotal:</td><td>₹9,999</td></tr>
-        <tr><td>Fees & Shipping:</td><td>₹0</td></tr>
-        <tr><td>Tax:</td><td>₹45</td></tr>
-        <tr><td><strong>Total:</strong></td><td><strong>₹299</strong></td></tr>
+    </section>
+  
+    <section class="section">
+      <h2>Payment Method</h2>
+      <p>Visa ending in <strong>1234</strong></p>
+    </section>
+  
+    <section class="section">
+      <h2>Order Summary</h2>
+      <table>
+        <tr><td>Subtotal:</td><td style="text-align:right">$24.98</td></tr>
+        <tr><td>Fees &amp; Shipping:</td><td style="text-align:right">$0.00</td></tr>
+        <tr><td>Tax:</td><td style="text-align:right">$2.10</td></tr>
+        <tr><td><strong>Total:</strong></td><td style="text-align:right"><strong>$27.08</strong></td></tr>
       </table>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Previously Viewed</div>
-      <div class="product">
-        <img src="images/jordan.png" alt="Viewed Item">
-        <div>
-          <p><strong>Jordan</strong></p>
-          <p>₹9,999</p>
-          <a href="cart.html" class="button">Add to Cart</a>
+    </section>
+  
+    <section class="section">
+      <h2>Need Help?</h2>
+      <details>
+        <summary>How do I return an item?</summary>
+        <p>You can start a return from your account dashboard or bring the item to any Lowe’s store with your receipt.</p>
+      </details>
+      <details>
+        <summary>Why hasn’t my tracking updated?</summary>
+        <p>Tracking may take 24 hours to refresh after the carrier scans the package. Check again later or contact support.</p>
+      </details>
+    </section>
+  
+    <section class="section">
+      <h2>You May Also Like</h2>
+      <div class="grid4">
+        <div class="card">
+          <img src="https://via.placeholder.com/90x120" alt="">
+          <h4>Miracle‑Gro All‑Purpose Soil</h4>
+          <p>$8.48</p>
+          <a href="#" class="button-outline">Add to Cart</a>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/90x120" alt="">
+          <h4>Gardener’s Hose Nozzle</h4>
+          <p>$12.98</p>
+          <a href="#" class="button-outline">Add to Cart</a>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/90x120" alt="">
+          <h4>Scotts Turf Builder 7‑lb</h4>
+          <p>$18.97</p>
+          <a href="#" class="button-outline">Add to Cart</a>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/90x120" alt="">
+          <h4>Metal Watering Can – 1 gal</h4>
+          <p>$14.44</p>
+          <a href="#" class="button-outline">Add to Cart</a>
         </div>
       </div>
+    </section>
+  
+  </main>
+  
+  <footer class="footer">
+    <div class="footer-upper">
+      <div class="subscribe">
+        <h3 style="margin-bottom:.4rem">Deals, Inspiration &amp; Trends</h3>
+        <form>
+          <input type="email" placeholder="Email address">
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
+      <div class="links">
+        <h3>Customer Service</h3>
+        <a href="#">Order Status</a>
+        <a href="#">Returns</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="social">
+        <h3>Follow Us</h3>
+        <a href="#">&#xf09a;</a>
+        <a href="#">&#xf16d;</a>
+        <a href="#">&#xf099;</a>
+      </div>
     </div>
-  </div>
-
-  <div class="footer">
-    <div>Deals, Inspiration and Trends</div>
-    <a href="signup.html"> <input type="text" placeholder="Enter email"> <button class="button">Sign Up</button></a>
-    <div class="footer-links">
-      <a href="#" style="color: white;">Order Status</a>
-      <a href="contact.html" style="color: white;">Customer Service</a>
-      <a href="#" style="color: white;">Privacy Policy</a>
-    </div>
-    <p style="font-size: 0.8em;">©2025 Lune’s. All rights reserved.</p>
-  </div>
+    <p style="text-align:center;margin-top:1.5rem">© 2025 Lowe’s. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>
