@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="stock.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Global Styles */
+ 
     body {
       font-family: 'Montserrat', sans-serif;
       margin: 0;
@@ -15,7 +15,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: #8b9fec; /* Simple light background color */
+      background-color: #8b9fec;
     }
 
     a {
@@ -23,9 +23,8 @@
       color: inherit;
     }
 
-    /* Hero Section */
     .hero {
-      background-color: #2e3b4e; /* Solid color background for the hero section */
+      background-color: #2e3b4e; 
       color: #fdf8f8;
       width: 100%;
       padding: 100px 20px;
@@ -61,24 +60,22 @@
       transform: scale(1.05);
     }
 
-    /* Container for products */
     .container {
       width: 90%;
       max-width: 1300px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between; /* Ensures items are side by side */
-      gap: 30px; /* Adds spacing between items */
+      justify-content: space-between; 
+      gap: 30px; 
       padding: 40px 0;
     }
 
-    /* Product Card Styles */
     .product-card {
       background-color: #e4dddd;
       padding: 25px;
       border-radius: 16px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      width: 30%; /* Ensures three cards fit side by side */
+      width: 30%; 
       transition: all 0.3s ease-in-out;
       position: relative;
       margin-bottom: 30px;
@@ -89,7 +86,6 @@
       box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
     }
 
-    /* Product Image Styles */
     .product-images {
       display: flex;
       justify-content: center;
@@ -103,10 +99,9 @@
     }
 
     .product-card:hover .product-image {
-      transform: scale(1.3); /* Increased zoom factor */
+      transform: scale(1.3); 
     }
 
-    /* Paragraphs inside product cards */
     .product-card p {
       font-size: 1.05em;
       line-height: 1.6;
@@ -114,7 +109,6 @@
       margin-bottom: 10px;
     }
 
-    /* Descriptions (optional enhancement) */
     .description {
       font-size: 1.1em;
       line-height: 1.7;
@@ -122,7 +116,6 @@
       color: #333;
     }
 
-    /* Prices */
     .price {
       color: #27ae60;
       font-size: 1.6em;
@@ -186,7 +179,6 @@
       cursor: not-allowed;
     }
 
-    /* Footer */
     footer {
       background-color: #2e3b4e;
       color: white;
@@ -198,7 +190,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Modal Styles */
     .modal {
       display: none;
       position: fixed;
@@ -237,7 +228,6 @@
       border: none;
     }
 
-    /* Customer Info Modal */
     .customer-info-modal {
       display: none;
       position: fixed;
@@ -280,16 +270,13 @@
 </head>
 <body>
 
-  <!-- Hero Section -->
   <div class="hero">
     <h1>Welcome to Our Shoe Store</h1>
     <p>Find your perfect pair of shoes at unbeatable prices. Stylish, comfortable, and durable shoes just for you.</p>
     <button onclick="window.location.href='#products'">Shop Now</button>
   </div>
 
-  <!-- Products Section -->
   <div id="products" class="container">
-    <!-- Nike Air Max 270 -->
     <div class="product-card">
       <h2>Nike Air Max 270</h2>
       <div class="product-images">
@@ -310,7 +297,6 @@
       <a href="cart.html"><button class="buy-now" onclick="openCustomerInfoModal()">Buy Now</button></a>
     </div>
 
-    <!-- Sparx Sport Shoes -->
     <div class="product-card">
       <h2>Sparx Sport Shoes</h2>
       <div class="product-images">
@@ -333,7 +319,6 @@
   </div>
 
   <div id="products" class="container">
-    <!-- Addidas Original stan smith -->
     <div class="product-card">
       <h2>Addidas Original stan smith</h2>
       <div class="product-images">
