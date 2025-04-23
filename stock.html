@@ -307,7 +307,7 @@
         <option value="4">4</option>
       </select>
       <button class="add-to-cart" id="addToCart1">Add to Cart</button>
-      <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now</button>
+      <a href="cart.html"><button class="buy-now" onclick="openCustomerInfoModal()">Buy Now</button>
     </div>
 
     <!-- Sparx Sport Shoes -->
@@ -328,7 +328,7 @@
         <option value="4">4</option>
       </select>
       <button class="add-to-cart" id="addToCart2">Add to Cart</button>
-      <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now</button>
+      <a href="cart.html"></a> <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now</button></a>
     </div>
   </div>
 
@@ -354,7 +354,6 @@
       <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now </button>
     </div>
 
-  <!-- Modal for Image View -->
   <div id="imageModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
@@ -362,24 +361,19 @@
     </div>
   </div>
 
-  <!-- Customer Information Modal -->
 <div id="customerInfoModal" class="customer-info-modal">
   <div class="customer-info-modal-content">
     <h3>Enter Your Details</h3>
     <form id="customerInfoForm" onsubmit="submitOrder(event)">
-      <!-- Name Input -->
+
       <input type="text" id="name" placeholder="Your Name" required>
       
-      <!-- Email Input -->
       <input type="email" id="email" placeholder="Your Email" required>
       
-      <!-- Address Input -->
       <input type="text" id="address" placeholder="Your Address" required>
       
-      <!-- Phone Number Input -->
       <input type="tel" id="phone" placeholder="Your Phone Number" required pattern="^[0-9]{10}$" title="Please enter a valid 10-digit phone number">
-      
-      <!-- State Input -->
+   
       <select id="state" required>
         <option value="" disabled selected>Select Your State</option>
         <option value="Himachal">Himacha</option>
@@ -387,21 +381,16 @@
         <option value="Uttarpradesh">Uttarpradesh</option>
         <option value="Rajasthan">Rajasthan</option>
         <option value="Uttrakhand">Uttrakhand</option>
-        <!-- Add more states as needed -->
+  
       </select>
-      
-      <!-- Submit Button -->
+
       <button type="submit">Submit Order</button>
-      
-      <!-- Back Button -->
       <button type="button" onclick="closeCustomerInfoModal()" class="back-arrow-btn">
         <i class="fas fa-arrow-left"></i> Back
       </button>
     </form>
   </div>
 </div>
-
-<!-- Style for Modal and Buttons -->
 <style>
   .customer-info-modal {
     display: none;
@@ -424,7 +413,6 @@
     position: relative;
   }
 
-  /* Back Arrow Button Style */
   .back-arrow-btn {
     background-color: transparent;
     border: none;
@@ -439,10 +427,9 @@
   }
 
   .back-arrow-btn:hover {
-    color: #28a745; /* Change color on hover */
+    color: #28a745; 
   }
 
-  /* Form Inputs Style */
   input, select {
     width: 100%;
     padding: 10px;
@@ -466,14 +453,11 @@
   }
 </style>
 
-<!-- JavaScript to Handle Form Submission -->
 <script>
-  // Close Customer Info Modal Function
   function closeCustomerInfoModal() {
     document.getElementById('customerInfoModal').style.display = 'none';
   }
 
-  // Submit Order Function (you can replace this with actual order submission logic)
   function submitOrder(event) {
     event.preventDefault();
     
@@ -483,44 +467,35 @@
     const phone = document.getElementById('phone').value;
     const state = document.getElementById('state').value;
 
-    // For now, just log the details and close the modal
     alert(`Order submitted! \nName: ${name} \nEmail: ${email} \nAddress: ${address} \nPhone: ${phone} \nState: ${state}`);
     
-    // Close the modal
     closeCustomerInfoModal();
   }
 </script>
 
 
-  <!-- Footer Section -->
   <footer>
     <p>© 2025 Shoe Store | All Rights Reserved</p>
   </footer>
 
-  <!-- JavaScript for Modal and Buy Now -->
   <script>
-    // Open Image Modal
     function openModal(imageSrc) {
       document.getElementById('modalImage').src = imageSrc;
       document.getElementById('imageModal').style.display = 'flex';
     }
 
-    // Close Image Modal
     function closeModal() {
       document.getElementById('imageModal').style.display = 'none';
     }
 
-    // Open Customer Info Modal (Buy Now)
     function openCustomerInfoModal() {
       document.getElementById('customerInfoModal').style.display = 'flex';
     }
 
-    // Close Customer Info Modal
     function closeCustomerInfoModal() {
       document.getElementById('customerInfoModal').style.display = 'none';
     }
 
-    // Handle Order Submission
     function submitOrder(event) {
       event.preventDefault();
       
@@ -528,10 +503,7 @@
       const email = document.getElementById('email').value;
       const address = document.getElementById('address').value;
 
-      // Here you can handle sending order details to a backend server, if needed.
       alert(`Order submitted successfully! \nName: ${name} \nEmail: ${email} \nAddress: ${address}`);
-      
-      // Close the modal
       closeCustomerInfoModal();
     }
   </script>
