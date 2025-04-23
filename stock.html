@@ -15,7 +15,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: #cac9c9; /* Simple light background color */
+      background-color: #8b9fec; /* Simple light background color */
     }
 
     a {
@@ -26,7 +26,7 @@
     /* Hero Section */
     .hero {
       background-color: #2e3b4e; /* Solid color background for the hero section */
-      color: #f9efef;
+      color: #fdf8f8;
       width: 100%;
       padding: 100px 20px;
       text-align: center;
@@ -74,7 +74,7 @@
 
     /* Product Card Styles */
     .product-card {
-      background-color: #fff;
+      background-color: #e4dddd;
       padding: 25px;
       border-radius: 16px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -164,8 +164,7 @@
       font-size: 1em;
     }
 
-    .add-to-cart,
-    .buy-now {
+    .add-to-cart, .buy-now {
       background-color: #28a745;
       color: white;
       border: none;
@@ -177,24 +176,14 @@
       transition: background-color 0.3s, transform 0.3s;
     }
 
-    .add-to-cart:hover,
-    .buy-now:hover {
+    .add-to-cart:hover, .buy-now:hover {
       background-color: #218838;
       transform: scale(1.05);
     }
 
-    .add-to-cart:disabled {
+    .add-to-cart:disabled, .buy-now:disabled {
       background-color: #c0392b;
       cursor: not-allowed;
-    }
-
-    .buy-now {
-      background-color: #f39c12;
-      margin-top: 10px;
-    }
-
-    .buy-now:hover {
-      background-color: #e67e22;
     }
 
     /* Footer */
@@ -247,6 +236,46 @@
       background-color: transparent;
       border: none;
     }
+
+    /* Customer Info Modal */
+    .customer-info-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .customer-info-modal-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 300px;
+    }
+
+    .customer-info-modal-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .customer-info-modal-content button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -278,7 +307,7 @@
         <option value="4">4</option>
       </select>
       <button class="add-to-cart" id="addToCart1">Add to Cart</button>
-      <button class="buy-now" onclick="window.location.href='#'">Buy Now</button> <!-- Buy Now Button -->
+      <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now</button>
     </div>
 
     <!-- Sparx Sport Shoes -->
@@ -299,30 +328,31 @@
         <option value="4">4</option>
       </select>
       <button class="add-to-cart" id="addToCart2">Add to Cart</button>
-      <button class="buy-now" onclick="window.location.href='#'">Buy Now</button> <!-- Buy Now Button -->
+      <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now</button>
     </div>
+  </div>
 
-    <!-- Adidas Original Stan Smith -->
+  <div id="products" class="container">
+    <!-- Addidas Original stan smith -->
     <div class="product-card">
-      <h2>Adidas Original Stan Smith</h2>
+      <h2>Addidas Original stan smith</h2>
       <div class="product-images">
-        <img src="https://s.yimg.com/fz/api/res/1.2/GZgpovKG9XU.iN2REPGXgw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTEzMDtxPTgwO3c9MTY2/https://s.yimg.com/zb/imgv1/c625f2be-8916-30d2-8cbf-0ec8ffbfcb2e/t_500x300" alt="Adidas original stan smith" class="product-image" onclick="openModal('https://s.yimg.com/fz/api/res/1.2/GZgpovKG9XU.iN2REPGXgw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTEzMDtxPTgwO3c9MTY2/https://s.yimg.com/zb/imgv1/c625f2be-8916-30d2-8cbf-0ec8ffbfcb2e/t_500x300')">
+        <img src="https://s.yimg.com/fz/api/res/1.2/GZgpovKG9XU.iN2REPGXgw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTEzMDtxPTgwO3c9MTY2/https://s.yimg.com/zb/imgv1/c625f2be-8916-30d2-8cbf-0ec8ffbfcb2e/t_500x300" alt="Addidas Original stan smith" class="product-image" onclick="openModal('https://s.yimg.com/fz/api/res/1.2/GZgpovKG9XU.iN2REPGXgw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTEzMDtxPTgwO3c9MTY2/https://s.yimg.com/zb/imgv1/c625f2be-8916-30d2-8cbf-0ec8ffbfcb2e/t_500x300')">
       </div>
-      <p>Size: 7, 8, 9, 10</p>
-      <p class="price">₹7,749 <span class="discount-price">₹8,999</span></p>
-      <p class="description">The Adidas original stan smith stands out as a strong contender in the competitive stability shoe market</p>
-      <div id="stockStatus2" class="stock-indicator"></div>
-      <label class="quantity-label" for="quantity2">Quantity:</label>
-      <select id="quantity2">
+      <p>Size:7, 8, 9, 10</p>
+      <p class="price">₹7,799-/ <span class="discount-price">₹8,9999-/</span></p>
+      <p class="description">The Adidas Original stan smith stands out as a strong contender in the competitive stability shoe market.</p>
+      <div id="stockStatus1" class="stock-indicator"></div>
+      <label class="quantity-label" for="quantity1">Quantity:</label>
+      <select id="quantity1">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
-      <button class="add-to-cart" id="addToCart2">Add to Cart</button>
-      <button class="buy-now" onclick="window.location.href='#'">Buy Now</button> <!-- Buy Now Button -->
+      <a href="cart.html"><button class="add-to-cart" id="addToCart1">Add to Cart</button></a>
+      <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now </button>
     </div>
-  </div>
 
   <!-- Modal for Image View -->
   <div id="imageModal" class="modal">
@@ -332,30 +362,179 @@
     </div>
   </div>
 
+  <!-- Customer Information Modal -->
+<div id="customerInfoModal" class="customer-info-modal">
+  <div class="customer-info-modal-content">
+    <h3>Enter Your Details</h3>
+    <form id="customerInfoForm" onsubmit="submitOrder(event)">
+      <!-- Name Input -->
+      <input type="text" id="name" placeholder="Your Name" required>
+      
+      <!-- Email Input -->
+      <input type="email" id="email" placeholder="Your Email" required>
+      
+      <!-- Address Input -->
+      <input type="text" id="address" placeholder="Your Address" required>
+      
+      <!-- Phone Number Input -->
+      <input type="tel" id="phone" placeholder="Your Phone Number" required pattern="^[0-9]{10}$" title="Please enter a valid 10-digit phone number">
+      
+      <!-- State Input -->
+      <select id="state" required>
+        <option value="" disabled selected>Select Your State</option>
+        <option value="Himachal">Himacha</option>
+        <option value="punjab">punjab</option>
+        <option value="Uttarpradesh">Uttarpradesh</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <option value="Uttrakhand">Uttrakhand</option>
+        <!-- Add more states as needed -->
+      </select>
+      
+      <!-- Submit Button -->
+      <button type="submit">Submit Order</button>
+      
+      <!-- Back Button -->
+      <button type="button" onclick="closeCustomerInfoModal()" class="back-arrow-btn">
+        <i class="fas fa-arrow-left"></i> Back
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Style for Modal and Buttons -->
+<style>
+  .customer-info-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .customer-info-modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    position: relative;
+  }
+
+  /* Back Arrow Button Style */
+  .back-arrow-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.0em;
+    color: #333;
+    cursor: pointer;
+    position: centre;
+    top: 10px;
+    left: 10px;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  .back-arrow-btn:hover {
+    color: #28a745; /* Change color on hover */
+  }
+
+  /* Form Inputs Style */
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+</style>
+
+<!-- JavaScript to Handle Form Submission -->
+<script>
+  // Close Customer Info Modal Function
+  function closeCustomerInfoModal() {
+    document.getElementById('customerInfoModal').style.display = 'none';
+  }
+
+  // Submit Order Function (you can replace this with actual order submission logic)
+  function submitOrder(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const address = document.getElementById('address').value;
+    const phone = document.getElementById('phone').value;
+    const state = document.getElementById('state').value;
+
+    // For now, just log the details and close the modal
+    alert(`Order submitted! \nName: ${name} \nEmail: ${email} \nAddress: ${address} \nPhone: ${phone} \nState: ${state}`);
+    
+    // Close the modal
+    closeCustomerInfoModal();
+  }
+</script>
+
+
   <!-- Footer Section -->
   <footer>
     <p>© 2025 Shoe Store | All Rights Reserved</p>
   </footer>
 
-  <!-- JavaScript for Modal -->
+  <!-- JavaScript for Modal and Buy Now -->
   <script>
-    // Open Modal
+    // Open Image Modal
     function openModal(imageSrc) {
       document.getElementById('modalImage').src = imageSrc;
       document.getElementById('imageModal').style.display = 'flex';
     }
 
-    // Close Modal
+    // Close Image Modal
     function closeModal() {
       document.getElementById('imageModal').style.display = 'none';
     }
 
-    // Close modal when clicking outside of image
-    window.onclick = function(event) {
-      if (event.target == document.getElementById('imageModal')) {
-        closeModal();
-      }
+    // Open Customer Info Modal (Buy Now)
+    function openCustomerInfoModal() {
+      document.getElementById('customerInfoModal').style.display = 'flex';
+    }
+
+    // Close Customer Info Modal
+    function closeCustomerInfoModal() {
+      document.getElementById('customerInfoModal').style.display = 'none';
+    }
+
+    // Handle Order Submission
+    function submitOrder(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+
+      // Here you can handle sending order details to a backend server, if needed.
+      alert(`Order submitted successfully! \nName: ${name} \nEmail: ${email} \nAddress: ${address}`);
+      
+      // Close the modal
+      closeCustomerInfoModal();
     }
   </script>
+
 </body>
 </html>
