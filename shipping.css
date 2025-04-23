@@ -4,7 +4,7 @@ body {
     background-color: #f9f9f9;
   }
   .header, .footer {
-    background-color: #002b49;
+    background-color: #538ab2;
     color: white;
     padding: 15px 20px;
     text-align: center;
@@ -14,10 +14,10 @@ body {
     margin: auto;
     background-color: white;
     padding: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(198, 93, 93, 0.1);
   }
   h1, h2 {
-    color: #002b49;
+    color: #010014;
   }
   .section {
     margin-bottom: 25px;
@@ -27,18 +27,24 @@ body {
     margin-bottom: 10px;
   }
   .info-box {
-    background: #e6f4ff;
+    background: #53a9eb;
     padding: 10px;
     border-left: 4px solid #007bc2;
   }
   .button {
     background: #007bc2;
-    color: white;
+    color: rgb(62, 249, 71);
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     text-decoration: none;
   }
+
+    .button:hover {
+        background: #19c138;
+        color: #ce2b2b;
+    }
+
   .product {
     display: flex;
     gap: 15px;
