@@ -70,3 +70,55 @@ body {
     margin-top: 10px;
     font-size: 0.9em;
   }
+
+
+
+  /* ----------  RESET & GLOBAL ---------- */
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;color:#222;line-height:1.4}
+a{text-decoration:none;color:#007bc2}
+h1,h2,h3{color:#002b49;margin-bottom:.4rem}
+.container{max-width:1000px;margin:auto;background:#fff;padding:1.5rem;box-shadow:0 2px 6px rgb(0 0 0 /.1)}
+.section{margin-bottom:2rem}
+/* ----------  TOP BANNER ---------- */
+.topbar{position:sticky;top:0;z-index:999;background:#002b49;color:#fff;padding:.6rem 1rem;display:flex;align-items:center;gap:1rem}
+.logo{font-weight:700;font-size:1.3rem}
+.search{flex:1;display:flex}
+.search input{flex:1;padding:.4rem .6rem;border:none;border-radius:4px 0 0 4px}
+.search button{padding:.4rem .9rem;border:none;background:#007bc2;color:#fff;border-radius:0 4px 4px 0;cursor:pointer}
+.user-icons i{margin-left:1rem;cursor:pointer;font-style:normal}
+/* ----------  DELIVERY BANNER ---------- */
+.banner{background:#e6f4ff;border-left:4px solid #007bc2;padding:.8rem 1rem;margin-bottom:1.5rem;font-size:.9rem}
+/* ----------  PROGRESS TRACKER ---------- */
+.tracker{display:flex;justify-content:space-between;gap:.5rem;margin:1.5rem 0}
+.step{flex:1;text-align:center;position:relative}
+.step:before{content:"";display:block;width:24px;height:24px;margin:0 auto 6px;border-radius:50%;border:3px solid #ccc;background:#fff}
+.step.active:before{border-color:#007bc2;background:#007bc2}
+.step:not(:last-child):after{content:"";position:absolute;top:11px;right:-50%;width:100%;height:3px;background:#ccc;z-index:-1}
+.step.active + .step:after{background:#ccc}
+.step.active:after{background:#007bc2}
+.step.active ~ .step:before{border-color:#ccc}
+.step span{font-size:.8rem;display:block}
+/* ----------  TABLES & BUTTONS ---------- */
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+td{padding:.4rem 0}
+.button{display:inline-block;background:#007bc2;color:#fff;padding:.45rem .9rem;border-radius:4px;font-size:.85rem}
+.button-outline{background:#fff;border:1px solid #007bc2;color:#007bc2}
+.product{display:flex;gap:1rem;align-items:center;margin-top:1rem;border-top:1px solid #ddd;padding-top:1rem}
+.product img{width:90px}
+.product-info p{margin:.2rem 0}
+.grid4{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.card{background:#fff;border:1px solid #ddd;border-radius:6px;padding:1rem;text-align:center}
+.card img{max-width:100px;margin:auto}
+.card h4{font-size:.9rem;margin:.6rem 0}
+/* ----------  FAQ ---------- */
+details{border:1px solid #ddd;border-radius:6px;padding:.8rem;margin-bottom:.8rem}
+summary{cursor:pointer;font-weight:600}
+/* ----------  FOOTER ---------- */
+.footer{background:#002b49;color:#fff;padding:2rem 1rem;margin-top:3rem;font-size:.85rem}
+.footer-upper{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center}
+.subscribe input{padding:.4rem .6rem;border:none;border-radius:4px 0 0 4px}
+.subscribe button{padding:.4rem .9rem;border:none;background:#007bc2;color:#fff;border-radius:0 4px 4px 0}
+.links a{display:block;margin:.25rem 0;color:#fff}
+.social a{margin:0 .4rem;font-size:1.2rem;color:#fff}
+@media(max-width:600px){.product{flex-direction:column;align-items:flex-start}.search input{font-size:.9rem}}
