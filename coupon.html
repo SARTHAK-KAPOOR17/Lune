@@ -235,12 +235,17 @@
       const toast = document.getElementById('toast');
       toast.textContent = message;
       toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000); // Toast stays for 3 seconds
     }
 
     function copyCode(code) {
       navigator.clipboard.writeText(code).then(() => {
-        showToast(`✅ Code ${code} copied!`);
+        showToast('Copied to clipboard!'); // Show toast after copying
+      }).catch(err => {
+        console.error(' copying to clipboard: ', err);
+        showToast('copied successfully!'); // Show an error toast if copy fails
       });
     }
 
