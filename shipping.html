@@ -139,7 +139,8 @@
   <header>
     <h1>Free Shipping on All Shoes!</h1>
     <p>Limited time offer – No minimum purchase required</p>
-    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggleBtn">🌙</button>
+
   </header>
 
   <section class="cta-section">
@@ -171,11 +172,25 @@
   </footer>
 
   <script>
-    function toggleTheme() {
-      const body = document.body;
-      const currentTheme = body.getAttribute("data-theme");
-      body.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
+    const body = document.body;
+    const toggleBtn = document.getElementById("themeToggleBtn");
+  
+    function setIcon(theme) {
+      toggleBtn.textContent = theme === "light" ? "🌙" : "☀️";
     }
+  
+    function toggleTheme() {
+      const currentTheme = body.getAttribute("data-theme");
+      const newTheme = currentTheme === "light" ? "dark" : "light";
+      body.setAttribute("data-theme", newTheme);
+      setIcon(newTheme);
+    }
+  
+    // Set the correct icon when the page loads
+    window.addEventListener("DOMContentLoaded", () => {
+      setIcon(body.getAttribute("data-theme"));
+    });
   </script>
+  
 </body>
 </html>
