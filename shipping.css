@@ -1,168 +1,161 @@
-/* Base styles */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+:root {
+  --bg-light: #fafafa; /* Light background */
+  --bg-dark: #2d2d2d; /* Dark background */
+  --text-light: #f1f1f1; /* Light text color */
+  --text-dark: #333333; /* Dark text color */
+  --primary: #007bff; /* Primary color (blue) */
+  --primary-hover: #0056b3; /* Hover state for primary */
+  --accent: #ff5722; /* Accent color (orange) */
+  --accent-hover: #e64a19; /* Hover state for accent */
+}
+
+[data-theme="dark"] {
+  --bg-light: #121212; /* Dark background */
+  --bg-dark: #1e1e1e; /* Dark background for dark theme */
+  --text-light: #e0e0e0; /* Light text color for dark theme */
+  --text-dark: #bdbdbd; /* Dark text color for dark theme */
+  --primary: #bb86fc; /* Light purple for dark theme */
+  --primary-hover: #9a67ea; /* Hover state for primary in dark theme */
+  --accent: #ff9800; /* Accent color (amber) */
+  --accent-hover: #f57c00; /* Hover state for accent in dark theme */
+}
+
+* {
   margin: 0;
-  background-color: #f4f6f8;
-  color: #1f2937;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
   line-height: 1.6;
-  animation: fadeInBody 1s ease-in;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Header & Footer */
-.header, .footer {
-  background-color: #1e3a8a;
-  color: white;
-  padding: 1rem 1.5rem;
+/* Header */
+header {
+  background-color: var(--primary);
+  color: var(--text-light);
+  padding: 2rem 1rem;
   text-align: center;
-  animation: slideDown 0.8s ease-out;
+  position: relative;
 }
 
-/* Container */
-.container {
-  max-width: 800px;
-  margin: 2rem auto;
-  background-color: white;
-  padding: 2rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-  animation: fadeIn 1s ease-in;
-}
-
-h1, h2 {
-  color: #111827;
+header h1 {
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
 
-.section {
-  margin-bottom: 2rem;
-  animation: fadeInUp 0.6s ease-in both;
+header p {
+  font-size: 1.25rem;
 }
 
-/* Titles */
-.section-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 0.75rem;
-}
-
-/* Info Box */
-.info-box {
-  background: #e0f2fe;
-  padding: 1rem;
-  border-left: 4px solid #0284c7;
-  color: #0c4a6e;
-  border-radius: 6px;
-  animation: popIn 0.5s ease;
-}
-
-/* Button */
-.button {
-  display: inline-block;
-  background: #2563eb;
-  color: white;
-  padding: 0.6rem 1.2rem;
+/* Theme Toggle Button */
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--accent);
+  color: var(--text-dark);
   border: none;
+  padding: 0.5rem 1rem;
   border-radius: 6px;
-  text-decoration: none;
-  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  transform: translateY(0);
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.button:hover {
-  background: #1d4ed8;
+.theme-toggle:hover {
+  background-color: var(--accent-hover);
   transform: scale(1.05);
 }
 
-/* Product Card */
-.product {
+/* Call to Action Section */
+.cta-section {
+  background-color: #ffffff;
+  padding: 3rem 1rem;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .cta-section {
+  background-color: var(--bg-dark);
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  background-color: var(--accent);
+  color: var(--text-dark);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+/* Product Cards */
+.products {
   display: flex;
-  gap: 1rem;
-  border-top: 1px solid #e5e7eb;
-  padding-top: 1rem;
-  margin-top: 1rem;
-  align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.7s ease-in both;
-}
-
-.product:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-}
-
-/* Product image */
-.product img {
-  max-width: 100px;
-  border-radius: 4px;
-  transition: transform 0.3s ease;
-}
-
-.product img:hover {
-  transform: scale(1.05);
-}
-
-/* Order Summary Table */
-.summary-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.95rem;
-}
-
-.summary-table td {
-  padding: 0.6rem 0.4rem;
-  color: #374151;
-}
-
-.summary-table td:last-child {
-  text-align: right;
-}
-
-/* Footer Links */
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+}
+
+.product-card {
+  background-color: #ffffff;
+  width: 260px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .product-card {
+  background-color: #333333;
+  color: var(--text-light);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.product-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--primary);
+  color: var(--text-light);
+  text-align: center;
+  padding: 2rem 1rem;
   font-size: 0.9rem;
-  color: #b16e3d;
-}
-
-.footer-links a {
-  color: #dbeafe;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #ffffff;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideDown {
-  from { transform: translateY(-100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes popIn {
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes fadeInBody {
-  0% { background-color: #bde1c1; }
-  100% { background-color: #accae8; }
 }
