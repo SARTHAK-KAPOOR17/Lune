@@ -1,34 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Gateway</title>
+  <style>
+    body {
+      background-color: #1e1e2f;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      width: 90%;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .container h2 {
+      grid-column: span 2;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .cards img {
+      height: 25px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .submit-button {
+      grid-column: span 2;
+      background-color: #6c63ff;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: #574fd6;
+    }
+  </style>
 </head>
 <body>
-    <link rel="stylesheet" href="payment.css">
-    <div class="payment">
-        <h1 class="payTitle">Personal Information</h1>
-        <label>Name and Surname</label>
-    <input type="text" placeholder="John Doe" class="payInput">
-    <label>Phone Number</label>
-    <input type="text" placeholder="+1 234 5678" class="payInput">
-    <label>Address</label>
-    <input type="text" placeholder="Elton St 21 22-145" class="payInput">
-    <h1 class="payTitle">Card Information</h1>
-    <div class="cardIcons">
-        <img src="./images/visa.png" width="40" alt="" class="cardIcon">
-        <img src="./images/master.png" alt="" width="40" class="cardIcon">
+  <form class="container">
+    <!-- BILLING ADDRESS -->
+    <div>
+      <h3>Billing Address</h3>
+      <label>Full Name :</label>
+      <input type="text" placeholder="Jacob Aiden" />
+      <label>Email :</label>
+      <input type="email" placeholder="example@example.com" />
+      <label>Address :</label>
+      <input type="text" placeholder="Room - Street - Locality" />
+      <label>City :</label>
+      <input type="text" placeholder="Berlin" />
+      <label>State :</label>
+      <input type="text" placeholder="Germany" />
+      <label>Zip Code :</label>
+      <input type="text" placeholder="123 456" />
     </div>
-    <input type="password" class="payInput" placeholder="Card Number">
-    <div class="cardInfo">
-        <input type="text" placeholder="mm" class="payInput sm">
-        <input type="text" placeholder="yyyy" class="payInput sm yearInput">
-        <input type="text" placeholder="cvv" class="payInput sm">
+
+    <!-- PAYMENT -->
+    <div>
+      <h3>Payment</h3>
+      <label>Cards Accepted :</label>
+      <div class="cards">
+        <img src="https://img.icons8.com/color/48/000000/paypal.png" />
+        <img src="https://img.icons8.com/color/48/000000/mastercard.png" />
+        <img src="https://img.icons8.com/color/48/000000/visa.png" />
+        <img src="https://img.icons8.com/color/48/000000/discover.png" />
+      </div>
+      <label>Name on Card :</label>
+      <input type="text" placeholder="Mr. Jacob Aiden" />
+      <label>Credit Card Number :</label>
+      <input type="text" placeholder="1111 2222 3333 4444" />
+      <label>Exp. Month :</label>
+      <input type="text" placeholder="August" />
+      <label>Exp. Year :</label>
+      <input type="text" placeholder="2025" />
+      <label>CVV :</label>
+      <input type="text" placeholder="123" />
     </div>
-   <a href="order_animate.html"> <button class="payButton">Pay!</button></a>
-    <span class="close">X</span>
-    <script src="payment.js"></script>
-</div>
+
+    <a href="order_animate.html"><button class="submit-button">Submit</button></a>
+  </form>
 </body>
 </html>
