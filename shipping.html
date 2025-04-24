@@ -4,7 +4,58 @@
   <meta charset="UTF-8">
   <title>Order Details - Lune's</title>
   <link rel="stylesheet" href="shipping.css">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --section: #f9fafb;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+    }
 
+    body.dark-mode {
+      --bg: #0f172a;
+      --text: #f1f5f9;
+      --section: #1e293b;
+      --card-bg: #1e293b;
+      --border: #334155;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .topbar, .section, .tracker, .product-info, .card, .footer-upper {
+      background-color: var(--section);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .dark-toggle {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text);
+      margin-left: 1rem;
+    }
+
+    a.button, a.button-outline,
+    input, button {
+      color: var(--text);
+    }
+
+    details {
+      background-color: var(--card-bg);
+      padding: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -17,35 +68,34 @@
     <div class="user-icons">
       <i>&#128722;</i>
       <i>&#128100;</i>
+      <button class="dark-toggle" onclick="toggleDarkMode()">🌓</button>
     </div>
   </header>
-  
+
   <main class="container">
-  
     <h1>Order #787706614</h1>
     <p>Placed April 19,2025</p>
-  
+
     <div class="banner">
       Track your shipment to see every step of the way. You’ll get email updates once it’s out for delivery.
     </div>
-  
+
     <div class="tracker">
       <div class="step active"><span>Ordered</span></div>
       <div class="step active"><span>Shipped</span></div>
       <div class="step"><span>Out for Delivery</span></div>
       <div class="step"><span>Delivered</span></div>
     </div>
-  
+
     <section class="section">
       <h2>Delivery</h2>
-      <p>Delivered to: <strong>John Newhouse</strong></p>
-      <p>ETA: <strong>Apr 19 – Apr 20</strong></p>
+      <p>Delivered to: <strong>John Newhouse</strong></p>
+      <p>ETA: <strong>Apr 19 – Apr 20</strong></p>
       <a href="#" class="button">Track Package</a>
     </section>
-  
+
     <section class="section">
       <h2>Items in this Order</h2>
-  
       <div class="product">
         <img src="www.Lunes.com_online-returns_method_19a66309-a4ec-45c5-98a7-630b0315d974(Bayamrd XS)-524f0e093aab747f5df1a92bc9e444bd.avif" alt="">
         <div class="product-info">
@@ -55,12 +105,12 @@
         </div>
       </div>
     </section>
-  
+
     <section class="section">
       <h2>Payment Method</h2>
       <p>Visa ending in <strong>1234</strong></p>
     </section>
-  
+
     <section class="section">
       <h2>Order Summary</h2>
       <table>
@@ -70,7 +120,7 @@
         <tr><td><strong>Total:</strong></td><td style="text-align:right"><strong>$27.08</strong></td></tr>
       </table>
     </section>
-  
+
     <section class="section">
       <h2>Need Help?</h2>
       <details>
@@ -82,7 +132,7 @@
         <p>Tracking may take 24 hours to refresh after the carrier scans the package. Check again later or contact support.</p>
       </details>
     </section>
-  
+
     <section class="section">
       <h2>You May Also Like</h2>
       <div class="grid4">
@@ -112,9 +162,8 @@
         </div>
       </div>
     </section>
-  
   </main>
-  
+
   <footer class="footer">
     <div class="footer-upper">
       <div class="subscribe">
@@ -132,13 +181,19 @@
       </div><br>
       <div class="social">
         <h3>Follow Us</h3>
-        <img src="images/whatsapp.png" width="25"></a>
-        <img src="images/facebook.png" width="25"></a>
-        <img src="images/twitter.png" width="25"></a>
+        <img src="images/whatsapp.png" width="25">
+        <img src="images/facebook.png" width="25">
+        <img src="images/twitter.png" width="25">
       </div>
     </div>
     <p style="text-align:center;margin-top:1.5rem">© 2025 Lune’s. All rights reserved.</p>
   </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 
 </body>
 </html>
