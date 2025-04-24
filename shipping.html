@@ -11,29 +11,63 @@
       --section: #f9fafb;
       --card-bg: #ffffff;
       --border: #e5e7eb;
+  
+      --primary: #6366f1;
+      --secondary: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --link: #3b82f6;
     }
-
+  
     body.dark-mode {
       --bg: #0f172a;
       --text: #f1f5f9;
       --section: #1e293b;
       --card-bg: #1e293b;
       --border: #334155;
+  
+      --primary: #8b5cf6;
+      --secondary: #fbbf24;
+      --success: #22c55e;
+      --danger: #f87171;
+      --link: #60a5fa;
     }
-
+  
     body {
       background-color: var(--bg);
       color: var(--text);
       transition: background-color 0.3s ease, color 0.3s ease;
     }
-
+  
+    a.button, .button {
+      background-color: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+  
+    a.button-outline, .button-outline {
+      border: 2px solid var(--primary);
+      background-color: transparent;
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+  
     .topbar, .section, .tracker, .product-info, .card, .footer-upper {
       background-color: var(--section);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 1rem;
     }
-
+  
     .dark-toggle {
       background: none;
       border: none;
@@ -42,12 +76,19 @@
       color: var(--text);
       margin-left: 1rem;
     }
-
-    a.button, a.button-outline,
-    input, button {
+  
+    input[type="text"], input[type="email"], button {
+      border: 1px solid var(--border);
+      padding: 0.4rem;
+      border-radius: 4px;
       color: var(--text);
+      background-color: var(--card-bg);
     }
-
+  
+    a {
+      color: var(--link);
+    }
+  
     details {
       background-color: var(--card-bg);
       padding: 0.5rem;
@@ -55,7 +96,13 @@
       border-radius: 4px;
       margin-top: 0.5rem;
     }
+  
+    .step.active {
+      color: var(--success);
+      font-weight: bold;
+    }
   </style>
+  
 </head>
 <body>
 
