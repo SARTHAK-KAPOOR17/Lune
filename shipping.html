@@ -19,7 +19,7 @@
       --accent: #0f172a;
       --text-dark: #f9f9f9;
       --text-light: #fff;
-      --highlight: #fbbf24;
+      --highlight: #736749;
     }
 
     body {
@@ -28,6 +28,7 @@
       background: var(--main-bg);
       color: var(--text-dark);
       transition: background 0.3s ease, color 0.3s ease;
+      padding-top: 20px; /* Adjust to ensure space for header */
     }
 
     header {
@@ -133,6 +134,39 @@
       background: var(--accent);
       color: var(--text-light);
     }
+
+    /* Simple Search Bar */
+    .search-bar {
+      text-align: center;
+      margin: 2rem auto;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    .search-bar input {
+      width: 80%;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 10px 15px;
+      background-color: var(--accent);
+      color: var(--text-light);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-left: 10px;
+    }
+
+    .search-bar button:hover {
+      background-color: var(--highlight);
+    }
+
   </style>
 </head>
 <body data-theme="light">
@@ -140,8 +174,13 @@
     <h1>Free Shipping on All Shoes!</h1>
     <p>Limited time offer – No minimum purchase required</p>
     <button class="theme-toggle" onclick="toggleTheme()" id="themeToggleBtn">🌙</button>
-
   </header>
+
+  <!-- Simple Search Bar -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for shoes...">
+    <button onclick="performSearch()">🔍</button>
+  </div>
 
   <section class="cta-section">
     <h2>Step into style, ship for free!</h2>
@@ -174,23 +213,28 @@
   <script>
     const body = document.body;
     const toggleBtn = document.getElementById("themeToggleBtn");
-  
+
     function setIcon(theme) {
       toggleBtn.textContent = theme === "light" ? "🌙" : "☀️";
     }
-  
+
     function toggleTheme() {
       const currentTheme = body.getAttribute("data-theme");
       const newTheme = currentTheme === "light" ? "dark" : "light";
       body.setAttribute("data-theme", newTheme);
       setIcon(newTheme);
     }
-  
+
     // Set the correct icon when the page loads
     window.addEventListener("DOMContentLoaded", () => {
       setIcon(body.getAttribute("data-theme"));
     });
+
+    // Search function (for demo purposes)
+    function performSearch() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      alert(`Searching for: ${query}`);
+    }
   </script>
-  
 </body>
 </html>
