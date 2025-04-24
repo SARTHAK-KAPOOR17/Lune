@@ -6,12 +6,24 @@
   <title>Free Shipping | Shoe Store</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --main-bg: #f5f5f5;
+      --accent: #1e40af;
+      --text-dark: #111;
+      --text-light: #fff;
+      --highlight: #f59e0b;
+    }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
+      background: var(--main-bg);
+      color: var(--text-dark);
     }
 
     header {
+      background-color: var(--accent);
+      color: var(--text-light);
       padding: 2rem;
       text-align: center;
     }
@@ -28,6 +40,7 @@
     .cta-section {
       text-align: center;
       padding: 3rem 1rem;
+      background: #ffffff;
     }
 
     .cta-section h2 {
@@ -41,12 +54,18 @@
     }
 
     .cta-button {
+      background-color: var(--highlight);
+      color: var(--text-dark);
       padding: 0.75rem 1.5rem;
-      border: 1px solid #000;
+      border: none;
       border-radius: 8px;
       font-size: 1rem;
       cursor: pointer;
-      background: none;
+      transition: background 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #d97706;
     }
 
     .products {
@@ -58,9 +77,10 @@
     }
 
     .product-card {
-      border: 1px solid #ccc;
+      background: white;
       border-radius: 12px;
       padding: 1rem;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
       width: 250px;
       text-align: center;
     }
@@ -78,6 +98,8 @@
     .footer {
       text-align: center;
       padding: 2rem;
+      background: var(--accent);
+      color: white;
     }
   </style>
 </head>
