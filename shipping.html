@@ -48,6 +48,7 @@
       text-decoration: none;
       display: inline-block;
       margin-top: 0.5rem;
+      transition: transform 0.3s ease; /* Add transition for smooth scale effect */
     }
   
     a.button-outline, .button-outline {
@@ -59,6 +60,7 @@
       text-decoration: none;
       display: inline-block;
       margin-top: 0.5rem;
+      transition: transform 0.3s ease; /* Add transition for smooth scale effect */
     }
   
     .topbar, .section, .tracker, .product-info, .card, .footer-upper {
@@ -102,6 +104,9 @@
       font-weight: bold;
     }
   </style>
+  
+  <!-- Add GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.1/gsap.min.js"></script>
   
 </head>
 <body>
@@ -240,6 +245,19 @@
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
     }
+
+    // GSAP Animation for Buttons on Hover
+    const buttons = document.querySelectorAll('.button, .button-outline');
+    
+    buttons.forEach(button => {
+      button.addEventListener('mouseenter', () => {
+        gsap.to(button, { scale: 1.1, duration: 0.3 });
+      });
+      
+      button.addEventListener('mouseleave', () => {
+        gsap.to(button, { scale: 1, duration: 0.3 });
+      });
+    });
   </script>
 
 </body>
