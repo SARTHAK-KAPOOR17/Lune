@@ -128,7 +128,7 @@ h1, h2 {
   flex-wrap: wrap;
   margin-top: 1rem;
   font-size: 0.9rem;
-  color: #d1d5db;
+  color: #b16e3d;
 }
 
 .footer-links a {
@@ -163,6 +163,6 @@ h1, h2 {
 }
 
 @keyframes fadeInBody {
-  0% { background-color: #e2e8f0; }
-  100% { background-color: #f4f6f8; }
+  0% { background-color: #bde1c1; }
+  100% { background-color: #accae8; }
 }
