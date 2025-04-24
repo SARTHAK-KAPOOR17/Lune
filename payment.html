@@ -94,8 +94,8 @@
       <label>Cards Accepted :</label>
       <div class="cards">
         <img src="https://img.icons8.com/color/48/000000/paypal.png" />
-        <img src="https://img.icons8.com/color/48/000000/mastercard.png" />
-        <img src="https://img.icons8.com/color/48/000000/visa.png" />
+        <img src="images/master.png" />
+        <img src="images/visa.png" />
         <img src="https://img.icons8.com/color/48/000000/discover.png" />
       </div>
       <label>Name on Card :</label>
@@ -110,7 +110,12 @@
       <input type="text" placeholder="123" />
     </div>
 
-    <a href="order_animate.html"><button class="submit-button">Submit</button></a>
+   <button class="submit-button" id="submit-button">Submit</button>
   </form>
+  <script>
+    document.getElementById('submit-button').addEventListener('click', function() {
+  window.location.href = 'order_animate.html';
+});
+  </script>
 </body>
 </html>
