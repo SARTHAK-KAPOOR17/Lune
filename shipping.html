@@ -14,11 +14,20 @@
       --highlight: #f59e0b;
     }
 
+    [data-theme="dark"] {
+      --main-bg: #1a1a1a;
+      --accent: #0f172a;
+      --text-dark: #f9f9f9;
+      --text-light: #fff;
+      --highlight: #fbbf24;
+    }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
       background: var(--main-bg);
       color: var(--text-dark);
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     header {
@@ -26,6 +35,7 @@
       color: var(--text-light);
       padding: 2rem;
       text-align: center;
+      position: relative;
     }
 
     header h1 {
@@ -37,10 +47,27 @@
       font-size: 1.25rem;
     }
 
+    .theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      background: var(--highlight);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: var(--text-dark);
+    }
+
     .cta-section {
       text-align: center;
       padding: 3rem 1rem;
       background: #ffffff;
+    }
+
+    [data-theme="dark"] .cta-section {
+      background: #2a2a2a;
     }
 
     .cta-section h2 {
@@ -85,6 +112,11 @@
       text-align: center;
     }
 
+    [data-theme="dark"] .product-card {
+      background: #333;
+      box-shadow: 0 8px 16px rgba(255,255,255,0.05);
+    }
+
     .product-card img {
       width: 100%;
       border-radius: 8px;
@@ -99,14 +131,15 @@
       text-align: center;
       padding: 2rem;
       background: var(--accent);
-      color: white;
+      color: var(--text-light);
     }
   </style>
 </head>
-<body>
+<body data-theme="light">
   <header>
     <h1>Free Shipping on All Shoes!</h1>
     <p>Limited time offer – No minimum purchase required</p>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
   </header>
 
   <section class="cta-section">
@@ -117,17 +150,17 @@
 
   <section class="products">
     <div class="product-card">
-      
+      <img src="https://via.placeholder.com/250x180" alt="Sneaker">
       <h3>Classic Sneaker</h3>
       <p>$59.99</p>
     </div>
     <div class="product-card">
-      
+      <img src="https://via.placeholder.com/250x180" alt="Running Shoe">
       <h3>Running Pro</h3>
       <p>$89.99</p>
     </div>
     <div class="product-card">
-    
+      <img src="https://via.placeholder.com/250x180" alt="Boot">
       <h3>Urban Boots</h3>
       <p>$74.99</p>
     </div>
@@ -136,5 +169,13 @@
   <footer class="footer">
     &copy; 2025 Shoe Store. All rights reserved.
   </footer>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const currentTheme = body.getAttribute("data-theme");
+      body.setAttribute("data-theme", currentTheme === "light" ? "dark" : "light");
+    }
+  </script>
 </body>
 </html>
