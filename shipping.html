@@ -7,19 +7,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --main-bg: #f5f5f5;
-      --accent: #1e40af;
-      --text-dark: #111;
-      --text-light: #fff;
-      --highlight: #f59e0b;
+      --main-bg: #f3f4f6;
+      --accent: #2563eb;
+      --text-dark: #111827;
+      --text-light: #ffffff;
+      --highlight: #facc15;
+      --card-bg: #ffffff;
     }
 
     [data-theme="dark"] {
-      --main-bg: #1a1a1a;
-      --accent: #0f172a;
-      --text-dark: #f9f9f9;
-      --text-light: #fff;
-      --highlight: #736749;
+      --main-bg: #111827;
+      --accent: #1d4ed8;
+      --text-dark: #f9fafb;
+      --text-light: #ffffff;
+      --highlight: #facc15;
+      --card-bg: #1f2937;
     }
 
     body {
@@ -28,13 +30,13 @@
       background: var(--main-bg);
       color: var(--text-dark);
       transition: background 0.3s ease, color 0.3s ease;
-      padding-top: 60px; /* Adjust to ensure space for the fixed search bar */
+      padding-top: 70px;
     }
 
     header {
       background-color: var(--accent);
       color: var(--text-light);
-      padding: 2rem;
+      padding: 2rem 1rem;
       text-align: center;
       position: relative;
     }
@@ -61,14 +63,56 @@
       color: var(--text-dark);
     }
 
+    .search-bar {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--text-light);
+      border-radius: 25px;
+      padding: 10px 20px;
+      width: 80%;
+      max-width: 400px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    [data-theme="dark"] .search-bar {
+      background-color: #2d2d2d;
+    }
+
+    .search-bar input {
+      width: 85%;
+      border: none;
+      padding: 10px;
+      border-radius: 20px;
+      font-size: 1rem;
+      outline: none;
+      background: transparent;
+      color: var(--text-dark);
+    }
+
+    .search-bar button {
+      background-color: var(--accent);
+      color: var(--text-light);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .search-bar button:hover {
+      background-color: var(--highlight);
+      color: var(--text-dark);
+    }
+
     .cta-section {
       text-align: center;
       padding: 3rem 1rem;
-      background: #ffffff;
-    }
-
-    [data-theme="dark"] .cta-section {
-      background: #2a2a2a;
+      background: var(--card-bg);
     }
 
     .cta-section h2 {
@@ -93,7 +137,7 @@
     }
 
     .cta-button:hover {
-      background-color: #d97706;
+      background-color: #eab308;
     }
 
     .products {
@@ -101,21 +145,21 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
-      padding: 2rem;
+      padding: 2rem 1rem;
     }
 
     .product-card {
-      background: white;
+      background: var(--card-bg);
       border-radius: 12px;
       padding: 1rem;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
       width: 250px;
       text-align: center;
+      transition: transform 0.3s ease;
     }
 
-    [data-theme="dark"] .product-card {
-      background: #333;
-      box-shadow: 0 8px 16px rgba(255,255,255,0.05);
+    .product-card:hover {
+      transform: translateY(-4px);
     }
 
     .product-card img {
@@ -135,46 +179,19 @@
       color: var(--text-light);
     }
 
-    /* Fixed Search Bar */
-    .search-bar {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: var(--text-light);
-      border-radius: 25px;
-      padding: 10px 20px;
-      width: 80%;
-      max-width: 400px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-    }
+    @media (max-width: 600px) {
+      .search-bar {
+        width: 90%;
+      }
 
-    .search-bar input {
-      width: 85%;
-      border: none;
-      padding: 10px;
-      border-radius: 20px;
-      font-size: 1rem;
-      outline: none;
-    }
+      header h1 {
+        font-size: 1.8rem;
+      }
 
-    .search-bar button {
-      background-color: var(--accent);
-      color: var(--text-light);
-      border: none;
-      padding: 10px 15px;
-      border-radius: 50%;
-      cursor: pointer;
+      .cta-section h2 {
+        font-size: 1.5rem;
+      }
     }
-
-    .search-bar button:hover {
-      background-color: var(--highlight);
-    }
-
   </style>
 </head>
 <body data-theme="light">
@@ -233,12 +250,10 @@
       setIcon(newTheme);
     }
 
-    // Set the correct icon when the page loads
     window.addEventListener("DOMContentLoaded", () => {
       setIcon(body.getAttribute("data-theme"));
     });
 
-    // Search function (for demo purposes)
     function performSearch() {
       const query = document.getElementById("searchInput").value.toLowerCase();
       alert(`Searching for: ${query}`);
