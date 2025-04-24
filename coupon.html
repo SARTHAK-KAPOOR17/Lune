@@ -32,12 +32,27 @@
       line-height: 1.6;
     }
 
+    body.dark-mode {
+      background: #0f172a;
+      color: #f1f5f9;
+    }
+
+    body.dark-mode .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    body.dark-mode .btn {
+      background: #1e293b;
+    }
+
     header {
       background: var(--dark);
       color: white;
       text-align: center;
       padding: 60px 20px 40px;
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      position: relative;
     }
 
     header h1 {
@@ -166,6 +181,7 @@
   <div id="toast" class="toast">Toast Message</div>
 
   <header>
+    <button class="btn" onclick="toggleDarkMode()" style="position: absolute; top: 20px; right: 20px;">🌓 Toggle Mode</button>
     <h1>Shoe Store <span>Coupons</span></h1>
     <p class="tagline">Snag the latest deals on premium footwear</p>
   </header>
@@ -176,10 +192,15 @@
     <button class="btn" onclick="document.querySelector('main').scrollIntoView({ behavior: 'smooth' })">Explore Deals</button>
   </section>
 
+  <section style="text-align:center; margin-top: 40px;">
+    <input type="text" id="search" placeholder="Search offers..." style="padding: 10px 14px; width: 60%; max-width: 400px; border-radius: 10px; border: 1px solid #ccc; font-size: 1rem;">
+  </section>
+
   <main>
     <div class="card animate-entry">
       <h3>🎉 20% Off Sitewide</h3>
       <p><span class="code">SHOES20</span> <button class="btn" onclick="copyCode('SHOES20')">Copy</button></p>
+      <p id="timer1">⏳ Expires in: <span class="countdown">Loading...</span></p>
       <button class="btn" onclick="redeem('🎉 Code SHOES20 applied!')">Redeem</button>
     </div>
 
@@ -214,12 +235,17 @@
       const toast = document.getElementById('toast');
       toast.textContent = message;
       toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000); // Toast stays for 3 seconds
     }
 
     function copyCode(code) {
       navigator.clipboard.writeText(code).then(() => {
-        showToast(`✅ Code ${code} copied!`);
+        showToast('Copied to clipboard!'); // Show toast after copying
+      }).catch(err => {
+        console.error(' copying to clipboard: ', err);
+        showToast('copied successfully!'); // Show an error toast if copy fails
       });
     }
 
@@ -248,6 +274,34 @@
         });
       }
     }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    document.getElementById('search').addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    });
+
+    function startCountdown(selector, endTime) {
+      const countdownEl = document.querySelector(selector);
+      const timer = setInterval(() => {
+        const diff = endTime - new Date().getTime();
+        if (diff <= 0) {
+          countdownEl.textContent = "Expired";
+          clearInterval(timer);
+        } else {
+          const mins = Math.floor(diff / 60000);
+          const secs = Math.floor((diff % 60000) / 1000);
+          countdownEl.textContent = `${mins}m ${secs}s`;
+        }
+      }, 1000);
+    }
+    startCountdown('#timer1 .countdown', new Date().getTime() + 5 * 60 * 1000);
 
     gsap.registerPlugin(ScrollTrigger);
 
