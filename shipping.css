@@ -1,72 +1,168 @@
+/* Base styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f9f9f9;
-  }
-  .header, .footer {
-    background-color: #538ab2;
-    color: white;
-    padding: 15px 20px;
-    text-align: center;
-  }
-  .container {
-    max-width: 800px;
-    margin: auto;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 2px 6px rgba(198, 93, 93, 0.1);
-  }
-  h1, h2 {
-    color: #010014;
-  }
-  .section {
-    margin-bottom: 25px;
-  }
-  .section-title {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .info-box {
-    background: #53a9eb;
-    padding: 10px;
-    border-left: 4px solid #007bc2;
-  }
-  .button {
-    background: #007bc2;
-    color: rgb(62, 249, 71);
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-  }
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: #f4f6f8;
+  color: #1f2937;
+  line-height: 1.6;
+  animation: fadeInBody 1s ease-in;
+}
 
-    .button:hover {
-        background: #19c138;
-        color: #ce2b2b;
-    }
+/* Header & Footer */
+.header, .footer {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  animation: slideDown 0.8s ease-out;
+}
 
-  .product {
-    display: flex;
-    gap: 15px;
-    border-top: 1px solid #ccc;
-    padding-top: 10px;
-    margin-top: 10px;
-  }
-  .product img {
-    max-width: 100px;
-  }
-  .summary-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .summary-table td {
-    padding: 8px 4px;
-  }
-  .footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    font-size: 0.9em;
-  }
+/* Container */
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  animation: fadeIn 1s ease-in;
+}
+
+h1, h2 {
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease-in both;
+}
+
+/* Titles */
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.75rem;
+}
+
+/* Info Box */
+.info-box {
+  background: #e0f2fe;
+  padding: 1rem;
+  border-left: 4px solid #0284c7;
+  color: #0c4a6e;
+  border-radius: 6px;
+  animation: popIn 0.5s ease;
+}
+
+/* Button */
+.button {
+  display: inline-block;
+  background: #2563eb;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.button:hover {
+  background: #1d4ed8;
+  transform: scale(1.05);
+}
+
+/* Product Card */
+.product {
+  display: flex;
+  gap: 1rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.7s ease-in both;
+}
+
+.product:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Product image */
+.product img {
+  max-width: 100px;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+.product img:hover {
+  transform: scale(1.05);
+}
+
+/* Order Summary Table */
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.summary-table td {
+  padding: 0.6rem 0.4rem;
+  color: #374151;
+}
+
+.summary-table td:last-child {
+  text-align: right;
+}
+
+/* Footer Links */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #d1d5db;
+}
+
+.footer-links a {
+  color: #dbeafe;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInBody {
+  0% { background-color: #e2e8f0; }
+  100% { background-color: #f4f6f8; }
+}
