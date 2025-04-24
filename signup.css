@@ -68,3 +68,67 @@ input:focus{border-color:#007bff;outline:none}
   transition:background .3s ease;
 }
 .social-signin button:hover{background:#bbb}
+
+
+.container {
+  animation: fadeInUp .5s forwards, breathe 4s 1s infinite ease-in-out;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: translateY(0); box-shadow: 0 4px 15px rgba(0,0,0,.1); }
+  50%      { transform: translateY(-4px); box-shadow: 0 8px 18px rgba(0,0,0,.12); }
+}
+
+
+button {
+  position: relative;         
+  overflow: hidden;            
+}
+
+button:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px; height: 5px;
+  background: rgba(255,255,255,.6);
+  border-radius: 50%;
+  transform: translate(-50%,-50%) scale(1);
+  opacity: 0;
+  transition: transform .5s, opacity .5s;
+}
+
+button:active:after {
+  transform: translate(-50%,-50%) scale(25);
+  opacity: 1;
+  transition: 0s;
+}
+
+
+
+input {
+  position: relative;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #ccc;  
+  border-radius: 0;
+  padding: 8px 0;
+}
+
+input:focus {
+  border-bottom-color: #007bff;
+  outline: none;
+}
+
+input:focus::after,
+input::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  left: 0; bottom: -2px;
+  width: 0;
+  background: #007bff;
+  transition: width .3s ease;
+}
+
+input:focus::after { width: 100%; }
