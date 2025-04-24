@@ -1,41 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Free Shipping - Shoe Store</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Shipping | Shoe Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    header {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.25rem;
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    .cta-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-button {
+      padding: 0.75rem 1.5rem;
+      border: 1px solid #000;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: none;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .product-card {
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 1rem;
+      width: 250px;
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .product-card h3 {
+      margin: 0.5rem 0;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>Free Shipping on All Shoes!</h1>
+    <p>Limited time offer – No minimum purchase required</p>
+  </header>
 
-  <h1>Free Shipping on All Shoes!</h1>
-  <p>Enjoy free shipping on every order. No minimum purchase required.</p>
+  <section class="cta-section">
+    <h2>Step into style, ship for free!</h2>
+    <p>Order your favorite pairs today and enjoy fast, free delivery on all orders.</p>
+    <button class="cta-button">Shop Now</button>
+  </section>
 
-  <h2>Shop Your Favorite Shoes</h2>
-  <p>Order now and get them delivered to your door for free!</p>
+  <section class="products">
+    <div class="product-card">
+      <img src="https://via.placeholder.com/250x180" alt="Sneaker">
+      <h3>Classic Sneaker</h3>
+      <p>$59.99</p>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/250x180" alt="Running Shoe">
+      <h3>Running Pro</h3>
+      <p>$89.99</p>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/250x180" alt="Boot">
+      <h3>Urban Boots</h3>
+      <p>$74.99</p>
+    </div>
+  </section>
 
-  <button>Shop Now</button>
-
-  <h3>Popular Products</h3>
-
-  <div>
-    <h4>Classic Sneaker</h4>
-    <p>Price: $59.99</p>
-    <img src="https://via.placeholder.com/150" alt="Classic Sneaker">
-  </div>
-
-  <div>
-    <h4>Running Pro</h4>
-    <p>Price: $89.99</p>
-    <img src="https://via.placeholder.com/150" alt="Running Pro">
-  </div>
-
-  <div>
-    <h4>Urban Boots</h4>
-    <p>Price: $74.99</p>
-    <img src="https://via.placeholder.com/150" alt="Urban Boots">
-  </div>
-
-  <footer>
-    <p>&copy; 2025 Shoe Store</p>
+  <footer class="footer">
+    &copy; 2025 Shoe Store. All rights reserved.
   </footer>
-
 </body>
 </html>
