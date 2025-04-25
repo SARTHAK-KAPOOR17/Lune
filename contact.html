@@ -8,6 +8,12 @@
 </head>
 <body> 
     <div class="container">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle">
+            <label class="slider" for="darkModeToggle"></label>
+            <label for="darkModeToggle">Dark Mode</label>
+        </div>
+
         <h1>Contact Us</h1>
 
         <div class="contact-info">
@@ -21,7 +27,7 @@
         <div class="contact-form">
             <h2>Send Us a Message</h2>
             <form action="#" method="POST">
-                <label for="name">Name:</label>
+                <label for="name" >Name:</label>
                 <input type="text" id="name" name="name" required>
 
                 <label for="email">Email:</label>
@@ -61,6 +67,27 @@
 
     <footer>
         <p>&copy; 2025 Lune Shoes. All rights reserved.</p>
+        <meta name="description" content="Contact Lune Shoes for inquiries, support, and feedback. Find our store location and get in touch today!">
+        <i class="fas fa-map-marker-alt"></i> <b>Head Office Address: Chitkara University, Punjab, India</b><br>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css">
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+    
+            const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+            if (isDarkMode) {
+                body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+    
+            darkModeToggle.addEventListener('change', function() {
+                body.classList.toggle('dark-mode');
+                localStorage.setItem('darkMode', this.checked ? 'enabled' : 'disabled');
+            });
+        });
+    </script>
 </body>
 </html>
