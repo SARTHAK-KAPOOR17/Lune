@@ -2,7 +2,7 @@
 
 body{
   font-family:Arial,sans-serif;
-  background:#f8f9fa;
+  background:#7eb2e6;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -12,9 +12,9 @@ body{
 
 .container{
   display:flex;
-  background:#fff;
+  background:#9ce6ba;
   border-radius:8px;
-  box-shadow:0 4px 15px rgba(0,0,0,.1);
+  box-shadow:0 4px 15px rgba(101, 61, 233, 0.1);
   max-width:600px;
   width:90%;
   overflow:hidden;
@@ -30,7 +30,7 @@ body{
 
 .welcome-back{
   background:#009688;
-  color:#fff;
+  color:#b1ebad;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -49,7 +49,7 @@ button{
   cursor:pointer;
   transition:background .3s ease,transform .2s ease;
 }
-button:hover{background:#0069d9;transform:scale(1.05)}
+button:hover{background:#0e9d17;transform:scale(1.05)}
 
 input{
   display:block;
