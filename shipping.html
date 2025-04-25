@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Free Shipping on All Orders</title>
   <style>
-    /* Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -31,7 +30,6 @@
       padding: 0 20px;
     }
 
-    /* Header */
     header {
       background-color: #1a1a2e;
       padding: 20px 0;
@@ -64,7 +62,12 @@
       color: #e94560;
     }
 
-    /* Dark/Light Mode Toggle */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
     .toggle-container {
       display: flex;
       align-items: center;
@@ -107,13 +110,9 @@
       font-size: 18px;
     }
 
-    /* Enhanced Floating Search Bar */
     .search-container {
-      position: fixed;
-      top: 20px;
-      right: 100px;
+      position: relative;
       z-index: 1000;
-      transition: all 0.4s ease;
     }
 
     body.dark-mode .search-container {
@@ -122,13 +121,11 @@
 
     .search-bar {
       display: flex;
-      max-width: 400px;
-      width: 60px;
-      height: 60px;
+      width: 200px;
+      height: 40px;
       background: white;
-      border-radius: 60px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       overflow: hidden;
     }
 
@@ -136,20 +133,13 @@
       background: #333;
     }
 
-    .search-bar.active {
-      width: 400px;
-    }
-
     .search-bar input {
       flex: 1;
-      padding: 20px;
+      padding: 0 15px;
       border: none;
       outline: none;
-      font-size: 18px;
+      font-size: 16px;
       background: transparent;
-      opacity: 0;
-      transition: all 0.5s;
-      transform: translateX(-20px);
       color: #333;
     }
 
@@ -157,56 +147,20 @@
       color: #f5f5f5;
     }
 
-    .search-bar.active input {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
     .search-bar button {
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 40px;
       border: none;
-      border-radius: 50%;
       background: #e94560;
       color: white;
-      font-size: 22px;
+      font-size: 18px;
       cursor: pointer;
-      transition: all 0.5s;
-      position: absolute;
-      right: 0;
-    }
-
-    .search-bar.active button {
-      background: #d13354;
-      transform: rotate(360deg);
     }
 
     .search-bar button:hover {
-      background: #c12a48;
+      background: #d13354;
     }
 
-    .search-bar .close-btn {
-      position: absolute;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      color: #999;
-      font-size: 20px;
-      cursor: pointer;
-      opacity: 0;
-      transition: all 0.3s;
-    }
-
-    body.dark-mode .search-bar .close-btn {
-      color: #aaa;
-    }
-
-    .search-bar.active .close-btn {
-      opacity: 1;
-      right: 70px;
-    }
-
-    /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #f8f3ff, #e6e6ff);
       padding: 80px 0;
@@ -218,23 +172,6 @@
 
     body.dark-mode .hero {
       background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%23e94560" opacity="0.05" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>');
-      background-size: cover;
-      z-index: 0;
-    }
-
-    .hero .container {
-      position: relative;
-      z-index: 1;
     }
 
     .hero h1 {
@@ -283,7 +220,6 @@
       box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
 
-    /* Shipping Info */
     .shipping-info {
       padding: 80px 0;
       background-color: #fff;
@@ -387,7 +323,6 @@
       color: #bbb;
     }
 
-    /* CTA Section */
     .cta {
       background: linear-gradient(135deg, #1a1a2e, #16213e);
       color: #fff;
@@ -400,33 +335,6 @@
 
     body.dark-mode .cta {
       background: linear-gradient(135deg, #0d0d1a, #0a0a14);
-    }
-
-    .cta::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      left: -50px;
-      width: 200px;
-      height: 200px;
-      background: rgba(233, 69, 96, 0.1);
-      border-radius: 50%;
-    }
-
-    .cta::after {
-      content: '';
-      position: absolute;
-      bottom: -80px;
-      right: -80px;
-      width: 250px;
-      height: 250px;
-      background: rgba(233, 69, 96, 0.1);
-      border-radius: 50%;
-    }
-
-    .cta .container {
-      position: relative;
-      z-index: 1;
     }
 
     .cta h2 {
@@ -465,7 +373,6 @@
       box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
     }
 
-    /* Footer */
     footer {
       background-color: #0f0f1a;
       color: #aaa;
@@ -501,15 +408,10 @@
     }
 
     @media (max-width: 768px) {
-      .search-container {
-        top: 15px;
-        right: 90px;
+      .header-right {
+        gap: 20px;
       }
       
-      .search-bar.active {
-        width: calc(100vw - 30px);
-      }
-
       .hero h1 {
         font-size: 2.2rem;
       }
@@ -529,12 +431,18 @@
     }
 
     @media (max-width: 480px) {
-      .toggle-container {
-        gap: 10px;
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
       }
       
-      .search-container {
-        right: 80px;
+      .header-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .search-bar {
+        width: 160px;
       }
     }
   </style>
@@ -545,23 +453,22 @@
     <div class="container">
       <div class="header-content">
         <div class="logo">STEP<span>UP</span></div>
-        <div class="toggle-container">
-          <i class="fas fa-sun toggle-icon"></i>
-          <div class="toggle-btn"></div>
-          <i class="fas fa-moon toggle-icon"></i>
+        <div class="header-right">
+          <div class="toggle-container">
+            <i class="fas fa-sun toggle-icon"></i>
+            <div class="toggle-btn"></div>
+            <i class="fas fa-moon toggle-icon"></i>
+          </div>
+          <div class="search-container">
+            <div class="search-bar">
+              <input type="text" placeholder="Search shoes...">
+              <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </header>
-
-  <!-- Floating Search Bar -->
-  <div class="search-container">
-    <div class="search-bar">
-      <input type="text" placeholder="Search shoes, brands, styles...">
-      <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
-      <span class="close-btn"><i class="fas fa-times"></i></span>
-    </div>
-  </div>
 
   <section class="hero">
     <div class="container">
@@ -619,66 +526,16 @@
   </footer>
 
   <script>
-    // Enhanced Search Bar Functionality
-    const searchBar = document.querySelector('.search-bar');
-    const searchBtn = document.querySelector('.search-btn');
-    const closeBtn = document.querySelector('.close-btn');
-    const searchInput = document.querySelector('.search-bar input');
-
-    // Toggle search bar
-    searchBtn.addEventListener('click', () => {
-      searchBar.classList.add('active');
-      searchInput.focus();
-    });
-
-    // Close search bar
-    closeBtn.addEventListener('click', () => {
-      searchBar.classList.remove('active');
-      searchInput.value = '';
-    });
-
-    // Search functionality
-    searchBtn.addEventListener('click', function(e) {
-      if(searchBar.classList.contains('active') && searchInput.value.trim() !== '') {
-        e.preventDefault();
-        alert(`Searching for: ${searchInput.value}\nThis would normally redirect to search results.`);
-        // In a real implementation:
-        // window.location.href = `/search?q=${encodeURIComponent(searchInput.value)}`;
-      }
-    });
-
-    // Search on Enter key
-    searchInput.addEventListener('keypress', function(e) {
-      if(e.key === 'Enter' && searchInput.value.trim() !== '') {
-        alert(`Searching for: ${searchInput.value}\nThis would normally redirect to search results.`);
-        // window.location.href = `/search?q=${encodeURIComponent(searchInput.value)}`;
-      }
-    });
-
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-      if(!searchBar.contains(e.target) && !e.target.classList.contains('search-btn')) {
-        searchBar.classList.remove('active');
-        searchInput.value = '';
-      }
-    });
-
-    // Dark/Light Mode Toggle
     const toggleBtn = document.querySelector('.toggle-btn');
     const body = document.body;
 
-    // Check for saved user preference
     if(localStorage.getItem('darkMode') === 'enabled') {
       body.classList.add('dark-mode');
-      toggleBtn.style.backgroundColor = '#333';
-      toggleBtn.querySelector('::before').style.left = '35px';
     }
 
-    // Toggle dark/light mode
     toggleBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       
-      // Save user preference
       if(body.classList.contains('dark-mode')) {
         localStorage.setItem('darkMode', 'enabled');
       } else {
