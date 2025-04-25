@@ -1,4 +1,3 @@
-/* Reset and base styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -10,28 +9,48 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    transition: background 0.3s ease; /* Smooth background transition */
 }
 
-/* Container */
+body.dark-mode {
+    background: linear-gradient(to right, #333, #555);
+    color: #eee;
+}
+
 .container {
     max-width: 800px;
     width: 100%;
-    background-color: #fff;
+    background-color: #dcefec;
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     margin-bottom: 30px;
     animation: fadeInUp 1s ease forwards;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
-/* Headings */
+.dark-mode .container {
+    background-color: #444;
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+}
+
+.contact-form input:invalid,
+.contact-form textarea:invalid {
+    border-color: #c77e7d;
+    background-color: #fddede; /* More noticeable invalid feedback */
+}
+
 h1, h2 {
     color: #d84315;
     text-align: center;
     margin-bottom: 25px;
+    transition: color 0.3s ease;
 }
 
-/* Contact Info */
+.dark-mode h1, .dark-mode h2 {
+    color: #ffab91;
+}
+
 .contact-info {
     background-color: #fbe9e7;
     padding: 20px;
@@ -40,12 +59,23 @@ h1, h2 {
     text-align: center;
     margin-bottom: 30px;
     animation: fadeInUp 1.2s ease forwards;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dark-mode .contact-info {
+    background-color: #555;
+    border-color: #777;
 }
 
 .contact-info p {
     margin: 10px 0;
     font-weight: bold;
     color: #444;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .contact-info p {
+    color: #eee;
 }
 
 .contact-info a {
@@ -54,16 +84,28 @@ h1, h2 {
     transition: color 0.3s ease;
 }
 
+.dark-mode .contact-info a {
+    color: #80cbc4;
+}
+
 .contact-info a:hover {
     color: #004d40;
 }
 
-/* Form Styles */
+.dark-mode .contact-info a:hover {
+    color: #26a69a;
+}
+
 .contact-form label {
     display: block;
     margin: 12px 0 6px;
     font-weight: bold;
-    color: #2e7d32;
+    color: #63d469;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .contact-form label {
+    color: #aed581;
 }
 
 .contact-form input,
@@ -80,6 +122,14 @@ h1, h2 {
     opacity: 0;
     transform: translateY(20px);
     animation: slideIn 0.6s ease forwards;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode .contact-form input,
+.dark-mode .contact-form textarea {
+    background-color: #666;
+    color: #ddd;
+    border-color: #777;
 }
 
 .contact-form input:nth-of-type(1) { animation-delay: 0.2s; }
@@ -90,8 +140,14 @@ h1, h2 {
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: #66bb6a;
+    border-color: #bbe9bd;
     box-shadow: 0 0 8px rgba(102, 187, 106, 0.3);
+}
+
+.dark-mode .contact-form input:focus,
+.dark-mode .contact-form textarea:focus {
+    border-color: #80cbc4;
+    box-shadow: 0 0 8px rgba(128, 203, 196, 0.3);
 }
 
 .contact-form button {
@@ -102,9 +158,14 @@ h1, h2 {
     border-radius: 10px;
     cursor: pointer;
     font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     animation: slideIn 1s ease forwards;
+}
+
+.dark-mode .contact-form button {
+    background-color: #f4511e;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
 }
 
 .contact-form button:hover {
@@ -112,13 +173,21 @@ h1, h2 {
     transform: translateY(-2px);
 }
 
-/* Map */
+.dark-mode .contact-form button:hover {
+    background-color: #26a69a;
+}
+
 .map-container {
     margin-top: 40px;
     border: 2px solid #aed581;
     border-radius: 10px;
     overflow: hidden;
     animation: fadeInUp 1.5s ease forwards;
+    transition: border-color 0.3s ease;
+}
+
+.dark-mode .map-container {
+    border-color: #689f38;
 }
 
 .map-container h2 {
@@ -126,6 +195,12 @@ h1, h2 {
     padding: 15px;
     color: #33691e;
     margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode .map-container h2 {
+    background-color: #555;
+    color: #8bc34a;
 }
 
 .map-container iframe {
@@ -139,6 +214,12 @@ h1, h2 {
     text-align: center;
     padding: 10px;
     font-size: 0.95rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode .map-container p {
+    background-color: #666;
+    color: #a5d6a7;
 }
 
 .map-container p a {
@@ -148,21 +229,38 @@ h1, h2 {
     transition: color 0.3s ease;
 }
 
+.dark-mode .map-container p a {
+    color: #81c784;
+}
+
 .map-container p a:hover {
     color: #008ba3;
 }
 
-/* Social Links */
+.dark-mode .map-container p a:hover {
+    color: #4dd0e1;
+}
+
 .social-links {
     text-align: center;
     font-size: 1.1rem;
     padding: 20px 0;
     animation: fadeInUp 1.6s ease forwards;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .social-links {
+    color: #eee;
 }
 
 .social-links h2 {
     margin-bottom: 10px;
     color: #5d4037;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .social-links h2 {
+    color: #a1887f;
 }
 
 .social-links a {
@@ -170,6 +268,11 @@ h1, h2 {
     color: #333;
     text-decoration: none;
     font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .social-links a {
+    color: #ddd;
 }
 
 .social-links a:hover {
@@ -177,16 +280,24 @@ h1, h2 {
     text-decoration: underline;
 }
 
-/* Footer */
+.dark-mode .social-links a:hover {
+    color: #9fa8da;
+}
+
 footer {
     text-align: center;
     padding: 15px 0;
     background-color: #f5f5f5;
     color: #888;
     width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Animations */
+.dark-mode footer {
+    background-color: #333;
+    color: #bbb;
+}
+
 @keyframes fadeInUp {
     0% { opacity: 0; transform: translateY(30px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -196,7 +307,6 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
@@ -213,4 +323,99 @@ footer {
     .map-container iframe {
         height: 250px;
     }
+}
+
+.success-message {
+    display: none;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 15px;
+    margin-top: 20px;
+    border: 1px solid #a5d6a7;
+    border-radius: 10px;
+    text-align: center;
+    animation: fadeInUp 0.5s ease forwards;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.dark-mode .success-message {
+    background-color: #4CAF50;
+    color: #fff;
+    border-color: #66bb6a;
+}
+
+/* Toggle Switch for Dark Mode */
+.dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.dark-mode-toggle label {
+    margin-left: 8px;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .dark-mode-toggle label {
+    color: #eee;
+}
+
+.dark-mode-toggle input[type="checkbox"] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.dark-mode-toggle .slider {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 40px;
+    height: 20px;
+    background: #bbb;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-toggle .slider:before {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    content: '';
+    transition: transform 0.3s ease;
+}
+
+.dark-mode-toggle input:checked + .slider {
+    background: #6aa846;
+}
+
+.dark-mode-toggle input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+button:focus,
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-info a:focus,
+.social-links a:focus,
+.dark-mode-toggle input[type="checkbox"] + .slider {
+    outline: 2px solid #66bb6a;
+    outline-offset: 2px;
+}
+
+.contact-info:hover,
+.map-container:hover,
+.social-links:hover,
+footer:hover {
+    opacity: 0.95;
 }

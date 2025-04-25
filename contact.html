@@ -8,6 +8,12 @@
 </head>
 <body> 
     <div class="container">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle">
+            <label class="slider" for="darkModeToggle"></label>
+            <label for="darkModeToggle">Dark Mode</label>
+        </div>
+
         <h1>Contact Us</h1>
 
         <div class="contact-info">
@@ -66,5 +72,22 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css">
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+    
+            const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+            if (isDarkMode) {
+                body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+    
+            darkModeToggle.addEventListener('change', function() {
+                body.classList.toggle('dark-mode');
+                localStorage.setItem('darkMode', this.checked ? 'enabled' : 'disabled');
+            });
+        });
+    </script>
 </body>
 </html>
