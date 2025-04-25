@@ -1,263 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Free Shipping | Shoe Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --main-bg: #f3f4f6;
-      --accent: #2563eb;
-      --text-dark: #111827;
-      --text-light: #ffffff;
-      --highlight: #facc15;
-      --card-bg: #ffffff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Shipping on All Orders</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-    [data-theme="dark"] {
-      --main-bg: #111827;
-      --accent: #1d4ed8;
-      --text-dark: #f9fafb;
-      --text-light: #ffffff;
-      --highlight: #facc15;
-      --card-bg: #1f2937;
-    }
+        body {
+            background-color: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--main-bg);
-      color: var(--text-dark);
-      transition: background 0.3s ease, color 0.3s ease;
-      padding-top: 70px;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    header {
-      background-color: var(--accent);
-      color: var(--text-light);
-      padding: 2rem 1rem;
-      text-align: center;
-      position: relative;
-    }
+        /* Header */
+        header {
+            background-color: #eee;
+            padding: 20px 0;
+        }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
+        /* Hero Section */
+        .hero {
+            background-color: #f0f0f0;
+            padding: 60px 0;
+        }
 
-    header p {
-      font-size: 1.25rem;
-    }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
 
-    .theme-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      background: var(--highlight);
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      color: var(--text-dark);
-    }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
 
-    .search-bar {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: var(--text-light);
-      border-radius: 25px;
-      padding: 10px 20px;
-      width: 80%;
-      max-width: 400px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-    }
+        .highlight {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-weight: bold;
+        }
 
-    [data-theme="dark"] .search-bar {
-      background-color: #2d2d2d;
-    }
+        /* Shipping Info */
+        .shipping-info {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+        }
 
-    .search-bar input {
-      width: 85%;
-      border: none;
-      padding: 10px;
-      border-radius: 20px;
-      font-size: 1rem;
-      outline: none;
-      background: transparent;
-      color: var(--text-dark);
-    }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
 
-    .search-bar button {
-      background-color: var(--accent);
-      color: var(--text-light);
-      border: none;
-      padding: 10px 15px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
+        .info-card {
+            background-color: #fff;
+            border-radius: 0;
+            padding: 30px;
+        }
 
-    .search-bar button:hover {
-      background-color: var(--highlight);
-      color: var(--text-dark);
-    }
+        .info-card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
 
-    .cta-section {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: var(--card-bg);
-    }
+        .info-card h3 {
+            margin-bottom: 15px;
+        }
 
-    .cta-section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+        /* CTA Section */
+        .cta {
+            background-color: #f0f0f0;
+            color: #000;
+            padding: 80px 0;
+        }
 
-    .cta-section p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
 
-    .cta-button {
-      background-color: var(--highlight);
-      color: var(--text-dark);
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
+        .btn {
+            display: inline-block;
+            background-color: #ccc;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: normal;
+            margin-top: 20px;
+        }
 
-    .cta-button:hover {
-      background-color: #eab308;
-    }
+        /* Footer */
+        footer {
+            background-color: #eee;
+            color: #333;
+            padding: 30px 0;
+        }
 
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem 1rem;
-    }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
 
-    .product-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-      width: 250px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .product-card img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-
-    .product-card h3 {
-      margin: 0.5rem 0;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 2rem;
-      background: var(--accent);
-      color: var(--text-light);
-    }
-
-    @media (max-width: 600px) {
-      .search-bar {
-        width: 90%;
-      }
-
-      header h1 {
-        font-size: 1.8rem;
-      }
-
-      .cta-section h2 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body data-theme="light">
-  <header>
-    <h1>Free Shipping on All Shoes!</h1>
-    <p>Limited time offer – No minimum purchase required</p>
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggleBtn">🌙</button>
-  </header>
+<body>
+    <header>
+        <div class="container">
+            <!-- Logo removed -->
+        </div>
+    </header>
 
-  <!-- Fixed Search Bar -->
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search for shoes...">
-    <button onclick="performSearch()">🔍</button>
-  </div>
+    <section class="hero">
+        <div class="container">
+            <h1>Free Shipping on All Orders!</h1>
+            <p>Enjoy <span class="highlight">complimentary shipping</span> on every pair of shoes, no minimum purchase required. Step into style without extra costs!</p>
+            <img src="https://via.placeholder.com/800x400?text=Shoe+Collection" alt="Shoe Collection" style="max-width: 100%; margin-top: 20px;">
+        </div>
+    </section>
 
-  <section class="cta-section">
-    <h2>Step into style, ship for free!</h2>
-    <p>Order your favorite pairs today and enjoy fast, free delivery on all orders.</p>
-    <button class="cta-button">Shop Now</button>
-  </section>
+    <section class="shipping-info">
+        <div class="container">
+            <h2>How Our Free Shipping Works</h2>
+            <p>We believe great shoes should come with great service. Here's what you need to know:</p>
 
-  <section class="products">
-    <div class="product-card">
-      <img src="https://via.placeholder.com/250x180" alt="Sneaker">
-      <h3>Classic Sneaker</h3>
-      <p>₹4,999</p>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/250x180" alt="Running Shoe">
-      <h3>Running Pro</h3>
-      <p>₹6,299</p>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/250x180" alt="Boot">
-      <h3>Urban Boots</h3>
-      <p>₹7,499</p>
-    </div>
-  </section>
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Orders typically ship within 1-2 business days and arrive in 3-5 business days via standard shipping.</p>
+                </div>
 
-  <footer class="footer">
-    &copy; 2025 Shoe Store. All rights reserved.
-  </footer>
+                <div class="info-card">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>Nationwide Coverage</h3>
+                    <p>Free shipping available to all 50 states. No restrictions, no hidden fees.</p>
+                </div>
 
-  <script>
-    const body = document.body;
-    const toggleBtn = document.getElementById("themeToggleBtn");
+                <div class="info-card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Easy Returns</h3>
+                    <p>Not satisfied? We offer free returns within 30 days. Your satisfaction is guaranteed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    function setIcon(theme) {
-      toggleBtn.textContent = theme === "light" ? "🌙" : "☀️";
-    }
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Step Up Your Shoe Game?</h2>
+            <p>Browse our latest collection and enjoy free shipping on every order.</p>
+            <a href="/shop" class="btn">Shop Now</a>
+        </div>
+    </section>
 
-    function toggleTheme() {
-      const currentTheme = body.getAttribute("data-theme");
-      const newTheme = currentTheme === "light" ? "dark" : "light";
-      body.setAttribute("data-theme", newTheme);
-      setIcon(newTheme);
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      setIcon(body.getAttribute("data-theme"));
-    });
-
-    function performSearch() {
-      const query = document.getElementById("searchInput").value.toLowerCase();
-      alert(`Searching for: ${query}`);
-    }
-  </script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
