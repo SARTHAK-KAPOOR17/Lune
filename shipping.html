@@ -133,7 +133,13 @@
       border-radius: 12px;
       padding: 40px 30px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
       border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .info-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
     .info-card i {
@@ -219,10 +225,17 @@
       font-weight: bold;
       margin-top: 30px;
       font-size: 1.1rem;
+      transition: all 0.3s ease;
       box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
       border: none;
       cursor: pointer;
       letter-spacing: 0.5px;
+    }
+
+    .btn:hover {
+      background-color: #d13354;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
     }
 
     /* Footer */
@@ -243,6 +256,11 @@
     .footer-links a {
       color: #ddd;
       text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #e94560;
     }
 
     .copyright {
