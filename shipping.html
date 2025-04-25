@@ -17,6 +17,12 @@
       background-color: #fafafa;
       color: #333;
       line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: #f5f5f5;
     }
 
     .container {
@@ -32,6 +38,11 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       position: relative;
       z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode header {
+      background-color: #0d0d1a;
     }
 
     .header-content {
@@ -53,13 +64,60 @@
       color: #e94560;
     }
 
+    /* Dark/Light Mode Toggle */
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .toggle-btn {
+      width: 60px;
+      height: 30px;
+      background-color: #e94560;
+      border-radius: 30px;
+      padding: 5px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-btn::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: white;
+      top: 5px;
+      left: 5px;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .toggle-btn {
+      background-color: #333;
+    }
+
+    body.dark-mode .toggle-btn::before {
+      left: 35px;
+    }
+
+    .toggle-icon {
+      color: white;
+      font-size: 18px;
+    }
+
     /* Enhanced Floating Search Bar */
     .search-container {
       position: fixed;
       top: 20px;
-      right: 20px;
+      right: 100px;
       z-index: 1000;
       transition: all 0.4s ease;
+    }
+
+    body.dark-mode .search-container {
+      filter: brightness(0.9);
     }
 
     .search-bar {
@@ -72,6 +130,10 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       overflow: hidden;
+    }
+
+    body.dark-mode .search-bar {
+      background: #333;
     }
 
     .search-bar.active {
@@ -88,6 +150,11 @@
       opacity: 0;
       transition: all 0.5s;
       transform: translateX(-20px);
+      color: #333;
+    }
+
+    body.dark-mode .search-bar input {
+      color: #f5f5f5;
     }
 
     .search-bar.active input {
@@ -130,6 +197,10 @@
       transition: all 0.3s;
     }
 
+    body.dark-mode .search-bar .close-btn {
+      color: #aaa;
+    }
+
     .search-bar.active .close-btn {
       opacity: 1;
       right: 70px;
@@ -142,6 +213,11 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .hero {
+      background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
     }
 
     .hero::before {
@@ -166,6 +242,11 @@
       margin-bottom: 20px;
       color: #1a1a2e;
       font-weight: 800;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .hero h1 {
+      color: #f5f5f5;
     }
 
     .hero p {
@@ -173,6 +254,11 @@
       max-width: 700px;
       margin: 0 auto 30px auto;
       color: #4a4a7d;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .hero p {
+      color: #b8b8d1;
     }
 
     .highlight {
@@ -189,6 +275,12 @@
       margin-top: 30px;
       box-shadow: 0 15px 30px rgba(0,0,0,0.1);
       border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .hero-image {
+      filter: brightness(0.9);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
 
     /* Shipping Info */
@@ -196,12 +288,22 @@
       padding: 80px 0;
       background-color: #fff;
       text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .shipping-info {
+      background-color: #1a1a1a;
     }
 
     .shipping-info h2 {
       color: #1a1a2e;
       margin-bottom: 15px;
       font-size: 2.2rem;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .shipping-info h2 {
+      color: #f5f5f5;
     }
 
     .shipping-info > p {
@@ -209,6 +311,11 @@
       max-width: 800px;
       margin: 0 auto 40px auto;
       font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .shipping-info > p {
+      color: #aaa;
     }
 
     .info-grid {
@@ -228,9 +335,19 @@
       border: 1px solid rgba(0,0,0,0.03);
     }
 
+    body.dark-mode .info-card {
+      background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
     .info-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    body.dark-mode .info-card:hover {
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
 
     .info-card i {
@@ -245,15 +362,29 @@
       display: inline-block;
     }
 
+    body.dark-mode .info-card i {
+      background: rgba(233, 69, 96, 0.2);
+    }
+
     .info-card h3 {
       margin-bottom: 15px;
       color: #1a1a2e;
       font-size: 1.4rem;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .info-card h3 {
+      color: #f5f5f5;
     }
 
     .info-card p {
       color: #6c757d;
       font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .info-card p {
+      color: #bbb;
     }
 
     /* CTA Section */
@@ -264,6 +395,11 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .cta {
+      background: linear-gradient(135deg, #0d0d1a, #0a0a14);
     }
 
     .cta::before {
@@ -335,6 +471,11 @@
       color: #aaa;
       padding: 40px 0;
       text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode footer {
+      background-color: #0a0a0a;
     }
 
     .footer-links {
@@ -362,7 +503,7 @@
     @media (max-width: 768px) {
       .search-container {
         top: 15px;
-        right: 15px;
+        right: 90px;
       }
       
       .search-bar.active {
@@ -386,6 +527,16 @@
         gap: 15px;
       }
     }
+
+    @media (max-width: 480px) {
+      .toggle-container {
+        gap: 10px;
+      }
+      
+      .search-container {
+        right: 80px;
+      }
+    }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
@@ -394,6 +545,11 @@
     <div class="container">
       <div class="header-content">
         <div class="logo">STEP<span>UP</span></div>
+        <div class="toggle-container">
+          <i class="fas fa-sun toggle-icon"></i>
+          <div class="toggle-btn"></div>
+          <i class="fas fa-moon toggle-icon"></i>
+        </div>
       </div>
     </div>
   </header>
@@ -501,9 +657,32 @@
 
     // Close when clicking outside
     document.addEventListener('click', (e) => {
-      if(!searchBar.contains(e.target) {
+      if(!searchBar.contains(e.target) && !e.target.classList.contains('search-btn')) {
         searchBar.classList.remove('active');
         searchInput.value = '';
+      }
+    });
+
+    // Dark/Light Mode Toggle
+    const toggleBtn = document.querySelector('.toggle-btn');
+    const body = document.body;
+
+    // Check for saved user preference
+    if(localStorage.getItem('darkMode') === 'enabled') {
+      body.classList.add('dark-mode');
+      toggleBtn.style.backgroundColor = '#333';
+      toggleBtn.querySelector('::before').style.left = '35px';
+    }
+
+    // Toggle dark/light mode
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      
+      // Save user preference
+      if(body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
       }
     });
   </script>
