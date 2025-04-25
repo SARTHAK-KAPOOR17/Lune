@@ -1,184 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Shipping on All Orders</title>
-    <style>
-        /* Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Shipping on All Orders</title>
+  <style>
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-        body {
-            background-color: #fff;
-            color: #000;
-            line-height: 1.6;
-        }
+    body {
+      background-color: #fefefe;
+      color: #222;
+      line-height: 1.6;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        /* Header */
-        header {
-            background-color: #eee;
-            padding: 20px 0;
-        }
+    /* Header */
+    header {
+      background-color: #0d1b2a;
+      padding: 20px 0;
+    }
 
-        /* Hero Section */
-        .hero {
-            background-color: #f0f0f0;
-            padding: 60px 0;
-        }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+      padding: 60px 0;
+    }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #004d40;
+    }
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin-bottom: 30px;
-        }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-bottom: 30px;
+      color: #00695c;
+    }
 
-        .highlight {
-            background-color: transparent;
-            padding: 0;
-            border-radius: 0;
-            font-weight: bold;
-        }
+    .highlight {
+      background-color: #ffeb3b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+      color: #000;
+    }
 
-        /* Shipping Info */
-        .shipping-info {
-            padding: 60px 0;
-            background-color: #f9f9f9;
-        }
+    /* Shipping Info */
+    .shipping-info {
+      padding: 60px 0;
+      background-color: #ffffff;
+    }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
+    .shipping-info h2 {
+      color: #263238;
+    }
 
-        .info-card {
-            background-color: #fff;
-            border-radius: 0;
-            padding: 30px;
-        }
+    .shipping-info p {
+      color: #455a64;
+    }
 
-        .info-card i {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
 
-        .info-card h3 {
-            margin-bottom: 15px;
-        }
+    .info-card {
+      background-color: #f1f8e9;
+      border-radius: 8px;
+      padding: 30px;
+    }
 
-        /* CTA Section */
-        .cta {
-            background-color: #f0f0f0;
-            color: #000;
-            padding: 80px 0;
-        }
+    .info-card i {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #558b2f;
+    }
 
-        .cta h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
+    .info-card h3 {
+      margin-bottom: 15px;
+      color: #33691e;
+    }
 
-        .btn {
-            display: inline-block;
-            background-color: #ccc;
-            color: #000;
-            padding: 12px 30px;
-            border-radius: 0;
-            text-decoration: none;
-            font-weight: normal;
-            margin-top: 20px;
-        }
+    .info-card p {
+      color: #4e342e;
+    }
 
-        /* Footer */
-        footer {
-            background-color: #eee;
-            color: #333;
-            padding: 30px 0;
-        }
+    /* CTA Section */
+    .cta {
+      background-color: #00796b;
+      color: #fff;
+      padding: 80px 0;
+    }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
 
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    .btn {
+      display: inline-block;
+      background-color: #ffca28;
+      color: #000;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      background-color: #ffc107;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0d1b2a;
+      color: #ccc;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
-    <header>
-        <div class="container">
-            <!-- Logo removed -->
+  <header>
+    <div class="container">
+      <!-- Logo Removed -->
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Free Shipping on All Orders!</h1>
+      <p>Enjoy <span class="highlight">complimentary shipping</span> on every pair of shoes, no minimum purchase required. Step into style without extra costs!</p>
+      <img src="https://via.placeholder.com/800x400?text=Shoe+Collection" alt="Shoe Collection" style="max-width: 100%; border-radius: 8px; margin-top: 20px;">
+    </div>
+  </section>
+
+  <section class="shipping-info">
+    <div class="container">
+      <h2>How Our Free Shipping Works</h2>
+      <p>We believe great shoes should come with great service. Here's what you need to know:</p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <i class="fas fa-shipping-fast"></i>
+          <h3>Fast Delivery</h3>
+          <p>Orders typically ship within 1-2 business days and arrive in 3-5 business days via standard shipping.</p>
         </div>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Free Shipping on All Orders!</h1>
-            <p>Enjoy <span class="highlight">complimentary shipping</span> on every pair of shoes, no minimum purchase required. Step into style without extra costs!</p>
-            <img src="https://via.placeholder.com/800x400?text=Shoe+Collection" alt="Shoe Collection" style="max-width: 100%; margin-top: 20px;">
+        <div class="info-card">
+          <i class="fas fa-globe-americas"></i>
+          <h3>Nationwide Coverage</h3>
+          <p>Free shipping available to all 50 states. No restrictions, no hidden fees.</p>
         </div>
-    </section>
 
-    <section class="shipping-info">
-        <div class="container">
-            <h2>How Our Free Shipping Works</h2>
-            <p>We believe great shoes should come with great service. Here's what you need to know:</p>
-
-            <div class="info-grid">
-                <div class="info-card">
-                    <i class="fas fa-shipping-fast"></i>
-                    <h3>Fast Delivery</h3>
-                    <p>Orders typically ship within 1-2 business days and arrive in 3-5 business days via standard shipping.</p>
-                </div>
-
-                <div class="info-card">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3>Nationwide Coverage</h3>
-                    <p>Free shipping available to all 50 states. No restrictions, no hidden fees.</p>
-                </div>
-
-                <div class="info-card">
-                    <i class="fas fa-exchange-alt"></i>
-                    <h3>Easy Returns</h3>
-                    <p>Not satisfied? We offer free returns within 30 days. Your satisfaction is guaranteed.</p>
-                </div>
-            </div>
+        <div class="info-card">
+          <i class="fas fa-exchange-alt"></i>
+          <h3>Easy Returns</h3>
+          <p>Not satisfied? We offer free returns within 30 days. Your satisfaction is guaranteed.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section class="cta">
-        <div class="container">
-            <h2>Ready to Step Up Your Shoe Game?</h2>
-            <p>Browse our latest collection and enjoy free shipping on every order.</p>
-            <a href="/shop" class="btn">Shop Now</a>
-        </div>
-    </section>
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Step Up Your Shoe Game?</h2>
+      <p>Browse our latest collection and enjoy free shipping on every order.</p>
+      <a href="/shop" class="btn">Shop Now</a>
+    </div>
+  </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023. All rights reserved.</p>
-        </div>
-    </footer>
+  <footer>
+    <div class="container">
+      <p>&copy; 2023. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
