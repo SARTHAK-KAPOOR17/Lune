@@ -29,8 +29,15 @@
     header {
       background-color: #1a1a2e;
       padding: 20px 0;
-      text-align: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
     .logo {
@@ -42,6 +49,35 @@
 
     .logo span {
       color: #e94560;
+    }
+
+    .search-bar {
+      display: flex;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px 0 0 30px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .search-bar button {
+      background-color: #e94560;
+      color: white;
+      border: none;
+      padding: 0 20px;
+      border-radius: 0 30px 30px 0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .search-bar button:hover {
+      background-color: #d13354;
     }
 
     /* Hero Section */
@@ -269,6 +305,15 @@
     }
 
     @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .search-bar {
+        max-width: 100%;
+      }
+
       .hero h1 {
         font-size: 2.2rem;
       }
@@ -292,7 +337,13 @@
 <body>
   <header>
     <div class="container">
-      <div class="logo">STEP<span>UP</span></div>
+      <div class="header-content">
+        <div class="logo">STEP<span>UP</span></div>
+        <div class="search-bar">
+          <input type="text" placeholder="Search shoes, brands, styles...">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -350,5 +401,24 @@
       <p class="copyright">&copy; 2025 StepUp Shoes. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    // Simple search functionality
+    document.querySelector('.search-bar button').addEventListener('click', function() {
+      const searchTerm = document.querySelector('.search-bar input').value;
+      if(searchTerm.trim() !== '') {
+        alert(`Searching for: ${searchTerm}\nThis would normally redirect to search results.`);
+        // In a real implementation, you would redirect to search results page:
+        // window.location.href = `/search?q=${encodeURIComponent(searchTerm)}`;
+      }
+    });
+    
+    // Allow search on Enter key press
+    document.querySelector('.search-bar input').addEventListener('keypress', function(e) {
+      if(e.key === 'Enter') {
+        document.querySelector('.search-bar button').click();
+      }
+    });
+  </script>
 </body>
 </html>
