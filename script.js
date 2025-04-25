@@ -167,10 +167,8 @@ document.getElementById("BuyNow").addEventListener("click", function(){
     quantity: 1
   };
 
-  // Get cart from localStorage
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Check if item already exists (same id, color, size)
   const existingIndex = cart.findIndex(item =>
     item.id === cartItem.id &&
     item.color === cartItem.color &&
@@ -182,3 +180,19 @@ document.getElementById("BuyNow").addEventListener("click", function(){
     cart.push(cartItem);
   }
 });
+    document.addEventListener('DOMContentLoaded', function() {
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        
+        const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+        if (isDarkMode) {
+            body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+
+        darkModeToggle.addEventListener('change', function() {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', this.checked ? 'enabled' : 'disabled');
+        });
+    });
