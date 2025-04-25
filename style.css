@@ -7,6 +7,7 @@
 
 body {
   align-self: auto;
+  background-color: #5ea737;
 }
 
 nav {
@@ -118,6 +119,9 @@ button:hover {
   height: 100vh;
   overflow: hidden;
   position: relative;
+  background-image: image("jordan.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .sliderWrapper {
@@ -516,4 +520,121 @@ footer::before {
 footer {
   position: relative;
   z-index: 1;
+}
+body.dark {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark nav,
+body.dark .navBottom {
+  background-color: #1e1e1e;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .search {
+  background-color: #333;
+}
+
+body.dark .search-bar {
+  border-color: #555;
+  background-color: #1e1e1e;
+  color: #eee;
+}
+
+body.dark .search-bar:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 8px rgba(108, 99, 255, 0.8);
+}
+
+body.dark .searchInput::placeholder {
+  color: #ccc;
+}
+
+body.dark .sliderItem {
+  background-color: #1c1c1c;
+}
+
+body.dark .sliderBg {
+  background-color: #222 !important;
+}
+
+body.dark .sliderTitle {
+  color: #fff;
+}
+
+body.dark .sliderPrice {
+  color: #b0e853;
+}
+
+body.dark .features,
+body.dark .product,
+body.dark .gallery,
+body.dark .newSeason,
+body.dark .newsletter {
+  background-color: #1a1a1a;
+}
+
+body.dark .featureTitle,
+body.dark .productTitle,
+body.dark .productPrice,
+body.dark .galleryTitle,
+body.dark .nsTitle,
+body.dark .newsletterTitle,
+body.dark .newsletterText {
+  color: #f0f0f0;
+}
+
+body.dark .color {
+  border: 1px solid #555;
+}
+
+body.dark .size {
+  border-color: #aaa;
+  color: #fff;
+}
+
+body.dark button,
+body.dark .newsletterBtn {
+  background-color: #3aaf57;
+  color: white;
+}
+
+body.dark button:hover,
+body.dark .newsletterBtn:hover {
+  background-color: #57e37c;
+}
+
+body.dark .fButton {
+  background-color: #222;
+  color: #90ee90;
+}
+
+body.dark footer {
+  background-color: #111;
+  color: #ccc;
+}
+
+body.dark .fInput {
+  background-color: #222;
+  color: white;
+}
+
+body.dark .fIcon {
+  filter: brightness(0.8) invert(0.8);
+}
+
+body.dark .copyright {
+  color: #888;
+}
+
+body.dark .sliderPrice {
+  color: #95e675 !important;
+}
+
+button {
+  position:-ms-pagedown;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
 }
