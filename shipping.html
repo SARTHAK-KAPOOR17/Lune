@@ -5,18 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Free Shipping on All Orders</title>
   <style>
-    /* Base Styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      background-color: #fefefe;
-      color: #222;
+      background-color: #fafafa;
+      color: #333;
       line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: #f5f5f5;
     }
 
     .container {
@@ -25,57 +30,227 @@
       padding: 0 20px;
     }
 
-    /* Header */
     header {
-      background-color: #0d1b2a;
+      background-color: #1a1a2e;
       padding: 20px 0;
-      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 100;
+      transition: all 0.3s ease;
     }
 
-    /* Hero Section */
+    body.dark-mode header {
+      background-color: #0d0d1a;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #e94560;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    /* Sticker-style Toggle Switch */
+    .toggle-container {
+      position: relative;
+      width: 80px;
+      height: 40px;
+      border-radius: 50px;
+      background: #f0f0f0;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-sticker {
+      position: absolute;
+      top: -10px;
+      left: -5px;
+      width: 50px;
+      height: 50px;
+      background: #ffde59;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      color: #333;
+      transform: rotate(0deg);
+    }
+
+    body.dark-mode .toggle-container {
+      background: #444;
+    }
+
+    body.dark-mode .toggle-sticker {
+      left: calc(100% - 45px);
+      background: #3a3a3a;
+      color: #ffde59;
+      transform: rotate(180deg);
+    }
+
+    .search-container {
+      position: relative;
+      z-index: 1000;
+    }
+
+    body.dark-mode .search-container {
+      filter: brightness(0.9);
+    }
+
+    .search-bar {
+      display: flex;
+      width: 200px;
+      height: 40px;
+      background: white;
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    body.dark-mode .search-bar {
+      background: #333;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 0 15px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background: transparent;
+      color: #333;
+    }
+
+    body.dark-mode .search-bar input {
+      color: #f5f5f5;
+    }
+
+    .search-bar button {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: #e94560;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .search-bar button:hover {
+      background: #d13354;
+    }
+
     .hero {
-      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
-      padding: 60px 0;
+      background: linear-gradient(135deg, #f8f3ff, #e6e6ff);
+      padding: 80px 0;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .hero {
+      background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
     }
 
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin-bottom: 20px;
-      color: #004d40;
+      color: #1a1a2e;
+      font-weight: 800;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .hero h1 {
+      color: #f5f5f5;
     }
 
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       max-width: 700px;
       margin: 0 auto 30px auto;
-      color: #00695c;
+      color: #4a4a7d;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .hero p {
+      color: #b8b8d1;
     }
 
     .highlight {
-      background-color: #ffeb3b;
-      padding: 2px 6px;
+      background-color: #e94560;
+      color: white;
+      padding: 3px 8px;
       border-radius: 4px;
       font-weight: bold;
-      color: #000;
     }
 
-    /* Shipping Info */
+    .hero-image {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-top: 30px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .hero-image {
+      filter: brightness(0.9);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
     .shipping-info {
-      padding: 60px 0;
-      background-color: #ffffff;
+      padding: 80px 0;
+      background-color: #fff;
       text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .shipping-info {
+      background-color: #1a1a1a;
     }
 
     .shipping-info h2 {
-      color: #263238;
-      margin-bottom: 10px;
+      color: #1a1a2e;
+      margin-bottom: 15px;
+      font-size: 2.2rem;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .shipping-info h2 {
+      color: #f5f5f5;
     }
 
     .shipping-info > p {
-      color: #455a64;
+      color: #6c757d;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 0 auto 40px auto;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .shipping-info > p {
+      color: #aaa;
     }
 
     .info-grid {
@@ -83,77 +258,205 @@
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
       margin-top: 40px;
-      text-align: left;
+      text-align: center;
     }
 
     .info-card {
-      background-color: #f1f8e9;
-      border-radius: 8px;
-      padding: 30px;
+      background: linear-gradient(145deg, #ffffff, #f8f9fa);
+      border-radius: 12px;
+      padding: 40px 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    body.dark-mode .info-card {
+      background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .info-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    body.dark-mode .info-card:hover {
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
 
     .info-card i {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #558b2f;
+      font-size: 2.8rem;
+      margin-bottom: 25px;
+      color: #e94560;
+      background: rgba(233, 69, 96, 0.1);
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    body.dark-mode .info-card i {
+      background: rgba(233, 69, 96, 0.2);
     }
 
     .info-card h3 {
       margin-bottom: 15px;
-      color: #33691e;
+      color: #1a1a2e;
+      font-size: 1.4rem;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .info-card h3 {
+      color: #f5f5f5;
     }
 
     .info-card p {
-      color: #4e342e;
+      color: #6c757d;
+      font-size: 1rem;
+      transition: all 0.3s ease;
     }
 
-    /* CTA Section */
+    body.dark-mode .info-card p {
+      color: #bbb;
+    }
+
     .cta {
-      background-color: #00796b;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
       color: #fff;
-      padding: 80px 0;
+      padding: 100px 0;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .cta {
+      background: linear-gradient(135deg, #0d0d1a, #0a0a14);
     }
 
     .cta h2 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .cta p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
     }
 
     .btn {
       display: inline-block;
-      background-color: #ffca28;
-      color: #000;
-      padding: 12px 30px;
+      background-color: #e94560;
+      color: white;
+      padding: 15px 40px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 20px;
+      margin-top: 30px;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.5px;
     }
 
     .btn:hover {
-      background-color: #ffc107;
+      background-color: #d13354;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
     }
 
-    /* Footer */
     footer {
-      background-color: #0d1b2a;
-      color: #ccc;
-      padding: 30px 0;
+      background-color: #0f0f1a;
+      color: #aaa;
+      padding: 40px 0;
       text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode footer {
+      background-color: #0a0a0a;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #e94560;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      opacity: 0.7;
     }
 
     @media (max-width: 768px) {
+      .header-right {
+        gap: 20px;
+      }
+      
       .hero h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
 
       .hero p {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
 
       .info-grid {
-        text-align: center;
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .header-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .search-bar {
+        width: 160px;
+      }
+      
+      .toggle-container {
+        width: 70px;
+        height: 35px;
+      }
+      
+      .toggle-sticker {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+      
+      body.dark-mode .toggle-sticker {
+        left: calc(100% - 40px);
       }
     }
   </style>
@@ -162,7 +465,20 @@
 <body>
   <header>
     <div class="container">
-      <!-- Logo Removed -->
+      <div class="header-content">
+        <div class="logo">STEP<span>UP</span></div>
+        <div class="header-right">
+          <div class="toggle-container">
+            <div class="toggle-sticker">🌞</div>
+          </div>
+          <div class="search-container">
+            <div class="search-bar">
+              <input type="text" placeholder="Search shoes...">
+              <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -170,7 +486,7 @@
     <div class="container">
       <h1>Free Shipping on All Orders!</h1>
       <p>Enjoy <span class="highlight">complimentary shipping</span> on every pair of shoes, no minimum purchase required. Step into style without extra costs!</p>
-      <img src="https://via.placeholder.com/800x400?text=Shoe+Collection" alt="Shoe Collection" style="max-width: 100%; border-radius: 8px; margin-top: 20px;">
+      <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Premium Shoe Collection" class="hero-image">
     </div>
   </section>
 
@@ -181,21 +497,19 @@
 
       <div class="info-grid">
         <div class="info-card">
-          <i class="fas fa-shipping-fast"></i>
+          <i class="fas fa-box-open"></i>
           <h3>Fast Delivery</h3>
-          <p>Orders typically ship within 1-2 business days and arrive in 3-5 business days via standard shipping.</p>
+          <p>Your order will be shipped and arrive at your door in no time!</p>
         </div>
-
         <div class="info-card">
-          <i class="fas fa-globe-americas"></i>
-          <h3>Nationwide Coverage</h3>
-          <p>Free shipping available to all 50 states. No restrictions, no hidden fees.</p>
+          <i class="fas fa-truck"></i>
+          <h3>Track Your Shipment</h3>
+          <p>Track your order online every step of the way for peace of mind.</p>
         </div>
-
         <div class="info-card">
-          <i class="fas fa-exchange-alt"></i>
+          <i class="fas fa-thumbs-up"></i>
           <h3>Easy Returns</h3>
-          <p>Not satisfied? We offer free returns within 30 days. Your satisfaction is guaranteed.</p>
+          <p>Not happy with your order? No worries—return your items with ease.</p>
         </div>
       </div>
     </div>
@@ -203,16 +517,47 @@
 
   <section class="cta">
     <div class="container">
-      <h2>Ready to Step Up Your Shoe Game?</h2>
-      <p>Browse our latest collection and enjoy free shipping on every order.</p>
-      <a href="/shop" class="btn">Shop Now</a>
+      <h2>Start Shopping Today!</h2>
+      <p>Discover your next favorite pair of shoes. Shop now and enjoy free shipping on all orders.</p>
+      <a href="#" class="btn">Shop Now</a>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <p>&copy; 2023. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="copyright">
+        &copy; 2025 STEPUP Shoe Store. All Rights Reserved.
+      </div>
     </div>
   </footer>
+
+  <script>
+    const toggleContainer = document.querySelector('.toggle-container');
+    const toggleSticker = document.querySelector('.toggle-sticker');
+    const body = document.body;
+
+    if(localStorage.getItem('darkMode') === 'enabled') {
+      body.classList.add('dark-mode');
+      toggleSticker.textContent = '🌜';
+    }
+
+    toggleContainer.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      
+      if(body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+        toggleSticker.textContent = '🌜';
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+        toggleSticker.textContent = '🌞';
+      }
+    });
+  </script>
 </body>
 </html>
