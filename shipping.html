@@ -29,12 +29,14 @@
     header {
       background-color: #0d1b2a;
       padding: 20px 0;
+      text-align: center;
     }
 
     /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
       padding: 60px 0;
+      text-align: center;
     }
 
     .hero h1 {
@@ -46,7 +48,7 @@
     .hero p {
       font-size: 1.2rem;
       max-width: 700px;
-      margin-bottom: 30px;
+      margin: 0 auto 30px auto;
       color: #00695c;
     }
 
@@ -62,14 +64,18 @@
     .shipping-info {
       padding: 60px 0;
       background-color: #ffffff;
+      text-align: center;
     }
 
     .shipping-info h2 {
       color: #263238;
+      margin-bottom: 10px;
     }
 
-    .shipping-info p {
+    .shipping-info > p {
       color: #455a64;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .info-grid {
@@ -77,6 +83,7 @@
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
       margin-top: 40px;
+      text-align: left;
     }
 
     .info-card {
@@ -105,6 +112,7 @@
       background-color: #00796b;
       color: #fff;
       padding: 80px 0;
+      text-align: center;
     }
 
     .cta h2 {
@@ -142,6 +150,10 @@
 
       .hero p {
         font-size: 1rem;
+      }
+
+      .info-grid {
+        text-align: center;
       }
     }
   </style>
