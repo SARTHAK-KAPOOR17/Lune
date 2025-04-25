@@ -30,6 +30,8 @@
       background-color: #1a1a2e;
       padding: 20px 0;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 100;
     }
 
     .header-content {
@@ -51,33 +53,86 @@
       color: #e94560;
     }
 
+    /* Enhanced Floating Search Bar */
+    .search-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      transition: all 0.4s ease;
+    }
+
     .search-bar {
       display: flex;
       max-width: 400px;
-      width: 100%;
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 60px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      overflow: hidden;
+    }
+
+    .search-bar.active {
+      width: 400px;
     }
 
     .search-bar input {
       flex: 1;
-      padding: 12px 20px;
+      padding: 20px;
       border: none;
-      border-radius: 30px 0 0 30px;
-      font-size: 16px;
       outline: none;
+      font-size: 18px;
+      background: transparent;
+      opacity: 0;
+      transition: all 0.5s;
+      transform: translateX(-20px);
+    }
+
+    .search-bar.active input {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .search-bar button {
-      background-color: #e94560;
-      color: white;
+      width: 60px;
+      height: 60px;
       border: none;
-      padding: 0 20px;
-      border-radius: 0 30px 30px 0;
+      border-radius: 50%;
+      background: #e94560;
+      color: white;
+      font-size: 22px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: all 0.5s;
+      position: absolute;
+      right: 0;
+    }
+
+    .search-bar.active button {
+      background: #d13354;
+      transform: rotate(360deg);
     }
 
     .search-bar button:hover {
-      background-color: #d13354;
+      background: #c12a48;
+    }
+
+    .search-bar .close-btn {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      color: #999;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+
+    .search-bar.active .close-btn {
+      opacity: 1;
+      right: 70px;
     }
 
     /* Hero Section */
@@ -305,13 +360,13 @@
     }
 
     @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        align-items: center;
+      .search-container {
+        top: 15px;
+        right: 15px;
       }
       
-      .search-bar {
-        max-width: 100%;
+      .search-bar.active {
+        width: calc(100vw - 30px);
       }
 
       .hero h1 {
@@ -339,13 +394,18 @@
     <div class="container">
       <div class="header-content">
         <div class="logo">STEP<span>UP</span></div>
-        <div class="search-bar">
-          <input type="text" placeholder="Search shoes, brands, styles...">
-          <button type="submit"><i class="fas fa-search"></i></button>
-        </div>
       </div>
     </div>
   </header>
+
+  <!-- Floating Search Bar -->
+  <div class="search-container">
+    <div class="search-bar">
+      <input type="text" placeholder="Search shoes, brands, styles...">
+      <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+      <span class="close-btn"><i class="fas fa-times"></i></span>
+    </div>
+  </div>
 
   <section class="hero">
     <div class="container">
@@ -403,20 +463,47 @@
   </footer>
 
   <script>
-    // Simple search functionality
-    document.querySelector('.search-bar button').addEventListener('click', function() {
-      const searchTerm = document.querySelector('.search-bar input').value;
-      if(searchTerm.trim() !== '') {
-        alert(`Searching for: ${searchTerm}\nThis would normally redirect to search results.`);
-        // In a real implementation, you would redirect to search results page:
-        // window.location.href = `/search?q=${encodeURIComponent(searchTerm)}`;
+    // Enhanced Search Bar Functionality
+    const searchBar = document.querySelector('.search-bar');
+    const searchBtn = document.querySelector('.search-btn');
+    const closeBtn = document.querySelector('.close-btn');
+    const searchInput = document.querySelector('.search-bar input');
+
+    // Toggle search bar
+    searchBtn.addEventListener('click', () => {
+      searchBar.classList.add('active');
+      searchInput.focus();
+    });
+
+    // Close search bar
+    closeBtn.addEventListener('click', () => {
+      searchBar.classList.remove('active');
+      searchInput.value = '';
+    });
+
+    // Search functionality
+    searchBtn.addEventListener('click', function(e) {
+      if(searchBar.classList.contains('active') && searchInput.value.trim() !== '') {
+        e.preventDefault();
+        alert(`Searching for: ${searchInput.value}\nThis would normally redirect to search results.`);
+        // In a real implementation:
+        // window.location.href = `/search?q=${encodeURIComponent(searchInput.value)}`;
       }
     });
-    
-    // Allow search on Enter key press
-    document.querySelector('.search-bar input').addEventListener('keypress', function(e) {
-      if(e.key === 'Enter') {
-        document.querySelector('.search-bar button').click();
+
+    // Search on Enter key
+    searchInput.addEventListener('keypress', function(e) {
+      if(e.key === 'Enter' && searchInput.value.trim() !== '') {
+        alert(`Searching for: ${searchInput.value}\nThis would normally redirect to search results.`);
+        // window.location.href = `/search?q=${encodeURIComponent(searchInput.value)}`;
+      }
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if(!searchBar.contains(e.target) {
+        searchBar.classList.remove('active');
+        searchInput.value = '';
       }
     });
   </script>
