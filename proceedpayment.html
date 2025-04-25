@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Payment - Confirm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Styles for UPI Page */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .payment-box {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .amount {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: green;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="payment-box">
+            <div class="title">UPI Payment - Confirm</div>
+            <div class="amount">
+                Total Amount: ₹<span id="totalAmount">0.00</span>
+            </div>
+            <button class="btn" onclick="confirmPayment()">Confirm Payment</button>
+        </div>
+    </div>
+
+    <script>
+        // Fetch the cart total amount from localStorage
+        const totalAmount = localStorage.getItem('upiAmount');
+        document.getElementById('totalAmount').textContent = totalAmount ? totalAmount : '0.00';
+
+        // Confirm Payment
+        function confirmPayment() {
+            // alert('Payment Successful! Thank you for your purchase.');
+            // Clear localStorage after successful payment
+            localStorage.removeItem('upiAmount');
+            // Optionally, redirect to a thank you page or homepage
+            window.location.href = 'Upi.html'; // Redirect to homepage after payment
+        }
+    </script>
+</body>
+</html>
