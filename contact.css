@@ -11,6 +11,29 @@ body {
     min-height: 100vh;
     transition: background 0.3s ease; /* Smooth background transition */
 }
+@media (max-width: 480px) {
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        font-size: 14px;
+    }
+
+    .social-links {
+        font-size: 1rem;
+    }
+
+    .theme-toggle {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+}
+html {
+    scroll-behavior: smooth;
+}
+a {
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
 
 body.dark-mode {
     background: linear-gradient(to right, #333, #555);
@@ -344,7 +367,7 @@ footer {
     border-color: #66bb6a;
 }
 
-/* Toggle Switch for Dark Mode */
+
 .dark-mode-toggle {
     position: fixed;
     top: 20px;

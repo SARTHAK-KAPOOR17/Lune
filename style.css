@@ -46,11 +46,11 @@
   color: rgb(33, 235, 235);
 }
 
-body {
-  background-color: #c12020;
-  color: #333;
-}
 
+
+body{
+  align-self: auto;
+}
 nav {
   width: 100%;
   background-color: #269518;
