@@ -1,98 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="tailwindcss.css">
-    <link rel="stylesheet" href="payment.css ">
-    <title>Payment Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enhanced Payment Page</title>
+  <link rel="stylesheet" href="payment.css">
 </head>
 <body>
-    
-    <!-- start: Payment -->
-    <section class="payment-section">
-        <div class="container">
-            <div class="payment-wrapper">
-                <div class="payment-left">
-                    <div class="payment-header">
-                        <div class="payment-header-icon"><i class="ri-flashlight-fill"></i></div>
-                        <div class="payment-header-title">Order Summary</div>
-                        <p class="payment-header-description">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                    </div>
-                    <div class="payment-content">
-                        <div class="payment-body">
-                            <div class="payment-plan">
-                                <div class="payment-plan-type">Pro</div>
-                                <div class="payment-plan-info">
-                                    <div class="payment-plan-info-name">Professional Plan</div>
-                                    <div class="payment-plan-info-price">$49 per month</div>
-                                </div>
-                                <a href="#" class="payment-plan-change">Change</a>
-                            </div>
-                            <div class="payment-summary">
-                                <div class="payment-summary-item">
-                                    <div class="payment-summary-name">Additional fee</div>
-                                    <div class="payment-summary-price">$10</div>
-                                </div>
-                                <div class="payment-summary-item">
-                                    <div class="payment-summary-name">Discount 20%</div>
-                                    <div class="payment-summary-price">-$10</div>
-                                </div>
-                                <div class="payment-summary-divider"></div>
-                                <div class="payment-summary-item payment-summary-total">
-                                    <div class="payment-summary-name">Total</div>
-                                    <div class="payment-summary-price">-$10</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="payment-right">
-                    <form action="" class="payment-form">
-                        <h1 class="payment-title">Payment Details</h1>
-                        <div class="payment-method">
-                            <input type="radio" name="payment-method" id="method-1" checked>
-                            <label for="method-1" class="payment-method-item">
-                                <img src="images/visa.png" alt="">
-                            </label>
-                            <input type="radio" name="payment-method" id="method-2">
-                            <label for="method-2" class="payment-method-item">
-                                <img src="images/master.png" alt="">
-                            </label>
-                            <input type="radio" name="payment-method" id="method-3">
-                            <label for="method-3" class="payment-method-item">
-                                <img src="images/paypal.png" alt="">
-                            </label>
-                            <input type="radio" name="payment-method" id="method-4">
-                            <label for="method-4" class="payment-method-item">
-                                <img src="images/upi.png" alt="">
-                            </label> 
-                        </div>
-                        <div class="payment-form-group">
-                            <input type="email" placeholder=" " class="payment-form-control" id="email">
-                            <label for="email" class="payment-form-label payment-form-label-required">Email Address</label>
-                        </div>
-                        <div class="payment-form-group">
-                            <input type="text" placeholder=" " class="payment-form-control" id="card-number">
-                            <label for="card-number" class="payment-form-label payment-form-label-required">Card Number</label>
-                        </div>
-                        <div class="payment-form-group-flex">
-                            <div class="payment-form-group">
-                                <input type="date" placeholder=" " class="payment-form-control" id="expiry-date">
-                                <label for="expiry-date" class="payment-form-label payment-form-label-required">Expiry Date</label>
-                            </div>
-                            <div class="payment-form-group">
-                                <input type="text" placeholder=" " class="payment-form-control" id="cvv">
-                                <label for="cvv" class="payment-form-label payment-form-label-required">CVV</label>
-                            </div>
-                        </div>
-                       <a href="order_animate.html"><button type="submit" id="submit-button" class="payment-form-submit-button"><i class="ri-wallet-line"></i> Pay</button></a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- <script src="payment.js"></script> -->
+
+<div id="overlay"></div>
+<div class="payment-container">
+  <h2>Payment Details</h2>
+  <div class="method-toggle">
+    <button id="card-btn" class="active">Card</button>
+    <button id="upi-btn">UPI</button>
+  </div>
+
+  <div class="card-preview active" id="card-preview">
+    <div id="preview-card-number">XXXX XXXX XXXX XXXX</div>
+    <small>
+      <span id="preview-expiry">MM/YY</span>
+      <span id="preview-name">Name</span>
+    </small>
+  </div>
+
+  <div class="upi-preview" id="upi-preview">
+    <img src="https://via.placeholder.com/150x150?text=QR+Code" alt="UPI QR">
+    <p>Scan with your UPI app to pay</p>
+    <div class="input-group">
+      <label for="upi-id">Or enter UPI ID</label>
+      <input type="text" id="upi-id" placeholder="yourid@bank">
+    </div>
+  </div>
+
+  <form id="payment-form">
+    <div id="card-fields">
+      <div class="input-group">
+        <label for="card-number">Card Number</label>
+        <input type="text" id="card-number" maxlength="19" placeholder="1234 5678 9012 3456">
+      </div>
+      <div class="input-row">
+        <div class="input-group"><label for="expiry-date">Expiry</label><input type="text" id="expiry-date" maxlength="5" placeholder="MM/YY"></div>
+        <div class="input-group"><label for="cvv">CVV</label><input type="text" id="cvv" maxlength="3" placeholder="123"></div>
+      </div>
+      <div class="input-group"><label for="name">Name on Card</label><input type="text" id="name" placeholder="John Doe"></div>
+    </div>
+    <div id="upi-fields" style="display:none;">
+      <div class="input-group"><label for="upi-id-field">UPI ID <sup>*</sup></label><input type="text" id="upi-id-field" placeholder="yourid@bank"></div>
+    </div>
+    <button type="submit" id="pay-button">Pay Now</button>
+  </form>
+</div>
+
+<div id="success-popup" class="success-popup" style="display:none;">
+  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 6L9 17l-5-5"></path>
+  </svg>
+  <h2>Payment Successful!</h2>
+</div>
+
+<script src="payment.js"></script>
+
 </body>
 </html>
