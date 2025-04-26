@@ -1,162 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Shoe Store - Home</title>
-  <link rel="stylesheet" href="stock.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
- 
     body {
       font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 0;
+      background-color: #8b9fec;
       color: #333;
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: #8b9fec;
     }
-
     a {
       text-decoration: none;
       color: inherit;
     }
-
     .hero {
-      background-color: #2e3b4e; 
+      background-color: #2e3b4e;
       color: #fdf8f8;
       width: 100%;
       padding: 100px 20px;
       text-align: center;
     }
-
     .hero h1 {
       font-size: 3.5em;
       font-weight: 700;
       margin-bottom: 15px;
     }
-
     .hero p {
       font-size: 1.3em;
       margin-bottom: 25px;
       opacity: 0.9;
     }
-
     .hero button {
       padding: 15px 35px;
       font-size: 1.1em;
       background-color: #b75d14;
       border: none;
-      color: rgb(57, 40, 40);
+      color: #392828;
       border-radius: 30px;
       cursor: pointer;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       transition: background-color 0.3s ease, transform 0.3s ease;
     }
-
     .hero button:hover {
       background-color: #e07648;
       transform: scale(1.05);
     }
-
     .container {
       width: 90%;
       max-width: 1300px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between; 
-      gap: 30px; 
+      justify-content: space-between;
+      gap: 30px;
       padding: 40px 0;
     }
-
     .product-card {
       background-color: #e4dddd;
       padding: 25px;
       border-radius: 16px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      width: 30%; 
-      transition: all 0.3s ease-in-out;
+      width: 30%;
       position: relative;
-      margin-bottom: 30px;
+      transition: transform 0.3s ease-in-out;
     }
-
     .product-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
     }
-
     .product-images {
       display: flex;
       justify-content: center;
       margin-bottom: 20px;
     }
-
     .product-image {
       max-width: 180px;
       cursor: pointer;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      transition: transform 0.3s ease;
     }
-
     .product-card:hover .product-image {
-      transform: scale(1.3); 
+      transform: scale(1.3);
     }
-
-    .product-card p {
-      font-size: 1.05em;
-      line-height: 1.6;
-      color: #444;
-      margin-bottom: 10px;
-    }
-
     .description {
       font-size: 1.1em;
       line-height: 1.7;
       font-weight: 500;
-      color: #333;
     }
-
     .price {
       color: #27ae60;
       font-size: 1.6em;
       font-weight: 700;
     }
-
     .discount-price {
       color: #e74c3c;
       font-size: 1.3em;
-      font-weight: 600;
       text-decoration: line-through;
       margin-left: 10px;
     }
-
     .stock-indicator {
-      margin-top: 10px;
       font-size: 1.1em;
+      margin-top: 10px;
     }
-
-    .in-stock {
-      color: #2ecc71;
-    }
-
-    .out-of-stock {
-      color: #c0392b;
-    }
-
+    .in-stock { color: #2ecc71; }
+    .out-of-stock { color: #c0392b; }
     .quantity-label {
       display: block;
       margin-top: 10px;
       margin-bottom: 5px;
       font-weight: 600;
     }
-
     select {
       padding: 8px 12px;
       border-radius: 5px;
       border: 1px solid #ccc;
       font-size: 1em;
     }
-
     .add-to-cart, .buy-now {
       background-color: #28a745;
       color: white;
@@ -168,29 +131,25 @@
       cursor: pointer;
       transition: background-color 0.3s, transform 0.3s;
     }
-
     .add-to-cart:hover, .buy-now:hover {
       background-color: #218838;
       transform: scale(1.05);
     }
-
     .add-to-cart:disabled, .buy-now:disabled {
       background-color: #c0392b;
       cursor: not-allowed;
     }
-
     footer {
       background-color: #2e3b4e;
       color: white;
       padding: 20px 0;
       width: 100%;
       text-align: center;
-      margin-top: 50px;
       font-weight: 500;
-      letter-spacing: 0.5px;
+      margin-top: 50px;
     }
 
-    .modal {
+    .modal, .customer-info-modal {
       display: none;
       position: fixed;
       z-index: 1000;
@@ -202,21 +161,17 @@
       justify-content: center;
       align-items: center;
     }
-
-    .modal-content {
+    .modal-content, .customer-info-modal-content {
       background-color: white;
-      padding: 20px;
+      padding: 30px;
       border-radius: 10px;
       position: relative;
+      width: 300px;
     }
-
     .modal-content img {
       max-width: 100%;
       height: auto;
-      display: block;
-      margin: 0 auto;
     }
-
     .close {
       position: absolute;
       top: 10px;
@@ -224,38 +179,16 @@
       font-size: 30px;
       color: #333;
       cursor: pointer;
-      background-color: transparent;
       border: none;
+      background: none;
     }
-
-    .customer-info-modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .customer-info-modal-content {
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      width: 300px;
-    }
-
-    .customer-info-modal-content input {
+    .customer-info-modal-content input, .customer-info-modal-content select {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
       border-radius: 5px;
       border: 1px solid #ccc;
     }
-
     .customer-info-modal-content button {
       width: 100%;
       padding: 10px;
@@ -266,13 +199,20 @@
       cursor: pointer;
       margin-top: 10px;
     }
+    .back-arrow-btn {
+      background: transparent;
+      border: none;
+      font-size: 1em;
+      color: #333;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
 
   <div class="hero">
     <h1>Welcome to Our Shoe Store</h1>
-    <p>Find your perfect pair of shoes at unbeatable prices. Stylish, comfortable, and durable shoes just for you.</p>
+    <p>Find your perfect pair of shoes at unbeatable prices.</p>
     <button onclick="window.location.href='#products'">Shop Now</button>
   </div>
 
@@ -280,20 +220,17 @@
     <div class="product-card">
       <h2>Nike Air Max 270</h2>
       <div class="product-images">
-        <img src="Lune/images/jordan2.png" alt="Nike Air Max 270 Front View" class="product-image" onclick="openModal('Lune/images/jordan2.png')">
+        <img src="Lune/images/jordan2.png" class="product-image" onclick="openModal('Lune/images/jordan2.png')">
       </div>
       <p>Size: 8, 9, 10, <strike>11, 12</strike></p>
       <p class="price">₹1159.99 <span class="discount-price">₹1299.99</span></p>
-      <p class="description">Experience all-day comfort and bold style with the Nike Air Max 270.</p>
-      <div id="stockStatus1" class="stock-indicator"></div>
-      <label class="quantity-label" for="quantity1">Quantity:</label>
-      <select id="quantity1">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
+      <p class="description">Experience all-day comfort and bold style.</p>
+      <div class="stock-indicator in-stock">In Stock</div>
+      <label class="quantity-label">Quantity:</label>
+      <select>
+        <option>1</option><option>2</option><option>3</option><option>4</option>
       </select>
-      <a href="cart.html"><button class="add-to-cart" id="addToCart1">Add to Cart</button></a>
+      <a href="cart.html"><button class="add-to-cart">Add to Cart</button></a>
       <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now</button>
     </div>
 
@@ -339,11 +276,10 @@
       <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now </button>
     </div>
 
-    <div id="products" class="container">
       <div class="product-card">
-        <h2>Addidas Original stan smith</h2>
+        <h2>Puma womens sneakers</h2>
         <div class="product-images">
-          <img src="https://sp.yimg.com/ib/th?id=OPAC.YJVve2Q1y2vq1w474C474&o=5&pid=21.1&w=174&h=174" alt="Addidas Original stan smith" class="product-image" onclick="openModal('https://sp.yimg.com/ib/th?id=OPAC.YJVve2Q1y2vq1w474C474&o=5&pid=21.1&w=174&h=174')">
+          <img src="https://sp.yimg.com/ib/th?id=OPAC.YJVve2Q1y2vq1w474C474&o=5&pid=21.1&w=174&h=174" alt="Puma womens sneakers" class="product-image" onclick="openModal('https://sp.yimg.com/ib/th?id=OPAC.YJVve2Q1y2vq1w474C474&o=5&pid=21.1&w=174&h=174')">
         </div>
         <p>Size:7, 8, 9,</p>
         <p class="price">₹2,559-/</p>
@@ -362,13 +298,13 @@
 
       <div id="products" class="container">
         <div class="product-card">
-          <h2>Addidas Original stan smith</h2>
+          <h2>WOODLAND Woodsport Mens Grey</h2>
           <div class="product-images">
-            <img src="https://s.yimg.com/fz/api/res/1.2/GZgpovKG9XU.iN2REPGXgw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTEzMDtxPTgwO3c9MTY2/https://s.yimg.com/zb/imgv1/c625f2be-8916-30d2-8cbf-0ec8ffbfcb2e/t_500x300" alt="Addidas Original stan smith" class="product-image" onclick="openModal('https://s.yimg.com/fz/api/res/1.2/GZgpovKG9XU.iN2REPGXgw--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTEzMDtxPTgwO3c9MTY2/https://s.yimg.com/zb/imgv1/c625f2be-8916-30d2-8cbf-0ec8ffbfcb2e/t_500x300')">
+            <img src="https://sp.yimg.com/ib/th?id=OPAC.M%2bAM5pzP26laAg474C474&o=5&pid=21.1&w=174&h=174" alt="" class="product-image" onclick="openModal('https://sp.yimg.com/ib/th?id=OPAC.M%2bAM5pzP26laAg474C474&o=5&pid=21.1&w=174&h=174')">
           </div>
           <p>Size:7, 8, 9, 10</p>
-          <p class="price">₹7,799-/ <span class="discount-price">₹8,9999-/</span></p>
-          <p class="description">The Adidas Original stan smith stands out as a strong contender in the competitive stability shoe market.</p>
+          <p class="price">₹1,946-/ <span class="discount-price">2,459-/</span></p>
+          <p class="description">The Woodland men's sport shoe offers rugged durability and all-terrain grip, perfect for outdoor adventures. Its cushioned sole and sturdy design ensure comfort and performance every step of the way.</p>
           <div id="stockStatus1" class="stock-indicator"></div>
           <label class="quantity-label" for="quantity1">Quantity:</label>
           <select id="quantity1">
@@ -379,7 +315,7 @@
           </select>
           <a href="cart.html"><button class="add-to-cart" id="addToCart1">Add to Cart</button></a>
           <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now </button>
-        </div>
+      </div>
 
   <div id="imageModal" class="modal">
     <div class="modal-content">
@@ -388,152 +324,80 @@
     </div>
   </div>
 
-<div id="customerInfoModal" class="customer-info-modal">
-  <div class="customer-info-modal-content">
-    <h3>Enter Your Details</h3>
-    <form id="customerInfoForm" onsubmit="submitOrder(event)">
-
-      <input type="text" id="name" placeholder="Your Name" required>
-      
-      <input type="email" id="email" placeholder="Your Email" required>
-      
-      <input type="text" id="address" placeholder="Your Address" required>
-      
-      <input type="tel" id="phone" placeholder="Your Phone Number" required pattern="^[0-9]{10}$" title="Please enter a valid 10-digit phone number">
-   
-      <select id="state" required>
-        <option value="" disabled selected>Select Your State</option>
-        <option value="Himachal">Himacha</option>
-        <option value="punjab">punjab</option>
-        <option value="Uttarpradesh">Uttarpradesh</option>
-        <option value="Rajasthan">Rajasthan</option>
-        <option value="Uttrakhand">Uttrakhand</option>
-  
+    <div class="product-card">
+      <h2>Campus CAMP BONZAI Black Mens Running Shoesy</h2>
+      <div class="product-images">
+        <img src="https://sp.yimg.com/ib/th?id=OPAC.Jm9S9sPzvqRUHA474C474&o=5&pid=21.1&w=174&h=174" alt="" class="product-image" onclick="openModal('https://sp.yimg.com/ib/th?id=OPAC.Jm9S9sPzvqRUHA474C474&o=5&pid=21.1&w=174&h=174')">
+      </div>
+      <p>Size:7, 8, 9, 10</p>
+      <p class="price">₹1,007-/ <span class="discount-price">1,130-/</span></p>
+      <p class="description">​Campus Shoes is an Indian footwear brand known for offering affordable, stylish, and comfortable options for men, women, and children. Customer reviews present a mixed picture, highlighting both strengths and areas for improvement./p>
+      <div id="stockStatus1" class="stock-indicator"></div>
+      <label class="quantity-label" for="quantity1">Quantity:</label>
+      <select id="quantity1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
       </select>
+      <a href="cart.html"><button class="add-to-cart" id="addToCart1">Add to Cart</button></a>
+      <button class="buy-now" onclick="openCustomerInfoModal()">Buy Now </button>
+    </div>
 
-      <button type="submit">Submit Order</button>
-      <button type="button" onclick="closeCustomerInfoModal()" class="back-arrow-btn">
-        <i class="fas fa-arrow-left"></i> Back
-      </button>
-    </form>
-  </div>
 </div>
-<style>
-  .customer-info-modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-  }
 
-  .customer-info-modal-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    width: 300px;
-    position: relative;
-  }
+<div id="imageModal" class="modal">
+<div class="modal-content">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img id="modalImage" src="" alt="Large view of product">
+</div>
+</div>
 
-  .back-arrow-btn {
-    background-color: transparent;
-    border: none;
-    font-size: 1.0em;
-    color: #333;
-    cursor: pointer;
-    position: centre;
-    top: 10px;
-    left: 10px;
-    font-weight: bold;
-    transition: color 0.3s;
-  }
-
-  .back-arrow-btn:hover {
-    color: #28a745; 
-  }
-
-  input, select {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-
-  button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  button[type="submit"]:hover {
-    background-color: #218838;
-  }
-</style>
-
-<script>
-  function closeCustomerInfoModal() {
-    document.getElementById('customerInfoModal').style.display = 'none';
-  }
-
-  function submitOrder(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const address = document.getElementById('address').value;
-    const phone = document.getElementById('phone').value;
-    const state = document.getElementById('state').value;
-
-    alert(`Order submitted! \nName: ${name} \nEmail: ${email} \nAddress: ${address} \nPhone: ${phone} \nState: ${state}`);
-    
-    closeCustomerInfoModal();
-  }
-</script>
-
+  <div id="customerInfoModal" class="customer-info-modal">
+    <div class="customer-info-modal-content">
+      <h3>Enter Your Details</h3>
+      <form onsubmit="submitOrder(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="text" placeholder="Your Address" required>
+        <input type="tel" placeholder="Your Phone" required pattern="[0-9]{10}">
+        <select required>
+          <option disabled selected>Select Your State</option>
+          <option>Himachal</option>
+          <option>Punjab</option>
+          <option>Uttar Pradesh</option>
+          <option>Rajasthan</option>
+          <option>Uttarakhand</option>
+        </select>
+        <button type="submit">Submit Order</button>
+        <button type="button" class="back-arrow-btn" onclick="closeCustomerInfoModal()">← Back</button>
+      </form>
+    </div>
+  </div>
 
   <footer>
-    <p>© 2025 Shoe Store | All Rights Reserved</p>
+    &copy; 2025 Shoe Store. All rights reserved.
   </footer>
 
   <script>
-    function openModal(imageSrc) {
-      document.getElementById('modalImage').src = imageSrc;
+    function openModal(src) {
+      document.getElementById('modalImage').src = src;
       document.getElementById('imageModal').style.display = 'flex';
     }
-
     function closeModal() {
       document.getElementById('imageModal').style.display = 'none';
     }
-
     function openCustomerInfoModal() {
       document.getElementById('customerInfoModal').style.display = 'flex';
     }
-
     function closeCustomerInfoModal() {
       document.getElementById('customerInfoModal').style.display = 'none';
     }
-
     function submitOrder(event) {
       event.preventDefault();
-      
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const address = document.getElementById('address').value;
-
-      alert(`Order submitted successfully! \nName: ${name} \nEmail: ${email} \nAddress: ${address}`);
+      alert("Order submitted successfully!");
       closeCustomerInfoModal();
     }
   </script>
-
 </body>
 </html>
