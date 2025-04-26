@@ -2,13 +2,13 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #9ffb88;
     color: #333;
 }
 
 a {
     text-decoration: none;
-    color: #0071ce;
+    color: #308dd8;
 }
 
 a:hover {
@@ -16,13 +16,13 @@ a:hover {
 }
 
 header {
-    background-color: #fff;
+    background-color: #5edb7d;
     padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #283391;
 }
 
 .top-bar {
-    background-color: #f0f0f0;
+    background-color: #cbe8cc;
     color: #333;
     text-align: center;
     padding: 8px 0;
@@ -49,7 +49,7 @@ header {
 .search-bar input[type="text"] {
     flex-grow: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #b63131;
     border-radius: 5px 0 0 5px;
     font-size: 1em;
 }
@@ -252,6 +252,18 @@ main.return-page {
     cursor: pointer;
     font-size: 1.1em;
 }
+.proceed-button:hover {
+    background-color: #a7db46;
+}
+.return-actions .cancel-button {
+    background-color: #ab332a;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+}
 
 .back-to-top {
     text-align: center;
@@ -391,7 +403,7 @@ footer {
 .footer-bottom {
     text-align: center;
     font-size: 0.8em;
-    color: #777;
+    color: #5ec5d7;
     padding-top: 15px;
     border-top: 1px solid #ddd;
 }

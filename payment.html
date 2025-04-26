@@ -64,10 +64,10 @@
                             <label for="method-3" class="payment-method-item">
                                 <img src="images/paypal.png" alt="">
                             </label>
-                            <input type="radio" name="payment-method" id="method-4">
+                            <a href="Upi.html"><input type="radio" name="payment-method" id="method-4">
                             <label for="method-4" class="payment-method-item">
                                 <img src="images/upi.png" alt="">
-                            </label>
+                            </label></a>
                         </div>
                         <div class="payment-form-group">
                             <input type="email" placeholder=" " class="payment-form-control" id="email">
@@ -87,13 +87,16 @@
                                 <label for="cvv" class="payment-form-label payment-form-label-required">CVV</label>
                             </div>
                         </div>
-                        <button type="submit" class="payment-form-submit-button"><i class="ri-wallet-line"></i> Pay</button>
+                        <button type="submit" id="submit-button" class="payment-form-submit-button"><i class="ri-wallet-line"></i> Pay</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-    <!-- end: Payment -->
-
+<script>
+    document.getElementById('submit-button').addEventListener('click', function() {
+  window.location.href = 'order_animate.html';
+});
+</script>
 </body>
 </html>

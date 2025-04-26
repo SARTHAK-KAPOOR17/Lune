@@ -4,260 +4,105 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Free Shipping | Shoe Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --main-bg: #f3f4f6;
-      --accent: #2563eb;
-      --text-dark: #111827;
-      --text-light: #ffffff;
-      --highlight: #facc15;
-      --card-bg: #ffffff;
-    }
-
-    [data-theme="dark"] {
-      --main-bg: #111827;
-      --accent: #1d4ed8;
-      --text-dark: #f9fafb;
-      --text-light: #ffffff;
-      --highlight: #facc15;
-      --card-bg: #1f2937;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--main-bg);
-      color: var(--text-dark);
-      transition: background 0.3s ease, color 0.3s ease;
-      padding-top: 70px;
-    }
-
-    header {
-      background-color: var(--accent);
-      color: var(--text-light);
-      padding: 2rem 1rem;
-      text-align: center;
-      position: relative;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.25rem;
-    }
-
-    .theme-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      background: var(--highlight);
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      color: var(--text-dark);
-    }
-
-    .search-bar {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: var(--text-light);
-      border-radius: 25px;
-      padding: 10px 20px;
-      width: 80%;
-      max-width: 400px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-    }
-
-    [data-theme="dark"] .search-bar {
-      background-color: #2d2d2d;
-    }
-
-    .search-bar input {
-      width: 85%;
-      border: none;
-      padding: 10px;
-      border-radius: 20px;
-      font-size: 1rem;
-      outline: none;
-      background: transparent;
-      color: var(--text-dark);
-    }
-
-    .search-bar button {
-      background-color: var(--accent);
-      color: var(--text-light);
-      border: none;
-      padding: 10px 15px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-
-    .search-bar button:hover {
-      background-color: var(--highlight);
-      color: var(--text-dark);
-    }
-
-    .cta-section {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: var(--card-bg);
-    }
-
-    .cta-section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .cta-section p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .cta-button {
-      background-color: var(--highlight);
-      color: var(--text-dark);
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .cta-button:hover {
-      background-color: #eab308;
-    }
-
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem 1rem;
-    }
-
-    .product-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-      width: 250px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .product-card img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
-
-    .product-card h3 {
-      margin: 0.5rem 0;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 2rem;
-      background: var(--accent);
-      color: var(--text-light);
-    }
-
-    @media (max-width: 600px) {
-      .search-bar {
-        width: 90%;
-      }
-
-      header h1 {
-        font-size: 1.8rem;
-      }
-
-      .cta-section h2 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="shipping.css" crossorigin="anonymous" />
+  
 </head>
-<body data-theme="light">
+<body>
   <header>
-    <h1>Free Shipping on All Shoes!</h1>
-    <p>Limited time offer – No minimum purchase required</p>
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggleBtn">🌙</button>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo" style="color:#ffffff;"><span style="color:#ff6b6b;">STEP</span><span style="color:#feca57;">UP</span></div>
+        <div class="header-right">
+          <div class="toggle-container">
+            <div class="toggle-sticker">🌞</div>
+          </div>
+          <div class="search-container">
+            <div class="search-bar">
+              <input type="text" placeholder="Search shoes...">
+              <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- Fixed Search Bar -->
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search for shoes...">
-    <button onclick="performSearch()">🔍</button>
-  </div>
-
-  <section class="cta-section">
-    <h2>Step into style, ship for free!</h2>
-    <p>Order your favorite pairs today and enjoy fast, free delivery on all orders.</p>
-    <button class="cta-button">Shop Now</button>
-  </section>
-
-  <section class="products">
-    <div class="product-card">
-      <img src="https://via.placeholder.com/250x180" alt="Sneaker">
-      <h3>Classic Sneaker</h3>
-      <p>₹4,999</p>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/250x180" alt="Running Shoe">
-      <h3>Running Pro</h3>
-      <p>₹6,299</p>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/250x180" alt="Boot">
-      <h3>Urban Boots</h3>
-      <p>₹7,499</p>
+  <section class="hero">
+    <div class="container">
+      <h1 style="color:#2c3e50;">Free Shipping on All Orders!</h1>
+      <p style="color:#5d6d7e;">Enjoy <span class="highlight" style="background-color:#ff6b6b;color:white;">complimentary shipping</span> on every pair of shoes, no minimum purchase required. Step into style without extra costs!</p>
+      <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Premium Shoe Collection" class="hero-image">
     </div>
   </section>
 
-  <footer class="footer">
-    &copy; 2025 Shoe Store. All rights reserved.
+  <section class="shipping-info">
+    <div class="container">
+      <h2 style="color:#2e4053;">How Our Free Shipping Works</h2>
+      <p style="color:#8395a7;">We believe great shoes should come with great service. Here's what you need to know:</p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <i class="fas fa-box-open" style="color:#ff6b6b;"></i>
+          <h3 style="color:#2c3e50;">Fast Delivery</h3>
+          <p style="color:#7f8c8d;">Your order will be shipped and arrive at your door in no time!</p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-truck" style="color:#54a0ff;"></i>
+          <h3 style="color:#2c3e50;">Track Your Shipment</h3>
+          <p style="color:#7f8c8d;">Track your order online every step of the way for peace of mind.</p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-thumbs-up" style="color:#1dd1a1;"></i>
+          <h3 style="color:#2c3e50;">Easy Returns</h3>
+          <p style="color:#7f8c8d;">Not happy with your order? No worries—return your items with ease.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2 style="color:#feca57;">Start Shopping Today!</h2>
+      <p style="color:#f1f2f6;">Discover your next favorite pair of shoes. Shop now and enjoy free shipping on all orders.</p>
+      <a href="#" class="btn" style="background-color:#ff6b6b; box-shadow:0 5px 15px rgba(255,107,107,0.4);">Shop Now</a>
+    </div>
+  </section>
+
+  <footer style="background-color:#1e272e; color:#d2dae2;">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#" style="color:#dff9fb;">Home</a>
+        <a href="#" style="color:#dff9fb;">About Us</a>
+        <a href="#" style="color:#dff9fb;">Contact</a>
+        <a href="#" style="color:#dff9fb;">Privacy Policy</a>
+      </div>
+      <div class="copyright">
+        &copy; 2025 STEPUP Shoe Store. All Rights Reserved.
+      </div>
+    </div>
   </footer>
 
   <script>
+    const toggleContainer = document.querySelector('.toggle-container');
+    const toggleSticker = document.querySelector('.toggle-sticker');
     const body = document.body;
-    const toggleBtn = document.getElementById("themeToggleBtn");
 
-    function setIcon(theme) {
-      toggleBtn.textContent = theme === "light" ? "🌙" : "☀️";
+    if(localStorage.getItem('darkMode') === 'enabled') {
+      body.classList.add('dark-mode');
+      toggleSticker.textContent = '🌜';
     }
 
-    function toggleTheme() {
-      const currentTheme = body.getAttribute("data-theme");
-      const newTheme = currentTheme === "light" ? "dark" : "light";
-      body.setAttribute("data-theme", newTheme);
-      setIcon(newTheme);
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      setIcon(body.getAttribute("data-theme"));
+    toggleContainer.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      
+      if(body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+        toggleSticker.textContent = '🌜';
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+        toggleSticker.textContent = '🌞';
+      }
     });
-
-    function performSearch() {
-      const query = document.getElementById("searchInput").value.toLowerCase();
-      alert(`Searching for: ${query}`);
-    }
   </script>
 </body>
 </html>
