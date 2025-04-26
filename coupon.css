@@ -44,6 +44,45 @@ main {
     display: grid;
     gap: 2.5rem;
 }
+.swing-top-fwd {
+    -webkit-animation: swing-top-fwd 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: swing-top-fwd 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes swing-top-fwd {
+    0% {
+        -webkit-transform: rotateX(100deg);
+                transform: rotateX(100deg);
+        -webkit-transform-origin: top;
+                transform-origin: top;
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: rotateX(0);
+                transform: rotateX(0);
+        -webkit-transform-origin: top;
+                transform-origin: top;
+        opacity: 1;
+    }
+}
+
+@keyframes swing-top-fwd {
+    0% {
+        -webkit-transform: rotateX(100deg);
+                transform: rotateX(100deg);
+        -webkit-transform-origin: top;
+                transform-origin: top;
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: rotateX(0);
+                transform: rotateX(0);
+        -webkit-transform-origin: top;
+                transform-origin: top;
+        opacity: 1;
+    }
+}
+
 
 .coupon, .bank-offers {
     background: rgba(255, 255, 255, 0.75);

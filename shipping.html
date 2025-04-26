@@ -1,84 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Order Details - Lowe's</title>
-  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Shipping | Shoe Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f8f9fa;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    header {
+      background-color: #ffffff;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .search-container input[type="text"] {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      outline: none;
+    }
+
+    .search-container button {
+      padding: 0.5rem;
+      border: none;
+      background-color: #ff6b6b;
+      color: white;
+      border-radius: 50%;
+      margin-left: -40px;
+      cursor: pointer;
+    }
+
+    .toggle-container {
+      background-color: #f1f1f1;
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .hero-image {
+      max-width: 100%;
+      height: auto;
+      margin-top: 2rem;
+      border-radius: 12px;
+    }
+
+    .highlight {
+      font-weight: bold;
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+    }
+
+    .shipping-info {
+      background-color: #ffffff;
+      padding: 4rem 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid #dee2e6;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .info-card {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .info-card i {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta {
+      text-align: center;
+      background: linear-gradient(135deg, #ff6b6b, #feca57);
+      padding: 4rem 2rem;
+      color: #fff;
+      border-radius: 12px;
+      margin: 3rem auto;
+      max-width: 900px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 25px;
+      background-color: #ffffff;
+      color: #ff6b6b;
+      text-decoration: none;
+      margin-top: 1.5rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #ff4757;
+      color: #ffffff;
+    }
+
+    footer {
+      background-color: #1e272e;
+      color: #d2dae2;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .footer-links {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      margin: 0 1rem;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-
-  <div class="header">
-    <h2>Lowe's</h2>
-  </div>
-
-  <div class="container">
-    <div class="section">
-      <h1>Order #787706614</h1>
-      <p>Placed October 19, 2023</p>
-    </div>
-
-    <div class="section info-box">
-      Order Status: <strong>Shipped</strong><br>
-      <small>Track your shipment to see your order status every step of the way.</small>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Delivery</div>
-      <p>Delivered to: John Newhouse</p>
-      <p>ETA: Oct 19–20</p>
-      <a href="#" class="button">Track Package</a>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Items in This Order</div>
-      <div class="product">
-        <img src="www.lowes.com_online-returns_method_19a66309-a4ec-45c5-98a7-630b0315d974(Bayamrd XS)-524f0e093aab747f5df1a92bc9e444bd.avif" alt="Product">
-        <div>
-          <p><strong>Bayamrd XS (liquid)</strong></p>
-          <p>$24.98</p>
-          <a href="#" class="button">Buy It Again</a>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo" style="color:#ffffff;"><span style="color:#ff6b6b;">STEP</span><span style="color:#feca57;">UP</span></div>
+        <div class="header-right">
+          <div class="toggle-container">
+            <div class="toggle-sticker">🌞</div>
+          </div>
+          <div class="search-container">
+            <div class="search-bar">
+              <input type="text" placeholder="Search shoes...">
+              <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </header>
 
-    <div class="section">
-      <div class="section-title">Payment Method</div>
-      <p>**** **** **** 1234</p>
+  <section class="hero">
+    <div class="container">
+      <h1 style="color:#2c3e50;">Free Shipping on All Orders!</h1>
+      <p style="color:#5d6d7e;">Enjoy <span class="highlight" style="background-color:#ff6b6b;color:white;">complimentary shipping</span> on every pair of shoes, no minimum purchase required. Step into style without extra costs!</p>
+      <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Premium Shoe Collection" class="hero-image">
     </div>
+  </section>
 
-    <div class="section">
-      <div class="section-title">Order Summary</div>
-      <table class="summary-table">
-        <tr><td>Subtotal:</td><td>$24.98</td></tr>
-        <tr><td>Fees & Shipping:</td><td>$0.00</td></tr>
-        <tr><td>Tax:</td><td>$2.10</td></tr>
-        <tr><td><strong>Total:</strong></td><td><strong>$27.08</strong></td></tr>
-      </table>
-    </div>
+  <section class="shipping-info">
+    <div class="container">
+      <h2 style="color:#2e4053;">How Our Free Shipping Works</h2>
+      <p style="color:#8395a7;">We believe great shoes should come with great service. Here's what you need to know:</p>
 
-    <div class="section">
-      <div class="section-title">Previously Viewed</div>
-      <div class="product">
-        <img src="www.lowes.com_online-returns_method_19a66309-a4ec-45c5-98a7-630b0315d974(Bayamrd XS)-524f0e093aab747f5df1a92bc9e444bd.avif" alt="Viewed Item">
-        <div>
-          <p><strong>Bayamrd XS (liquid)</strong></p>
-          <p>$24.98</p>
-          <a href="#" class="button">Add to Cart</a>
+      <div class="info-grid">
+        <div class="info-card">
+          <i class="fas fa-box-open" style="color:#ff6b6b;"></i>
+          <h3 style="color:#2c3e50;">Fast Delivery</h3>
+          <p style="color:#7f8c8d;">Your order will be shipped and arrive at your door in no time!</p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-truck" style="color:#54a0ff;"></i>
+          <h3 style="color:#2c3e50;">Track Your Shipment</h3>
+          <p style="color:#7f8c8d;">Track your order online every step of the way for peace of mind.</p>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-thumbs-up" style="color:#1dd1a1;"></i>
+          <h3 style="color:#2c3e50;">Easy Returns</h3>
+          <p style="color:#7f8c8d;">Not happy with your order? No worries—return your items with ease.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="footer">
-    <div>Deals, Inspiration and Trends</div>
-    <input type="text" placeholder="Enter email"> <button class="button">Sign Up</button>
-    <div class="footer-links">
-      <a href="#" style="color: white;">Order Status</a>
-      <a href="#" style="color: white;">Customer Service</a>
-      <a href="#" style="color: white;">Privacy Policy</a>
+  <section class="cta">
+    <div class="container">
+      <h2 style="color:#feca57;">Start Shopping Today!</h2>
+      <p style="color:#f1f2f6;">Discover your next favorite pair of shoes. Shop now and enjoy free shipping on all orders.</p>
+      <a href="#" class="btn" style="background-color:#ff6b6b; box-shadow:0 5px 15px rgba(255,107,107,0.4);">Shop Now</a>
     </div>
-    <p style="font-size: 0.8em;">©2025 Lowe’s. All rights reserved.</p>
-  </div>
+  </section>
 
+  <footer style="background-color:#1e272e; color:#d2dae2;">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#" style="color:#dff9fb;">Home</a>
+        <a href="#" style="color:#dff9fb;">About Us</a>
+        <a href="#" style="color:#dff9fb;">Contact</a>
+        <a href="#" style="color:#dff9fb;">Privacy Policy</a>
+      </div>
+      <div class="copyright">
+        &copy; 2025 STEPUP Shoe Store. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggleContainer = document.querySelector('.toggle-container');
+    const toggleSticker = document.querySelector('.toggle-sticker');
+    const body = document.body;
+
+    if(localStorage.getItem('darkMode') === 'enabled') {
+      body.classList.add('dark-mode');
+      toggleSticker.textContent = '🌜';
+    }
+
+    toggleContainer.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      
+      if(body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+        toggleSticker.textContent = '🌜';
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+        toggleSticker.textContent = '🌞';
+      }
+    });
+  </script>
 </body>
 </html>

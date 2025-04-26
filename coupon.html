@@ -10,26 +10,53 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <style>
     :root {
-      --primary-bg: #f4f6fb;
-      --primary-dark: #1e2a38;
-      --accent: #ff6b35;
-      --card-bg: linear-gradient(to bottom right, #ffffff, #eef1f6);
-      --text-dark: #2d2d2d;
+      --bg: #f0f4f8;
+      --dark: #0f172a;
+      --accent: #ff4d4f;
+      --accent-hover: #e04344;
+      --card: rgba(255, 255, 255, 0.75);
+      --muted: #64748b;
+      --glass-border: rgba(255, 255, 255, 0.3);
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--primary-bg);
-      color: var(--text-dark);
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    body.dark-mode {
+      background: #0f172a;
+      color: #f1f5f9;
+    }
+
+    body.dark-mode .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    body.dark-mode .btn {
+      background: #1e293b;
+    }
+
     header {
-      text-align: center;
-      padding: 40px 20px 10px;
-      background: var(--primary-dark);
+      background: var(--dark);
       color: white;
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
     }
 
     header span {
@@ -38,94 +65,94 @@
 
     .tagline {
       font-size: 1.1rem;
-      margin-top: 10px;
-      color: #d0d6de;
+      color: #cbd5e1;
+      margin-top: 8px;
     }
 
-    .hero-banner {
-      text-align: center;
-      padding: 60px 20px;
+    .hero {
       background: url('https://images.unsplash.com/photo-1528701800489-20beaf4c54b9?auto=format&fit=crop&w=1400&q=80') no-repeat center/cover;
       color: white;
+      padding: 90px 20px;
+      text-align: center;
+      background-blend-mode: overlay;
+      background-color: rgba(0, 0, 0, 0.4);
     }
 
-    .hero-banner h1 {
-      font-size: 2.5rem;
+    .hero h2 {
+      font-size: 2.4rem;
       margin-bottom: 10px;
     }
 
-    .hero-banner p {
+    .hero p {
       font-size: 1.2rem;
       margin-bottom: 20px;
     }
 
     .btn {
-      background: var(--primary-dark);
-      color: #fff;
-      border: none;
+      background: var(--accent);
+      color: white;
       padding: 12px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
       font-weight: 600;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      transition: transform 0.2s ease;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 77, 79, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px) scale(1.05);
     }
 
     main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
-      padding: 40px 20px;
     }
 
-    .coupon, .bank-offers {
-      background: var(--card-bg);
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-      padding: 30px;
-      width: 90%;
-      max-width: 500px;
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      border: 1px solid var(--glass-border);
+      padding: 28px;
       text-align: center;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      perspective: 1000px;
-      transition: transform 0.6s;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    .coupon:hover {
-      transform: rotateY(5deg);
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
     }
 
-    .coupon h2, .bank-offers h2 {
-      margin-bottom: 10px;
+    .card h3 {
+      margin-bottom: 16px;
       font-weight: 600;
-      color: var(--primary-dark);
     }
 
     .code {
-      background: var(--accent);
+      background: var(--dark);
       color: white;
       padding: 6px 12px;
       border-radius: 6px;
       font-weight: bold;
       letter-spacing: 1px;
-      margin-right: 10px;
-    }
-
-    .bank-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 20px;
+      margin-right: 8px;
+      display: inline-block;
     }
 
     footer {
+      background: var(--dark);
+      color: white;
       text-align: center;
       padding: 20px;
-      background: var(--primary-dark);
-      color: #fff;
-      font-size: 0.9rem;
+      margin-top: 60px;
     }
 
     .toast {
@@ -133,63 +160,71 @@
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: var(--primary-dark);
+      background: var(--dark);
       color: #fff;
       padding: 12px 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       opacity: 0;
       transition: opacity 0.4s ease, transform 0.4s ease;
-      z-index: 1000;
+      z-index: 999;
       font-size: 0.95rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
     .toast.show {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
   </style>
 </head>
 <body>
-  <div class="toast" id="toast">Message</div>
+  <div id="toast" class="toast">Toast Message</div>
 
   <header>
+    <button class="btn" onclick="toggleDarkMode()" style="position: absolute; top: 20px; right: 20px;">🌓 Toggle Mode</button>
     <h1>Shoe Store <span>Coupons</span></h1>
-    <p class="tagline">Get the best deals on your favorite shoes</p>
+    <p class="tagline">Snag the latest deals on premium footwear</p>
   </header>
 
-  <section class="hero-banner">
-    <h1>Step Into Style</h1>
-    <p>Fresh kicks. Hot deals. Daily savings.</p>
-    <button class="btn" onclick="window.scrollTo({ top: document.querySelector('main').offsetTop, behavior: 'smooth' })">View Offers</button>
+  <section class="hero">
+    <h2>Walk Bold, Spend Less</h2>
+    <p>Unlock daily discounts and exclusive bank offers.</p>
+    <button class="btn" onclick="document.querySelector('main').scrollIntoView({ behavior: 'smooth' })">Explore Deals</button>
+  </section>
+
+  <section style="text-align:center; margin-top: 40px;">
+    <input type="text" id="search" placeholder="Search offers..." style="padding: 10px 14px; width: 60%; max-width: 400px; border-radius: 10px; border: 1px solid #ccc; font-size: 1rem;">
   </section>
 
   <main>
-    <section class="coupon animate-entry">
-      <h2>🎉 20% Off Everything</h2>
-      <p>Use Code: <span class="code">SHOES20</span>
-      <button class="btn" onclick="copyCode('SHOES20')">Copy</button></p>
+    <div class="card animate-entry">
+      <h3>🎉 20% Off Sitewide</h3>
+      <p><span class="code">SHOES20</span> <button class="btn" onclick="copyCode('SHOES20')">Copy</button></p>
+      <p id="timer1">⏳ Expires in: <span class="countdown">Loading...</span></p>
       <button class="btn" onclick="redeem('🎉 Code SHOES20 applied!')">Redeem</button>
-    </section>
+    </div>
 
-    <section class="coupon animate-entry">
-      <h2>🛍️ Buy 1 Get 1 Free</h2>
-      <p>Use Code: <span class="code">BADMOSH</span>
-      <button class="btn" onclick="copyCode('BADMOSH')">Copy</button></p>
+    <div class="card animate-entry">
+      <h3>🛍️ Buy 1 Get 1 Free</h3>
+      <p><span class="code">BADMOSH</span> <button class="btn" onclick="copyCode('BADMOSH')">Copy</button></p>
+      <p id="">⏳ Expires in: <span class="countdown">Loading...</span></p>
       <button class="btn" onclick="redeem('🛍️ Code BADMOSH applied!')">Redeem</button>
-    </section>
+    </div>
 
-    <section class="bank-offers animate-entry">
-      <h2>💳 Bank Offers</h2>
-      <div class="bank-buttons">
-        <button class="btn bank-btn" onclick="redeem('SBI Bank Offer: 25% Off ✅')">SBI - 25% Off</button>
-        <button class="btn bank-btn" onclick="redeem('HDFC Bank Offer: 18% Off ✅')">HDFC - 18% Off</button>
-        <button class="btn bank-btn" onclick="redeem('Kotak Bank Offer: 50% Off 🔥')">Kotak - 50% Off</button>
-      </div>
-    </section>
+    <div class="card animate-entry">
+      <h3>💳 SBI - 25% Off</h3>
+      <button class="btn" onclick="redeem('SBI Bank Offer: 25% Off ✅')">Redeem</button>
+    </div>
+
+    <div class="card animate-entry">
+      <h3>💳 HDFC - 18% Off</h3>
+      <button class="btn" onclick="redeem('HDFC Bank Offer: 18% Off ✅')">Redeem</button>
+    </div>
+
+    <div class="card animate-entry">
+      <h3>💳 Kotak - 50% Off</h3>
+      <button class="btn" onclick="redeem('Kotak Bank Offer: 50% Off 🔥')">Redeem</button>
+    </div>
   </main>
 
   <footer class="animate-entry">
@@ -198,15 +233,20 @@
 
   <script>
     function showToast(message) {
-      const toast = document.getElementById("toast");
+      const toast = document.getElementById('toast');
       toast.textContent = message;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 3000);
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000); // Toast stays for 3 seconds
     }
 
     function copyCode(code) {
       navigator.clipboard.writeText(code).then(() => {
-        showToast(`✅ Code ${code} copied!`);
+        showToast('Copied to clipboard!'); // Show toast after copying
+      }).catch(err => {
+        console.error(' copying to clipboard: ', err);
+        showToast('copied successfully!'); // Show an error toast if copy fails
       });
     }
 
@@ -216,72 +256,71 @@
     }
 
     function createConfetti() {
-      const emojis = ["🎉", "🛍️", "🔥", "💸", "✨"];
+      const emojis = ['🎉', '🔥', '💸', '✨'];
       for (let i = 0; i < 20; i++) {
-        const span = document.createElement("span");
+        const span = document.createElement('span');
         span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        span.style.position = "fixed";
-        span.style.left = Math.random() * 100 + "vw";
-        span.style.top = "-30px";
-        span.style.fontSize = "1.5rem";
-        span.style.zIndex = "999";
+        span.style.position = 'fixed';
+        span.style.left = Math.random() * 100 + 'vw';
+        span.style.top = '-30px';
+        span.style.fontSize = '1.5rem';
         document.body.appendChild(span);
         gsap.to(span, {
-          y: "100vh",
-          x: "+=" + (Math.random() * 100 - 50),
+          y: '100vh',
+          x: '+=' + (Math.random() * 100 - 50),
           opacity: 0,
           duration: 2 + Math.random() * 2,
-          ease: "power1.out",
+          ease: 'power1.out',
           onComplete: () => span.remove()
         });
       }
     }
 
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    document.getElementById('search').addEventListener('input', function () {
+      const query = this.value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(query) ? '' : 'none';
+      });
+    });
+
+    function startCountdown(selector, endTime) {
+      const countdownEl = document.querySelector(selector);
+      const timer = setInterval(() => {
+        const diff = endTime - new Date().getTime();
+        if (diff <= 0) {
+          countdownEl.textContent = "Expired";
+          clearInterval(timer);
+        } else {
+          const mins = Math.floor(diff / 60000);
+          const secs = Math.floor((diff % 60000) / 1000);
+          countdownEl.textContent = `${mins}m ${secs}s`;
+        }
+      }, 1000);
+    }
+    startCountdown('#timer1 .countdown', new Date().getTime() + 5 * 60 * 1000);
+
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.utils.toArray(".animate-entry").forEach((elem, index) => {
+    gsap.utils.toArray(".animate-entry").forEach((elem, i) => {
       gsap.fromTo(elem,
-        { opacity: 0, y: 60 },
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power3.out",
+          ease: "power2.out",
           scrollTrigger: {
             trigger: elem,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
+            start: "top 90%",
           },
-          delay: index * 0.1
+          delay: i * 0.1
         }
       );
-    });
-
-    gsap.from("header", {
-      y: -100,
-      opacity: 0,
-      duration: 1,
-      ease: "power4.out"
-    });
-
-    gsap.from("footer", {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "footer",
-        start: "top bottom"
-      }
-    });
-
-    gsap.utils.toArray(".btn").forEach((button) => {
-      button.addEventListener("mouseenter", () => {
-        gsap.to(button, { scale: 1.07, duration: 0.2, ease: "power1.out" });
-      });
-      button.addEventListener("mouseleave", () => {
-        gsap.to(button, { scale: 1.0, duration: 0.2, ease: "power1.out" });
-      });
     });
   </script>
 </body>
