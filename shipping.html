@@ -25,6 +25,43 @@
     .help-btn:hover {
       color: #007bff;
     }
+
+    .help-center {
+      background-color: #f9f9f9;
+      padding: 2rem 0;
+      border-top: 1px solid #eee;
+    }
+
+    .help-center .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .help-center h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    .help-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .help-links a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .help-links a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -92,6 +129,20 @@
     </div>
   </section>
 
+  <!-- Help Center Section -->
+  <section class="help-center">
+    <div class="container">
+      <h2>Help Center</h2>
+      <div class="help-links">
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+      </div>
+    </div>
+  </section>
+
   <script>
     const searchTrigger = document.getElementById('searchTrigger');
     const searchContainer = document.getElementById('searchContainer');
@@ -102,7 +153,7 @@
 
     const helpButton = document.getElementById('helpButton');
     helpButton.addEventListener('click', () => {
-      alert("Need help? Contact us at support@solehaven.com");
+      alert("Need help? Visit our Help Center or contact us at support@solehaven.com");
     });
   </script>
 </body>
