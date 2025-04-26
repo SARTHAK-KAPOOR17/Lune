@@ -5,118 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Professional Payment Page</title>
   <style>
-    /* Reset & Variables */
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    /* Reset & Base Styles */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      display:flex; justify-content:center; align-items:center;
-      min-height:100vh;
-      /* Animated Gradient Background */
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh;
       background: linear-gradient(-45deg, #f093fb, #f5576c, #4facfe, #00f2fe);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      position: relative;
+      background-size: 400% 400%; animation: gradientBG 15s ease infinite;
+      position: relative; overflow: hidden;
     }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    /* Decorative Floating Circles */
-    body::before, body::after {
-      content: '';
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.2;
-    }
-    body::before {
-      width: 300px; height: 300px;
-      background: #ffffff;
-      top: 10%; left: 5%;
-    }
-    body::after {
-      width: 200px; height: 200px;
-      background: #000000;
-      bottom: 10%; right: 8%;
-    }
+    @keyframes gradientBG { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .floating-circle { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.15); opacity: 0.6; animation: float 20s infinite ease-in-out; }
+    @keyframes float { 0%,100% { transform: translate(0,0); } 50% { transform: translate(50px,50px); } }
+    .floating-circle:nth-child(1) { width:200px; height:200px; top:10%; left:5%; }
+    .floating-circle:nth-child(2) { width:300px; height:300px; bottom:15%; right:10%; }
+
+    /* Container */
     .payment-container {
-      background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.1);
-      width:360px; padding:24px; position:relative; z-index:1;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
+      border-radius:16px; box-shadow:0 12px 32px rgba(0,0,0,0.1);
+      width:380px; padding:24px; position:relative; z-index:1;
     }
-    h2 { text-align:center; font-size:1.5rem; color:#333; margin-bottom:16px; }
-    .method-toggle { display:flex; margin-bottom:20px; }
-    .method-toggle button {
-      flex:1; padding:10px; border:none; background:#e0e0e0;
-      color:#555; font-weight:600; cursor:pointer;
-      transition:background .3s;
-    }
+    h2 { text-align:center; font-size:1.6rem; color:#333; margin-bottom:20px; }
+
+    /* Method Toggle */
+    .method-toggle { display:flex; margin-bottom:24px; }
+    .method-toggle button { flex:1; padding:12px; border:none; background:#e0e0e0; color:#555; font-weight:600; cursor:pointer; transition:background .3s; }
     .method-toggle button.active { background:#4a76ff; color:#fff; }
-    /* Card 3D Styles */
-    .card-preview {
-      width:100%; height:200px; perspective:1000px;
-      margin-bottom:20px;
-    }
-    .card-inner {
-      width:100%; height:100%; position:relative;
-      transform-style:preserve-3d; will-change:transform;
-      transition:transform .6s ease;
-    }
-    .card-preview .card-face {
-      position:absolute; width:100%; height:100%; border-radius:12px;
-      overflow:hidden; backface-visibility:hidden;
-      box-shadow:0 4px 16px rgba(0,0,0,0.1);
-    }
-    .card-front {
-      background:linear-gradient(135deg,#667eea,#764ba2);
-      color:#fff; padding:16px; display:flex; flex-direction:column;
-      justify-content:space-between;
-    }
-    .card-front .number { font-size:1.2rem; letter-spacing:2px; }
-    .card-front .details { display:flex; justify-content:space-between; font-size:.9rem; }
-    .card-back {
-      background:linear-gradient(135deg,#764ba2,#667eea);
-      transform:rotateY(180deg); padding:16px;
-      display:flex; flex-direction:column;
-    }
-    .mag-strip { background:#000; height:40px; margin-bottom:16px; border-radius:4px; }
-    .signature { background:#fff; height:32px; margin-bottom:8px; border-radius:4px; padding:4px; }
+
+    /* Card Preview 3D */
+    .card-preview { perspective:1000px; margin-bottom:24px; height:220px; }
+    .card-inner { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform .6s ease; }
+    .card-face { position:absolute; width:100%; height:100%; border-radius:16px; backface-visibility:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.1); }
+    .card-front { background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; padding:20px; display:flex; flex-direction:column; justify-content:space-between; }
+    .number { font-size:1.3rem; letter-spacing:3px; }
+    .details { display:flex; justify-content:space-between; font-size:.9rem; }
+    .card-back { background:linear-gradient(135deg,#764ba2,#667eea); transform:rotateY(180deg); padding:20px; display:flex; flex-direction:column; }
+    .mag-strip { background:#000; height:40px; margin-bottom:20px; border-radius:4px; }
+    .signature { background:#fff; height:36px; margin-bottom:12px; border-radius:4px; }
     .cvv-box { display:flex; justify-content:flex-end; }
-    .cvv-box .cvv-label { font-size:.75rem; margin-right:8px; color:#333; }
-    .cvv-box .cvv-value { background:#f0f0f0; padding:4px 8px; border-radius:4px; font-weight:600; }
-    /* Form Styles */
-    .input-group { margin-bottom:16px; }
+    .cvv-label { font-size:.8rem; color:#333; margin-right:10px; }
+    .cvv-value { background:#f0f0f0; padding:6px 10px; border-radius:4px; font-weight:700; }
+
+    /* Form Elements */
+    .input-group { margin-bottom:18px; }
     .input-group label { display:block; margin-bottom:6px; color:#555; font-weight:500; }
-    .input-group input {
-      width:100%; padding:12px; border:1px solid #ccc; border-radius:8px;
-      font-size:1rem; transition:border-color .3s;
-    }
+    .input-group input { width:100%; padding:14px; border:1px solid #ccc; border-radius:8px; font-size:1rem; transition:border-color .3s; }
     .input-group input:focus { border-color:#4a76ff; outline:none; }
-    .input-row { display:flex; gap:12px; }
+    .input-row { display:flex; gap:16px; }
     .input-row .input-group { flex:1; }
-    #pay-button {
-      width:100%; padding:12px; background:#4a76ff; color:#fff;
-      border:none; border-radius:8px; font-size:1rem; font-weight:600;
-      cursor:pointer; display:flex; align-items:center; justify-content:center;
-      gap:8px; transition:background .3s;
-    }
+
+    /* Pay Button */
+    #pay-button { width:100%; padding:14px; background:#4a76ff; color:#fff; border:none; border-radius:8px; font-size:1rem; font-weight:700; cursor:pointer; transition:background .3s; }
     #pay-button:hover { background:#3b5dd6; }
-    .spinner {
-      width:18px; height:18px; border:3px solid rgba(255,255,255,0.5);
-      border-top-color:#fff; border-radius:50%; animation:spin 1s linear infinite;
-    }
-    @keyframes spin { to { transform:rotate(360deg); } }
-    /* Success Popup */
-    #overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:none; }
-    .success-popup {
-      position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0);
-      background:#fff; padding:32px; border-radius:12px; text-align:center;
-      box-shadow:0 8px 24px rgba(0,0,0,0.2); z-index:100;
-      animation:pop .4s forwards;
-    }
+
+    /* Overlay & Success Tick */
+    #overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:none; z-index:2; }
+    .success-popup { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); background:#fff; padding:32px; border-radius:12px; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.2); z-index:3; animation:pop .4s forwards; }
     @keyframes pop { to { transform:translate(-50%,-50%) scale(1); } }
+    .tick { stroke-dasharray:100; stroke-dashoffset:100; animation:dash .8s ease forwards; }
+    @keyframes dash { to { stroke-dashoffset:0; } }
   </style>
 </head>
 <body>
+  <div class="floating-circle"></div>
+  <div class="floating-circle"></div>
   <div id="overlay"></div>
   <div class="payment-container">
     <h2>Payment Details</h2>
@@ -128,18 +82,12 @@
       <div class="card-inner" id="card-inner">
         <div class="card-face card-front">
           <div class="number" id="preview-card-number">XXXX XXXX XXXX XXXX</div>
-          <div class="details">
-            <span id="preview-name">Name</span>
-            <span id="preview-expiry">MM/YY</span>
-          </div>
+          <div class="details"><span id="preview-name">Name</span><span id="preview-expiry">MM/YY</span></div>
         </div>
         <div class="card-face card-back">
           <div class="mag-strip"></div>
           <div class="signature"></div>
-          <div class="cvv-box">
-            <span class="cvv-label">CVV</span>
-            <span class="cvv-value" id="preview-cvv">***</span>
-          </div>
+          <div class="cvv-box"><span class="cvv-label">CVV</span><span class="cvv-value" id="preview-cvv">***</span></div>
         </div>
       </div>
     </div>
@@ -150,30 +98,47 @@
         <div class="input-group"><label for="cvv">CVV</label><input id="cvv" type="text" maxlength="3" placeholder="123"></div>
       </div>
       <div class="input-group"><label for="name">Name on Card</label><input id="name" type="text" placeholder="John Doe"></div>
-      <button type="submit" id="pay-button"><span class="spinner" id="spinner" style="display:none;"></span><span id="button-text">Pay Now</span></button>
+      <button type="submit" id="pay-button">Pay Now</button>
     </form>
   </div>
-  <div id="success-popup" class="success-popup" style="display:none;"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg><h2>Payment Successful!</h2></div>
+  <div id="success-popup" class="success-popup" style="display:none;">
+    <svg width="80" height="80" viewBox="0 0 52 52">
+      <circle cx="26" cy="26" r="25" fill="none" stroke="#4CAF50" stroke-width="2"/>
+      <path class="tick" fill="none" stroke="#4CAF50" stroke-width="5" d="M14 27 l7 7 l17 -17"/>
+    </svg>
+    <h2>Payment Successful!</h2>
+  </div>
   <script>
-    // Method Toggle
-    const cardBtn=document.getElementById('card-btn'), upiBtn=document.getElementById('upi-btn');
-    const cardPreview=document.getElementById('card-preview'), cardInner=document.getElementById('card-inner');
-    cardBtn.addEventListener('click',()=>{cardBtn.classList.add('active');upiBtn.classList.remove('active');cardPreview.classList.add('active');});
-    upiBtn.addEventListener('click',()=>{upiBtn.classList.add('active');cardBtn.classList.remove('active');cardPreview.classList.remove('active');});
+    // Toggle Card/UPI
+    const cardBtn = document.getElementById('card-btn'), upiBtn = document.getElementById('upi-btn');
+    const cardPreview = document.getElementById('card-preview'), cardInner = document.getElementById('card-inner');
+    const form = document.getElementById('payment-form'), overlay = document.getElementById('overlay'), successPopup = document.getElementById('success-popup');
+    const preview = {
+      num: document.getElementById('preview-card-number'),
+      exp: document.getElementById('preview-expiry'),
+      nm: document.getElementById('preview-name'),
+      cvv: document.getElementById('preview-cvv')
+    };
+    cardBtn.addEventListener('click', () => { cardBtn.classList.add('active'); upiBtn.classList.remove('active'); cardPreview.classList.add('active'); });
+    upiBtn.addEventListener('click', () => { upiBtn.classList.add('active'); cardBtn.classList.remove('active'); cardPreview.classList.remove('active'); });
     // 3D tilt
-    cardPreview.addEventListener('mousemove',e=>{const r=cardPreview.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/(r.width/2),dy=(e.clientY-r.top-r.height/2)/(r.height/2);cardInner.style.transform=`rotateY(${dx*12}deg) rotateX(${-dy*12}deg)`;});
-    cardPreview.addEventListener('mouseleave',()=>cardInner.style.transform='rotateY(0) rotateX(0)');
+    cardPreview.addEventListener('mousemove', e => { const rect = cardPreview.getBoundingClientRect(), x = (e.clientX - rect.left - rect.width/2)/(rect.width/2), y = (e.clientY - rect.top - rect.height/2)/(rect.height/2); cardInner.style.transform = `rotateY(${x*12}deg) rotateX(${-y*12}deg)`; });
+    cardPreview.addEventListener('mouseleave', () => { cardInner.style.transform = 'rotateY(0) rotateX(0)'; });
     // Flip CVV
-    const cvv=document.getElementById('cvv');cvv.addEventListener('focus',()=>cardInner.style.transform='rotateY(180deg)');cvv.addEventListener('blur',()=>cardInner.style.transform='rotateY(0)');
-    // Live updates
-    const preview={num:document.getElementById('preview-card-number'),exp:document.getElementById('preview-expiry'),nm:document.getElementById('preview-name'),cvv:document.getElementById('preview-cvv')};
-    document.getElementById('card-number').addEventListener('input',e=>{let v=e.target.value.replace(/\D/g,'').match(/.{1,4}/g)?.join(' ')||'';e.target.value=v;preview.num.innerText=v||'XXXX XXXX XXXX XXXX';});
-    document.getElementById('expiry-date').addEventListener('input',e=>{let v=e.target.value.replace(/\D/g,'');if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2,4);e.target.value=v;preview.exp.innerText=v||'MM/YY';});
-    document.getElementById('name').addEventListener('input',e=>preview.nm.innerText=e.target.value||'Name');
-    cvv.addEventListener('input',e=>preview.cvv.innerText=e.target.value||'***');
-    // Submit & spinner
-    const form=document.getElementById('payment-form'),overlay=document.getElementById('overlay'),success=document.getElementById('success-popup'),spin=document.getElementById('spinner'),btnText=document.getElementById('button-text'),payBtn=document.getElementById('pay-button');
-    form.addEventListener('submit',e=>{e.preventDefault();spin.style.display='inline-block';btnText.innerText='Processing';payBtn.disabled=true;setTimeout(()=>{spin.style.display='none';btnText.innerText='Pay Now';payBtn.disabled=false;overlay.style.display='block';success.style.display='block';setTimeout(()=>{overlay.style.display='none';success.style.display='none';form.reset();['num','exp','nm','cvv'].forEach(k=>preview[k].innerText={'num':'XXXX XXXX XXXX XXXX','exp':'MM/YY','nm':'Name','cvv':'***'}[k]);cardInner.style.transform='rotateY(0) rotateX(0)';},3000);},5000);});
+    const cvvField = document.getElementById('cvv'); cvvField.addEventListener('focus', () => { cardInner.style.transform = 'rotateY(180deg)'; }); cvvField.addEventListener('blur', () => { cardInner.style.transform = 'rotateY(0)'; });
+    // Live Preview
+    document.getElementById('card-number').addEventListener('input', e => { let v = e.target.value.replace(/\D/g,'').match(/.{1,4}/g)?.join(' ')||''; e.target.value = v; preview.num.innerText = v || 'XXXX XXXX XXXX XXXX'; });
+    document.getElementById('expiry-date').addEventListener('input', e => { let v = e.target.value.replace(/\D/g,''); if(v.length>2) v = v.slice(0,2)+'/'+v.slice(2,4); e.target.value=v; preview.exp.innerText=v||'MM/YY'; });
+    document.getElementById('name').addEventListener('input', e => preview.nm.innerText = e.target.value||'Name'); cvvField.addEventListener('input', e => preview.cvv.innerText = e.target.value||'***');
+    // Submit
+    const payBtn = document.getElementById('pay-button');
+    form.addEventListener('submit', e => {
+      e.preventDefault(); payBtn.disabled = true;
+      setTimeout(() => {
+        overlay.style.display='block'; successPopup.style.display='block';
+        setTimeout(() => { overlay.style.display='none'; successPopup.style.display='none'; form.reset(); preview.num.innerText='XXXX XXXX XXXX XXXX'; preview.exp.innerText='MM/YY'; preview.nm.innerText='Name'; preview.cvv.innerText='***'; cardInner.style.transform='rotateY(0) rotateX(0)'; payBtn.disabled=false; }, 3000);
+      }, 1000);
+    });
   </script>
 </body>
 </html>
