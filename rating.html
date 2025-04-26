@@ -45,7 +45,7 @@
       padding: 10px;
       margin-top: 5px;
       border-radius: 6px;
-      border: 1px solid #ccc;
+      border: 1px solid #b95151;
       font-size: 16px;
       box-sizing: border-box;
     }
@@ -76,7 +76,7 @@
 
     .star-rating label {
       font-size: 28px;
-      color: #ccc;
+      color: #cbc7c7;
       cursor: pointer;
       transition: color 0.3s;
     }
@@ -84,7 +84,7 @@
     .star-rating input:checked ~ label,
     .star-rating label:hover,
     .star-rating label:hover ~ label {
-      color: #f5a623;
+      color: #f8b851;
     }
 
     button {
@@ -129,10 +129,10 @@
     <form action="submit_feedback.php" method="POST" enctype="multipart/form-data">
       
       <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" placeholder="John Doe" required aria-label="Your Name">
+      <input type="text" id="name" name="name" placeholder="" required aria-label="Your Name">
 
       <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" placeholder="john@example.com" required aria-label="Your Email">
+      <input type="email" id="email" name="email" placeholder="" required aria-label="Your Email">
 
       <label for="shoeType">Type of Shoe</label>
       <select id="shoeType" name="shoeType" required aria-label="Type of Shoe">
