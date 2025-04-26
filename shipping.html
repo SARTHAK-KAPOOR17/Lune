@@ -1,108 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Free Shipping | Shoe Store</title>
-  <link rel="stylesheet" href="shipping.css" crossorigin="anonymous" />
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sole Haven - Free Shipping Worldwide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .header-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .help-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: #333;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .help-btn:hover {
+      color: #007bff;
+    }
+
+    .help-center {
+      background-color: #f9f9f9;
+      padding: 2rem 0;
+      border-top: 1px solid #eee;
+    }
+
+    .help-center .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .help-center h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    .help-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .help-links a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .help-links a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+  </style>
 </head>
+
 <body>
   <header>
-    <div class="container">
-      <div class="header-content">
-        <div class="logo" style="color:#ffffff;"><span style="color:#ff6b6b;">STEP</span><span style="color:#feca57;">UP</span></div>
-        <div class="header-right">
-          <div class="toggle-container">
-            <div class="toggle-sticker">🌞</div>
-          </div>
-          <div class="search-container">
-            <div class="search-bar">
-              <input type="text" placeholder="Search shoes...">
-              <button type="submit"><i class="fas fa-search"></i></button>
-            </div>
-          </div>
-        </div>
+    <div class="container header-content">
+      <div class="logo">
+        <i class="fas fa-shoe-prints"></i>
+        <span>Sole Haven</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+      </nav>
+      <div class="header-buttons">
+        <button class="search-trigger" id="searchTrigger">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="help-btn" id="helpButton">
+          <i class="fas fa-question-circle"></i>
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- Floating Search Bar -->
+  <div class="search-container" id="searchContainer">
+    <div class="search-bar">
+      <input type="text" placeholder="Search for shoes, brands, colors...">
+      <button><i class="fas fa-search"></i></button>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <h1 style="color:#2c3e50;">Free Shipping on All Orders!</h1>
-      <p style="color:#5d6d7e;">Enjoy <span class="highlight" style="background-color:#ff6b6b;color:white;">complimentary shipping</span> on every pair of shoes, no minimum purchase required. Step into style without extra costs!</p>
-      <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Premium Shoe Collection" class="hero-image">
+      <h1>Free Shipping <span class="highlight">Worldwide</span></h1>
+      <p>Enjoy complimentary shipping on all orders with no minimum purchase required. Your perfect pair of shoes is just a click away!</p>
+      <a href="#" class="btn shop-btn">Shop Now</a>
     </div>
   </section>
 
-  <section class="shipping-info">
+  <!-- Shop Categories Section -->
+  <section class="shop-categories">
     <div class="container">
-      <h2 style="color:#2e4053;">How Our Free Shipping Works</h2>
-      <p style="color:#8395a7;">We believe great shoes should come with great service. Here's what you need to know:</p>
-
-      <div class="info-grid">
-        <div class="info-card">
-          <i class="fas fa-box-open" style="color:#ff6b6b;"></i>
-          <h3 style="color:#2c3e50;">Fast Delivery</h3>
-          <p style="color:#7f8c8d;">Your order will be shipped and arrive at your door in no time!</p>
-        </div>
-        <div class="info-card">
-          <i class="fas fa-truck" style="color:#54a0ff;"></i>
-          <h3 style="color:#2c3e50;">Track Your Shipment</h3>
-          <p style="color:#7f8c8d;">Track your order online every step of the way for peace of mind.</p>
-        </div>
-        <div class="info-card">
-          <i class="fas fa-thumbs-up" style="color:#1dd1a1;"></i>
-          <h3 style="color:#2c3e50;">Easy Returns</h3>
-          <p style="color:#7f8c8d;">Not happy with your order? No worries—return your items with ease.</p>
-        </div>
+      <h2>Explore Our Collections</h2>
+      <div class="categories-grid">
+        <a href="#" class="category-card">
+          <i class="fas fa-male"></i>
+          <span>Men's Shoes</span>
+        </a>
+        <a href="#" class="category-card">
+          <i class="fas fa-female"></i>
+          <span>Women's Shoes</span>
+        </a>
+        <a href="#" class="category-card">
+          <i class="fas fa-child"></i>
+          <span>Kids' Shoes</span>
+        </a>
+        <a href="#" class="category-card">
+          <i class="fas fa-star"></i>
+          <span>Best Sellers</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="cta">
+  <!-- Help Center Section -->
+  <section class="help-center">
     <div class="container">
-      <h2 style="color:#feca57;">Start Shopping Today!</h2>
-      <p style="color:#f1f2f6;">Discover your next favorite pair of shoes. Shop now and enjoy free shipping on all orders.</p>
-      <a href="#" class="btn" style="background-color:#ff6b6b; box-shadow:0 5px 15px rgba(255,107,107,0.4);">Shop Now</a>
+      <h2>Help Center</h2>
+      <div class="help-links">
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+      </div>
     </div>
   </section>
-
-  <footer style="background-color:#1e272e; color:#d2dae2;">
-    <div class="container">
-      <div class="footer-links">
-        <a href="#" style="color:#dff9fb;">Home</a>
-        <a href="#" style="color:#dff9fb;">About Us</a>
-        <a href="#" style="color:#dff9fb;">Contact</a>
-        <a href="#" style="color:#dff9fb;">Privacy Policy</a>
-      </div>
-      <div class="copyright">
-        &copy; 2025 STEPUP Shoe Store. All Rights Reserved.
-      </div>
-    </div>
-  </footer>
 
   <script>
-    const toggleContainer = document.querySelector('.toggle-container');
-    const toggleSticker = document.querySelector('.toggle-sticker');
-    const body = document.body;
+    const searchTrigger = document.getElementById('searchTrigger');
+    const searchContainer = document.getElementById('searchContainer');
 
-    if(localStorage.getItem('darkMode') === 'enabled') {
-      body.classList.add('dark-mode');
-      toggleSticker.textContent = '🌜';
-    }
+    searchTrigger.addEventListener('click', () => {
+      searchContainer.classList.toggle('visible');
+    });
 
-    toggleContainer.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      
-      if(body.classList.contains('dark-mode')) {
-        localStorage.setItem('darkMode', 'enabled');
-        toggleSticker.textContent = '🌜';
-      } else {
-        localStorage.setItem('darkMode', 'disabled');
-        toggleSticker.textContent = '🌞';
-      }
+    const helpButton = document.getElementById('helpButton');
+    helpButton.addEventListener('click', () => {
+      alert("Need help? Visit our Help Center or contact us at support@solehaven.com");
     });
   </script>
 </body>
+
 </html>
