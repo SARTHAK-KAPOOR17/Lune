@@ -7,6 +7,25 @@
   <title>Sole Haven - Free Shipping Worldwide</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .header-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .help-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: #333;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .help-btn:hover {
+      color: #007bff;
+    }
+  </style>
 </head>
 
 <body>
@@ -20,9 +39,14 @@
         <a href="#">Home</a>
         <a href="#">Shop</a>
       </nav>
-      <button class="search-trigger" id="searchTrigger">
-        <i class="fas fa-search"></i>
-      </button>
+      <div class="header-buttons">
+        <button class="search-trigger" id="searchTrigger">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="help-btn" id="helpButton">
+          <i class="fas fa-question-circle"></i>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -74,6 +98,11 @@
 
     searchTrigger.addEventListener('click', () => {
       searchContainer.classList.toggle('visible');
+    });
+
+    const helpButton = document.getElementById('helpButton');
+    helpButton.addEventListener('click', () => {
+      alert("Need help? Contact us at support@solehaven.com");
     });
   </script>
 </body>
