@@ -1,14 +1,20 @@
 const product = [
-  { id: 0, image: 'images/air.png', title: 'Air Force', price: 1999 },
-  { id: 1, image: 'images/blazer.png', title: 'Blazer', price: 6000 },
-  { id: 2, image: 'images/crater.png', title: 'Crater', price: 2299 },
-  { id: 3, image: 'images/air2.png', title: 'Air force 2', price: 999 },
-  { id: 4, image: 'images/hippie2.png', title: 'Hippie', price: 3999 },
-  { id: 5, image: 'images/jordan.png', title: 'Jordan Premium', price: 4999 }
+  { id: 0, image: 'images/air.png', title: 'Air Force', price: 1999, stock: 5, rating: 4.5, review: "Great comfort!" },
+  { id: 1, image: 'images/blazer.png', title: 'Blazer', price: 6000, stock: 3, rating: 4.0, review: "Premium feel." },
+  { id: 2, image: 'images/crater.png', title: 'Crater', price: 2299, stock: 8, rating: 4.2, review: "Stylish and solid." },
+  { id: 3, image: 'images/air2.png', title: 'Air force 2', price: 999, stock: 6, rating: 3.8, review: "Good for daily use." },
+  { id: 4, image: 'images/hippie2.png', title: 'Hippie', price: 3999, stock: 4, rating: 4.6, review: "Super trendy!" },
+  { id: 5, image: 'images/jordan.png', title: 'Jordan Premium', price: 4999, stock: 2, rating: 4.9, review: "Top-notch quality." }
 ];
 
+// Coupon system
+const coupons = {
+  "SAVE10": { discount: 10, expiry: "2025-12-31" },
+  "SUPER20": { discount: 20, expiry: "2025-06-30" }
+};
+
 let cart = [];
-let discountApplied = false;
+let appliedCoupon = null;
 
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -27,7 +33,9 @@ function renderProducts() {
     <div class='box'>
       <div class='img-box'><img class='images' src='${item.image}'></div>
       <p>${item.title}</p>
+      <p>⭐ ${item.rating} | "${item.review}"</p>
       <h2>₹ ${item.price}.00</h2>
+      <p>Stock: ${item.stock}</p>
       <button onclick='addToCart(${i})'>Add to Cart</button>
     </div>
   `).join('');
@@ -36,11 +44,19 @@ function renderProducts() {
 function addToCart(index) {
   const item = product[index];
   const found = cart.find(p => p.id === item.id);
+  const inCartQty = found ? found.quantity : 0;
+
+  if (inCartQty >= item.stock) {
+    alert(`Only ${item.stock} item(s) left in stock!`);
+    return;
+  }
+
   if (found) {
     found.quantity += 1;
   } else {
     cart.push({ ...item, quantity: 1 });
   }
+
   updateCart();
   saveCart();
 }
@@ -54,10 +70,11 @@ function removeFromCart(index) {
 function updateCart() {
   let total = 0;
   document.getElementById("count").innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
+
   if (cart.length === 0) {
     document.getElementById('cartItem').innerHTML = "Your cart is empty";
     document.getElementById("total").innerText = "₹ 0.00";
-    discountApplied = false;
+    appliedCoupon = null;
     return;
   }
 
@@ -68,9 +85,7 @@ function updateCart() {
         <div class='row-img'><img class='rowimg' src='${item.image}' /></div>
         <p>${item.title}</p>
         <div>
-          <button onclick="changeQty(${i}, 'dec')">-</button>
-          <span> ${item.quantity} </span>
-          <button onclick="changeQty(${i}, 'inc')">+</button>
+          <input type="number" class="qty-input" value="${item.quantity}" min="1" onchange="changeQtyInput(${i}, this.value)">
         </div>
         <h2>₹ ${item.price * item.quantity}</h2>
         <i class='fa-solid fa-trash' onclick='removeFromCart(${i})'></i>
@@ -78,40 +93,50 @@ function updateCart() {
     `;
   }).join('');
 
-  // Apply discount if already applied
-  if (discountApplied) {
-    document.getElementById("total").innerText = `₹ ${(total * 0.9).toFixed(2)}`;
-  } else {
-    document.getElementById("total").innerText = `₹ ${total.toFixed(2)}`;
+  if (appliedCoupon) {
+    total = total * (1 - appliedCoupon.discount / 100);
   }
+  document.getElementById("total").innerText = `₹ ${total.toFixed(2)}`;
 }
 
-function changeQty(i, type) {
-  if (type === 'inc') cart[i].quantity++;
-  else {
-    cart[i].quantity--;
-    if (cart[i].quantity <= 0) {
-      removeFromCart(i);
-      return;
-    }
+function changeQtyInput(i, newQty) {
+  newQty = parseInt(newQty);
+  const productData = product.find(p => p.id === cart[i].id);
+
+  if (newQty > productData.stock) {
+    alert(`Only ${productData.stock} items in stock!`);
+    return;
+  }
+
+  if (newQty <= 0) {
+    removeFromCart(i);
+  } else {
+    cart[i].quantity = newQty;
   }
   updateCart();
   saveCart();
 }
 
 function applyCoupon() {
-  if (discountApplied) {
+  const code = document.getElementById("couponCode").value.trim().toUpperCase();
+  if (appliedCoupon) {
     alert("Coupon already applied.");
     return;
   }
 
-  const code = document.getElementById("couponCode").value.trim();
-  if (code === "SAVE10") {
-    discountApplied = true;
-    updateCart(); // triggers 10% discount display
-    alert("Coupon Applied: 10% Discount!");
+  if (coupons[code]) {
+    const today = new Date();
+    const expiryDate = new Date(coupons[code].expiry);
+
+    if (today <= expiryDate) {
+      appliedCoupon = { code: code, discount: coupons[code].discount };
+      updateCart();
+      alert(`Coupon Applied: ${coupons[code].discount}% Off`);
+    } else {
+      alert("Coupon has expired.");
+    }
   } else {
-    alert("Invalid Coupon Code");
+    alert("Invalid Coupon Code.");
   }
 }
 
