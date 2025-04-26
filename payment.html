@@ -14,6 +14,7 @@
       --input-border: #ccc;
       --button-bg: #4a76ff;
       --button-text: #fff;
+      --button-hover-scale: 1.03;
       --overlay-bg: rgba(0,0,0,0.6);
       --tick-stroke: #4CAF50;
     }
@@ -38,62 +39,128 @@
       background-size:400% 400%; animation:gradientBG 15s ease infinite;
       position:relative; overflow:hidden;
       color: var(--text-color);
+      transition: background 1s, color 0.5s;
     }
     @keyframes gradientBG { 0%,100%{background-position:0%50%}50%{background-position:100%50%} }
     .payment-container {
-      background: var(--container-bg); backdrop-filter:blur(10px);
-      border-radius:16px; box-shadow:0 12px 32px rgba(0,0,0,0.1);
-      width:380px; padding:24px; position:relative; z-index:1;
+      background: var(--container-bg);
+      backdrop-filter:blur(12px);
+      border-radius:16px;
+      box-shadow:0 16px 48px rgba(0,0,0,0.1);
+      width:90%; max-width:400px;
+      padding:32px;
+      position:relative; z-index:1;
+      animation:slideUp 0.6s ease-out;
     }
-    h2 { text-align:center; font-size:1.6rem; margin-bottom:20px; }
-    .method-toggle{display:flex; margin-bottom:24px;}
-    .method-toggle button{flex:1;padding:12px;border:none;background:#e0e0e0;color:#555;cursor:pointer;transition:background .3s;}
-    .method-toggle button.active{background:var(--button-bg);color:var(--button-text);}    
-    .card-preview{perspective:1000px;margin-bottom:24px;height:220px;}
+    @keyframes slideUp {
+      from { opacity:0; transform: translateY(40px); }
+      to { opacity:1; transform: translateY(0); }
+    }
+    h2 { text-align:center; font-size:1.75rem; margin-bottom:24px; }
+    .method-toggle{display:flex; margin-bottom:24px; gap:8px;}
+    .method-toggle button{
+      flex:1; padding:12px 0; border:none;
+      background:#e0e0e0; color:#555; font-weight:600;
+      cursor:pointer; transition:background .3s, transform .2s;
+      border-radius:8px;
+    }
+    .method-toggle button.active { background: var(--button-bg); color: var(--button-text); }
+    .method-toggle button:hover { transform: scale( var(--button-hover-scale) ); }
+
+    .card-preview{perspective:1000px; margin-bottom:24px; height:220px;}
     .card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .6s ease;}
-    .card-face{position:absolute;width:100%;height:100%;border-radius:16px;backface-visibility:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.1);}
-    .card-front{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:20px;display:flex;flex-direction:column;justify-content:space-between;}
-    .number{font-size:1.3rem;letter-spacing:3px;}
-    .details{display:flex;justify-content:space-between;font-size:.9rem;}
-    .card-back{background:linear-gradient(135deg,#764ba2,#667eea);transform:rotateY(180deg);padding:20px;}
-    .mag-strip{background:#000;height:40px;margin-bottom:20px;border-radius:4px;}
-    .signature{background:#fff;height:36px;margin-bottom:12px;border-radius:4px;}
-    .cvv-box{display:flex;justify-content:flex-end;}.cvv-label{font-size:.8rem;color:#333;margin-right:10px;}.cvv-value{background:#f0f0f0;padding:6px 10px;border-radius:4px;font-weight:700;}
-    .input-group{margin-bottom:18px;}
-    .input-group label{display:block;margin-bottom:6px;color:var(--text-color);font-weight:500;}
-    .input-group input{width:100%;padding:14px;border:1px solid var(--input-border);border-radius:8px;background:var(--input-bg);color:var(--text-color);}
+    .card-face{position:absolute;width:100%;height:100%;border-radius:16px;backface-visibility:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);}
+    .card-front{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:space-between;}
+    .number{font-size:1.4rem;letter-spacing:4px;}
+    .details{display:flex;justify-content:space-between;font-size:1rem;}
+    .card-back{background:linear-gradient(135deg,#764ba2,#667eea);transform:rotateY(180deg);padding:24px;display:flex;flex-direction:column;}
+    .mag-strip{background:#000;height:48px;margin-bottom:24px;border-radius:4px;}
+    .signature{background:#fff;height:40px;margin-bottom:16px;border-radius:4px;}
+    .cvv-box{display:flex;justify-content:flex-end;}
+    .cvv-label{font-size:0.9rem;color:#fff;margin-right:12px;}
+    .cvv-value{background:#f0f0f0;padding:8px 12px;border-radius:4px;font-weight:700;color:#333;}
+
+    .input-group{margin-bottom:20px;}
+    .input-group label{display:block;margin-bottom:8px;color:var(--text-color);font-weight:500;}
+    .input-group input{
+      width:100%; padding:16px;
+      border:1px solid var(--input-border);
+      border-radius:8px;
+      background: var(--input-bg);
+      color: var(--text-color);
+      transition: border-color 0.3s;
+    }
     .input-group input:focus{border-color:var(--button-bg);outline:none;}
     .input-row{display:flex;gap:16px;}
     .input-row .input-group{flex:1;}
-    #pay-button{width:100%;padding:14px;background:var(--button-bg);color:var(--button-text);border:none;border-radius:8px;font-weight:700;cursor:pointer;transition:background .3s;}
-    #pay-button:hover{background:darken(var(--button-bg),10%);}    
-    #overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--overlay-bg);display:none;z-index:2;}
-    .success-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);background:#fff;padding:32px;border-radius:12px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,0.2);z-index:3;animation:pop .4s forwards;}
-    @keyframes pop{to{transform:translate(-50%,-50%) scale(1);}}
-    .tick{stroke-dasharray:100;stroke-dashoffset:100;animation:dash .8s ease forwards;stroke:var(--tick-stroke);}
-    @keyframes dash{to{stroke-dashoffset:0;}}
-    /* Theme Buttons */
-    .theme-buttons{position:absolute;top:16px;right:16px;display:flex;gap:8px;z-index:4;}
-    .theme-buttons button{padding:6px 12px;border:none;border-radius:6px;cursor:pointer;background:var(--button-bg);color:var(--button-text);font-size:.9rem;}
+
+    #pay-button{
+      width:100%; padding:16px;
+      background: var(--button-bg); color: var(--button-text);
+      border:none; border-radius:8px; font-size:1rem; font-weight:700;
+      cursor:pointer; transition: background 0.3s, transform 0.2s;
+    }
+    #pay-button:hover{ background: var(--button-hover-bg); transform: scale(var(--button-hover-scale)); }
+
+    #overlay{
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background: var(--overlay-bg);
+      opacity:0; visibility:hidden;
+      transition: opacity 0.4s;
+      z-index:2;
+    }
+    #overlay.show{ opacity:1; visibility:visible; }
+
+    .success-popup{
+      position:fixed; top:50%; left:50%;
+      transform: translate(-50%,-50%) scale(0);
+      background:#fff; padding:32px; border-radius:12px;
+      text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.2);
+      z-index:3; animation:pop 0.4s forwards;
+    }
+    @keyframes pop{ to{ transform: translate(-50%,-50%) scale(1); } }
+    .tick{
+      stroke-dasharray:100; stroke-dashoffset:100;
+      animation:dash 0.8s ease forwards;
+      stroke: var(--tick-stroke);
+    }
+    @keyframes dash{ to{ stroke-dashoffset:0; } }
+    .theme-buttons{
+      position:absolute; top:16px; right:16px; display:flex; gap:8px; z-index:4;
+    }
+    .theme-buttons button{
+      padding:8px 14px; border:none; border-radius:6px;
+      cursor:pointer; background:var(--button-bg); color:var(--button-text);
+      font-size:0.9rem; transition: transform 0.2s;
+    }
+    .theme-buttons button:hover{ transform: scale( var(--button-hover-scale) ); }
+
+    /* Responsive */
+    @media(max-width: 400px) {
+      .payment-container { padding: 16px; width: 95%; }
+      .card-front, .card-back { padding:16px; }
+      .input-group input, #pay-button { padding:12px; }
+    }
   </style>
 </head>
 <body data-theme="light">
   <div class="floating-circle"></div>
   <div class="floating-circle"></div>
+
   <!-- Theme Toggler -->
-  <div class="theme-buttons">
-    <button id="light-btn">Light</button>
-    <button id="dark-btn">Dark</button>
+  <div class="theme-buttons" aria-label="Theme switcher">
+    <button id="light-btn" aria-label="Activate light theme">Light</button>
+    <button id="dark-btn" aria-label="Activate dark theme">Dark</button>
   </div>
 
   <div id="overlay"></div>
-  <div class="payment-container">
+  <div class="payment-container" role="region" aria-label="Payment Form">
     <h2>Payment Details</h2>
-    <div class="method-toggle">
-      <button id="card-btn" class="active">Card</button>
-      <button id="upi-btn">UPI</button>
+    <div class="method-toggle" role="tablist">
+      <button id="card-btn" class="active" role="tab" aria-selected="true">Card</button>
+      <button id="upi-btn" role="tab" aria-selected="false">UPI</button>
     </div>
-    <div class="card-preview active" id="card-preview">
+    <div class="card-preview active" id="card-preview" role="tabpanel">
       <div class="card-inner" id="card-inner">
         <div class="card-face card-front">
           <div class="number" id="preview-card-number">XXXX XXXX XXXX XXXX</div>
@@ -106,43 +173,106 @@
         </div>
       </div>
     </div>
-    <form id="payment-form">
-      <div class="input-group"><label for="card-number">Card Number</label><input id="card-number" type="text" maxlength="19"></div>
-      <div class="input-row"><div class="input-group"><label for="expiry-date">Expiry</label><input id="expiry-date" type="text" maxlength="5"></div><div class="input-group"><label for="cvv">CVV</label><input id="cvv" type="text" maxlength="3"></div></div>
-      <div class="input-group"><label for="name">Name on Card</label><input id="name" type="text"></div>
-      <button type="submit" id="pay-button">Pay Now</button>
+    <form id="payment-form" novalidate>
+      <div class="input-group">
+        <label for="card-number">Card Number</label>
+        <input id="card-number" type="text" maxlength="19" inputmode="numeric" aria-describedby="card-number" required>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="expiry-date">Expiry</label>
+          <input id="expiry-date" type="text" maxlength="5" placeholder="MM/YY" inputmode="numeric" required>
+        </div>
+        <div class="input-group">
+          <label for="cvv">CVV</label>
+          <input id="cvv" type="text" maxlength="3" inputmode="numeric" required>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="name">Name on Card</label>
+        <input id="name" type="text" required>
+      </div>
+      <button type="submit" id="pay-button" aria-label="Submit payment">Pay Now</button>
     </form>
   </div>
-  <div id="success-popup" class="success-popup" style="display:none;">
+  <div id="success-popup" class="success-popup" style="display:none;" role="alertdialog" aria-labelledby="success-msg">
     <svg width="80" height="80" viewBox="0 0 52 52">
       <circle cx="26" cy="26" r="25" fill="none" stroke-width="2" stroke="var(--tick-stroke)"/>
       <path class="tick" fill="none" stroke-width="5" d="M14 27 l7 7 l17 -17"/>
     </svg>
-    <h2>Payment Successful!</h2>
+    <h2 id="success-msg">Payment Successful!</h2>
   </div>
   <script>
     // Theme Engine
     const lightBtn = document.getElementById('light-btn'), darkBtn = document.getElementById('dark-btn');
     const html = document.documentElement;
-    const saved = localStorage.getItem('theme') || 'light';
-    html.setAttribute('data-theme', saved);
-    lightBtn.addEventListener('click', () => { html.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); });
-    darkBtn.addEventListener('click', () => { html.setAttribute('data-theme','dark'); localStorage.setItem('theme','dark'); });
-    
-    // rest of JS: toggle, tilt, flip, preview, submit...
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    document.body.classList.toggle('dark-mode', savedTheme==='dark');
+    lightBtn.addEventListener('click', () => {
+      html.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); document.body.classList.remove('dark-mode');
+    });
+    darkBtn.addEventListener('click', () => {
+      html.setAttribute('data-theme','dark'); localStorage.setItem('theme','dark'); document.body.classList.add('dark-mode');
+    });
+
+    // Card/UPI Toggle
     const cardBtn=document.getElementById('card-btn'), upiBtn=document.getElementById('upi-btn');
-    const cardPreview=document.getElementById('card-preview'), cardInner=document.getElementById('card-inner');
+    const cardPreview=document.getElementById('card-preview');
+    cardBtn.addEventListener('click',()=>{ cardBtn.classList.add('active'); upiBtn.classList.remove('active'); cardPreview.classList.add('active'); });
+    upiBtn.addEventListener('click',()=>{ upiBtn.classList.add('active'); cardBtn.classList.remove('active'); cardPreview.classList.remove('active'); });
+
+    // 3D Tilt & Flip
+    const cardInner=document.getElementById('card-inner');
+    cardPreview.addEventListener('mousemove', e => {
+      const r = cardPreview.getBoundingClientRect();
+      const x = (e.clientX-r.left-r.width/2)/(r.width/2);
+      const y = (e.clientY-r.top-r.height/2)/(r.height/2);
+      cardInner.style.transform = `rotateY(${x*12}deg) rotateX(${-y*12}deg)`;
+    });
+    cardPreview.addEventListener('mouseleave', ()=>{ cardInner.style.transform='rotateY(0) rotateX(0)'; });
+    const cvvField = document.getElementById('cvv');
+    cvvField.addEventListener('focus', ()=> cardInner.style.transform='rotateY(180deg)');
+    cvvField.addEventListener('blur', ()=> cardInner.style.transform='rotateY(0)');
+
+    // Live Preview Bindings
+    const preview={ num:document.getElementById('preview-card-number'), exp:document.getElementById('preview-expiry'), nm:document.getElementById('preview-name'), cvv:document.getElementById('preview-cvv') };
+    document.getElementById('card-number').addEventListener('input', e => {
+      let v = e.target.value.replace(/\D/g,'').match(/.{1,4}/g)?.join(' ')||'';
+      e.target.value = v;
+      preview.num.innerText = v || 'XXXX XXXX XXXX XXXX';
+    });
+    document.getElementById('expiry-date').addEventListener('input', e => {
+      let v = e.target.value.replace(/\D/g,'');
+      if(v.length>2) v = v.slice(0,2) + '/' + v.slice(2,4);
+      e.target.value = v;
+      preview.exp.innerText = v || 'MM/YY';
+    });
+    document.getElementById('name').addEventListener('input', e => preview.nm.innerText = e.target.value||'Name');
+    cvvField.addEventListener('input', e => preview.cvv.innerText = e.target.value||'***');
+
+    // Submit & Success
     const form=document.getElementById('payment-form'), overlay=document.getElementById('overlay'), successPopup=document.getElementById('success-popup');
-    const preview={num:document.getElementById('preview-card-number'),exp:document.getElementById('preview-expiry'),nm:document.getElementById('preview-name'),cvv:document.getElementById('preview-cvv')};
-    cardBtn.addEventListener('click',()=>{cardBtn.classList.add('active');upiBtn.classList.remove('active');cardPreview.classList.add('active');});
-    upiBtn.addEventListener('click',()=>{upiBtn.classList.add('active');cardBtn.classList.remove('active');cardPreview.classList.remove('active');});
-    cardPreview.addEventListener('mousemove',e=>{const r=cardPreview.getBoundingClientRect(),x=(e.clientX-r.left-r.width/2)/(r.width/2),y=(e.clientY-r.top-r.height/2)/(r.height/2);cardInner.style.transform=`rotateY(${x*12}deg) rotateX(${-y*12}deg)`;});
-    cardPreview.addEventListener('mouseleave',()=>{cardInner.style.transform='rotateY(0) rotateX(0)';});
-    const cvvField=document.getElementById('cvv');cvvField.addEventListener('focus',()=>cardInner.style.transform='rotateY(180deg)');cvvField.addEventListener('blur',()=>cardInner.style.transform='rotateY(0)');
-    document.getElementById('card-number').addEventListener('input',e=>{let v=e.target.value.replace(/\D/g,'').match(/.{1,4}/g)?.join(' ')||'';e.target.value=v;preview.num.innerText=v||'XXXX XXXX XXXX XXXX';});
-    document.getElementById('expiry-date').addEventListener('input',e=>{let v=e.target.value.replace(/\D/g,'');if(v.length>2)v=v.slice(0,2)+'/ '+v.slice(2,4);e.target.value=v;preview.exp.innerText=v||'MM/YY';});
-    document.getElementById('name').addEventListener('input',e=>preview.nm.innerText=e.target.value||'Name');cvvField.addEventListener('input',e=>preview.cvv.innerText=e.target.value||'***');
-    const payBtn=document.getElementById('pay-button');form.addEventListener('submit',e=>{e.preventDefault();payBtn.disabled=true;setTimeout(()=>{overlay.style.display='block';successPopup.style.display='block';setTimeout(()=>{overlay.style.display='none';successPopup.style.display='none';form.reset();['num','exp','nm','cvv'].forEach(k=>preview[k].innerText={'num':'XXXX XXXX XXXX XXXX','exp':'MM/YY','nm':'Name','cvv':'***'}[k]);cardInner.style.transform='rotateY(0) rotateX(0)';payBtn.disabled=false;},3000);},1000);});
+    const payBtn=document.getElementById('pay-button');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      payBtn.disabled=true;
+      overlay.classList.add('show');
+      setTimeout(()=>{
+        successPopup.style.display='block';
+        setTimeout(()=>{
+          successPopup.style.display='none';
+          overlay.classList.remove('show');
+          form.reset();
+          preview.num.innerText='XXXX XXXX XXXX XXXX'; preview.exp.innerText='MM/YY'; preview.nm.innerText='Name'; preview.cvv.innerText='***';
+          cardInner.style.transform='rotateY(0) rotateX(0)';
+          payBtn.disabled=false;
+        }, 2500);
+      }, 800);
+    });
+    document.getElementById('upi-btn').addEventListener('click', () => {
+        window.location.href = 'Upi.html';
+    });
   </script>
 </body>
 </html>
