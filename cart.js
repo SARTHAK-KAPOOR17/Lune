@@ -7,7 +7,6 @@ const product = [
   { id: 5, image: 'images/jordan.png', title: 'Jordan Premium', price: 4999, stock: 2, rating: 4.9, review: "Top-notch quality." }
 ];
 
-// Coupon system
 const coupons = {
   "SAVE10": { discount: 10, expiry: "2025-12-31" },
   "SUPER20": { discount: 20, expiry: "2025-06-30" }
@@ -16,7 +15,6 @@ const coupons = {
 let cart = [];
 let appliedCoupon = null;
 
-// Smart Recommendation Map
 const recommendationsMap = {
   "Air Force": ["Air force 2", "Blazer"],
   "Blazer": ["Jordan Premium", "Crater"],
@@ -69,14 +67,14 @@ function addToCart(index) {
 
   updateCart();
   saveCart();
-  updateRecommendations(); // New: Update smart recommendations
+  updateRecommendations();
 }
 
 function removeFromCart(index) {
   cart.splice(index, 1);
   updateCart();
   saveCart();
-  updateRecommendations(); // New: Update smart recommendations
+  updateRecommendations();
 }
 
 function updateCart() {
@@ -94,113 +92,85 @@ function updateCart() {
     total += item.price * item.quantity;
     return `
       <div class='cart-item'>
-        <div class='row-img'><img class='rowimg' src='${item.image}' /></div>
-        <p>${item.title}</p>
-        <div>
-          <input type="number" class="qty-input" value="${item.quantity}" min="1" onchange="changeQtyInput(${i}, this.value)">
+        <div class='row-img'>
+          <img class='rowimg' src='${item.image}'>
         </div>
-        <h2>₹ ${item.price * item.quantity}</h2>
-        <i class='fa-solid fa-trash' onclick='removeFromCart(${i})'></i>
+        <p>${item.title}</p>
+        <p>₹ ${item.price} x ${item.quantity}</p>
+        <button onclick='removeFromCart(${i})'>Remove</button>
       </div>
     `;
   }).join('');
 
+  let finalTotal = total;
   if (appliedCoupon) {
-    total = total * (1 - appliedCoupon.discount / 100);
+    finalTotal = finalTotal - finalTotal * (appliedCoupon.discount / 100);
   }
-  document.getElementById("total").innerText = `₹ ${total.toFixed(2)}`;
+  document.getElementById("total").innerText = `₹ ${finalTotal.toFixed(2)}`;
 }
 
-function changeQtyInput(i, newQty) {
-  newQty = parseInt(newQty);
-  const productData = product.find(p => p.id === cart[i].id);
+function shareCart() {
+  const cartData = JSON.stringify(cart);
+  const cartDataEncoded = encodeURIComponent(cartData);
+  const shareableLink = `${window.location.href}?cart=${cartDataEncoded}`;
 
-  if (newQty > productData.stock) {
-    alert(`Only ${productData.stock} items in stock!`);
-    return;
-  }
-
-  if (newQty <= 0) {
-    removeFromCart(i);
-  } else {
-    cart[i].quantity = newQty;
-  }
-  updateCart();
-  saveCart();
-  updateRecommendations(); // New: Update smart recommendations
+  alert(`Share this link to share your cart: ${shareableLink}`);
 }
 
-function applyCoupon() {
-  const code = document.getElementById("couponCode").value.trim().toUpperCase();
-  if (appliedCoupon) {
-    alert("Coupon already applied.");
-    return;
-  }
-
-  if (coupons[code]) {
-    const today = new Date();
-    const expiryDate = new Date(coupons[code].expiry);
-
-    if (today <= expiryDate) {
-      appliedCoupon = { code: code, discount: coupons[code].discount };
+function loadCartFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const cartDataEncoded = urlParams.get('cart');
+  
+  if (cartDataEncoded) {
+    try {
+      const cartData = decodeURIComponent(cartDataEncoded);
+      cart = JSON.parse(cartData);
       updateCart();
-      alert(`Coupon Applied: ${coupons[code].discount}% Off`);
-    } else {
-      alert("Coupon has expired.");
+    } catch (e) {
+      console.error("Error loading cart from URL:", e);
     }
-  } else {
-    alert("Invalid Coupon Code.");
   }
 }
 
-function toggleDarkMode() {
-  const html = document.documentElement;
-  html.dataset.theme = html.dataset.theme === "light" ? "dark" : "light";
-}
-
-// Smart AI Recommendation Logic
-function getSmartRecommendations(cartItems) {
-  const titlesInCart = cartItems.map(item => item.title);
-  const recommendedTitles = new Set();
-
-  titlesInCart.forEach(title => {
-    if (recommendationsMap[title]) {
-      recommendationsMap[title].forEach(recTitle => {
-        if (!titlesInCart.includes(recTitle)) {
-          recommendedTitles.add(recTitle);
-        }
-      });
-    }
-  });
-
-  return product.filter(p => recommendedTitles.has(p.title));
-}
-
-// Update Recommendation Section
-function updateRecommendations() {
-  const smartRecs = getSmartRecommendations(cart);
-
-  if (smartRecs.length === 0) {
-    document.getElementById("recommendationBox").innerHTML = "<p>No recommendations yet! Buy Something to use this feature!!!</p>";
-    return;
-  }
-
-  document.getElementById("recommendationBox").innerHTML = smartRecs.map(item => `
-    <div class='box'>
-      <div class='img-box'><img class='images' src='${item.image}' /></div>
-      <p>${item.title}</p>
-      <h4>₹ ${item.price}</h4>
-      <button onclick="addToCart(${item.id})">Add</button>
-    </div>
-  `).join('');
-}
-
-function showRecommendations() {
-  updateRecommendations(); // Now calling smart recommendations instead of random 3
-}
-
-window.onload = function () {
+window.onload = function() {
+  loadCartFromURL();
   renderProducts();
-  showRecommendations();
+  updateRecommendations();
   loadCart();
 };
+
+function applyCoupon() {
+  const couponCode = document.getElementById('couponCode').value.toUpperCase();
+  if (coupons[couponCode]) {
+    const coupon = coupons[couponCode];
+    if (new Date(coupon.expiry) >= new Date()) {
+      alert(`Coupon applied: ${couponCode} - ${coupon.discount}% off`);
+      appliedCoupon = coupon;
+    } else {
+      alert("Coupon has expired");
+    }
+  } else {
+    alert("Invalid coupon code");
+  }
+}
+
+function updateRecommendations() {
+  const recommendationBox = document.getElementById('recommendationBox');
+  recommendationBox.innerHTML = "";
+
+  const cartTitles = cart.map(item => item.title);
+  const recommendedItems = cartTitles.flatMap(title => recommendationsMap[title] || []);
+  const uniqueRecommendedItems = [...new Set(recommendedItems)];
+
+  uniqueRecommendedItems.forEach(title => {
+    const recommendedProduct = product.find(p => p.title === title);
+    recommendationBox.innerHTML += `
+      <div class='box'>
+        <div class='img-box'><img class='images' src='${recommendedProduct.image}'></div>
+        <p>${recommendedProduct.title}</p>
+        <h2>₹ ${recommendedProduct.price}.00</h2>
+        <button onclick='addToCart(${recommendedProduct.id})'>Add to Cart</button>
+      </div>
+    `;
+  });
+}
