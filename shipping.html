@@ -1,17 +1,10 @@
-# Free Shipping Page with Floating Search Bar and Toggle Button
-
-Here's your enhanced code with both a floating animated search bar and a toggle button for dark/light mode:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<<<<<<< HEAD
   <title>Free Shipping on All Orders</title>
   <style>
-    /* Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -37,7 +30,6 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
       padding: 0 20px;
     }
 
-    /* Header */
     header {
       background-color: #1a1a2e;
       padding: 20px 0;
@@ -70,56 +62,56 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
       color: #e94560;
     }
 
-    /* Dark/Light Mode Toggle */
-    .toggle-container {
+    .header-right {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 30px;
     }
 
-    .toggle-btn {
-      width: 60px;
-      height: 30px;
-      background-color: #e94560;
-      border-radius: 30px;
-      padding: 5px;
-      cursor: pointer;
+    /* Sticker-style Toggle Switch */
+    .toggle-container {
       position: relative;
+      width: 80px;
+      height: 40px;
+      border-radius: 50px;
+      background: #f0f0f0;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+      cursor: pointer;
       transition: all 0.3s ease;
     }
 
-    .toggle-btn::before {
-      content: '';
+    .toggle-sticker {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      top: -10px;
+      left: -5px;
+      width: 50px;
+      height: 50px;
+      background: #ffde59;
       border-radius: 50%;
-      background-color: white;
-      top: 5px;
-      left: 5px;
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      color: #333;
+      transform: rotate(0deg);
     }
 
-    body.dark-mode .toggle-btn {
-      background-color: #333;
+    body.dark-mode .toggle-container {
+      background: #444;
     }
 
-    body.dark-mode .toggle-btn::before {
-      left: 35px;
+    body.dark-mode .toggle-sticker {
+      left: calc(100% - 45px);
+      background: #3a3a3a;
+      color: #ffde59;
+      transform: rotate(180deg);
     }
 
-    .toggle-icon {
-      color: white;
-      font-size: 18px;
-    }
-
-    /* Enhanced Floating Search Bar */
     .search-container {
-      position: fixed;
-      top: 20px;
-      right: 100px;
+      position: relative;
       z-index: 1000;
-      transition: all 0.4s ease;
     }
 
     body.dark-mode .search-container {
@@ -128,13 +120,11 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
 
     .search-bar {
       display: flex;
-      max-width: 400px;
-      width: 60px;
-      height: 60px;
+      width: 200px;
+      height: 40px;
       background: white;
-      border-radius: 60px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      border-radius: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       overflow: hidden;
     }
 
@@ -142,20 +132,13 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
       background: #333;
     }
 
-    .search-bar.active {
-      width: 400px;
-    }
-
     .search-bar input {
       flex: 1;
-      padding: 20px;
+      padding: 0 15px;
       border: none;
       outline: none;
-      font-size: 18px;
+      font-size: 16px;
       background: transparent;
-      opacity: 0;
-      transition: all 0.5s;
-      transform: translateX(-20px);
       color: #333;
     }
 
@@ -163,56 +146,20 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
       color: #f5f5f5;
     }
 
-    .search-bar.active input {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
     .search-bar button {
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 40px;
       border: none;
-      border-radius: 50%;
       background: #e94560;
       color: white;
-      font-size: 22px;
+      font-size: 18px;
       cursor: pointer;
-      transition: all 0.5s;
-      position: absolute;
-      right: 0;
-    }
-
-    .search-bar.active button {
-      background: #d13354;
-      transform: rotate(360deg);
     }
 
     .search-bar button:hover {
-      background: #c12a48;
+      background: #d13354;
     }
 
-    .search-bar .close-btn {
-      position: absolute;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      color: #999;
-      font-size: 20px;
-      cursor: pointer;
-      opacity: 0;
-      transition: all 0.3s;
-    }
-
-    body.dark-mode .search-bar .close-btn {
-      color: #aaa;
-    }
-
-    .search-bar.active .close-btn {
-      opacity: 1;
-      right: 70px;
-    }
-
-    /* Hero Section */
     .hero {
       background: linear-gradient(135deg, #f8f3ff, #e6e6ff);
       padding: 80px 0;
@@ -224,23 +171,6 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
 
     body.dark-mode .hero {
       background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%23e94560" opacity="0.05" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>');
-      background-size: cover;
-      z-index: 0;
-    }
-
-    .hero .container {
-      position: relative;
-      z-index: 1;
     }
 
     .hero h1 {
@@ -289,7 +219,6 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
       box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
 
-    /* Shipping Info */
     .shipping-info {
       padding: 80px 0;
       background-color: #fff;
@@ -393,7 +322,6 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
       color: #bbb;
     }
 
-    /* CTA Section */
     .cta {
       background: linear-gradient(135deg, #1a1a2e, #16213e);
       color: #fff;
@@ -406,33 +334,6 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
 
     body.dark-mode .cta {
       background: linear-gradient(135deg, #0d0d1a, #0a0a14);
-    }
-
-    .cta::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      left: -50px;
-      width: 200px;
-      height: 200px;
-      background: rgba(233, 69, 96, 0.1);
-      border-radius: 50%;
-    }
-
-    .cta::after {
-      content: '';
-      position: absolute;
-      bottom: -80px;
-      right: -80px;
-      width: 250px;
-      height: 250px;
-      background: rgba(233, 69, 96, 0.1);
-      border-radius: 50%;
-    }
-
-    .cta .container {
-      position: relative;
-      z-index: 1;
     }
 
     .cta h2 {
@@ -471,7 +372,6 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
       box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
     }
 
-    /* Footer */
     footer {
       background-color: #0f0f1a;
       color: #aaa;
@@ -507,15 +407,10 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
     }
 
     @media (max-width: 768px) {
-      .search-container {
-        top: 15px;
-        right: 90px;
+      .header-right {
+        gap: 20px;
       }
       
-      .search-bar.active {
-        width: calc(100vw - 30px);
-      }
-
       .hero h1 {
         font-size: 2.2rem;
       }
@@ -535,44 +430,57 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
     }
 
     @media (max-width: 480px) {
-      .toggle-container {
-        gap: 10px;
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
       }
       
-      .search-container {
-        right: 80px;
+      .header-right {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .search-bar {
+        width: 160px;
+      }
+      
+      .toggle-container {
+        width: 70px;
+        height: 35px;
+      }
+      
+      .toggle-sticker {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+      
+      body.dark-mode .toggle-sticker {
+        left: calc(100% - 40px);
       }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-=======
-  <title>Free Shipping | Shoe Store</title>
-  <link rel="stylesheet" href="shipping.css" crossorigin="anonymous" />
-  
->>>>>>> 06c6bf9ebdf2cc22439aa1f9c5bd2513babbec62
 </head>
 <body>
   <header>
     <div class="container">
       <div class="header-content">
         <div class="logo">STEP<span>UP</span></div>
-        <div class="toggle-container">
-          <i class="fas fa-sun toggle-icon"></i>
-          <div class="toggle-btn"></div>
-          <i class="fas fa-moon toggle-icon"></i>
+        <div class="header-right">
+          <div class="toggle-container">
+            <div class="toggle-sticker">🌞</div>
+          </div>
+          <div class="search-container">
+            <div class="search-bar">
+              <input type="text" placeholder="Search shoes...">
+              <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </header>
-
-  <!-- Floating Search Bar -->
-  <div class="search-container">
-    <div class="search-bar">
-      <input type="text" placeholder="Search shoes, brands, styles...">
-      <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
-      <span class="close-btn"><i class="fas fa-times"></i></span>
-    </div>
-  </div>
 
   <section class="hero">
     <div class="container">
@@ -589,21 +497,19 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
 
       <div class="info-grid">
         <div class="info-card">
-          <i class="fas fa-shipping-fast"></i>
+          <i class="fas fa-box-open"></i>
           <h3>Fast Delivery</h3>
-          <p>Orders typically ship within 1-2 business days and arrive in 3-5 business days via standard shipping.</p>
+          <p>Your order will be shipped and arrive at your door in no time!</p>
         </div>
-
         <div class="info-card">
-          <i class="fas fa-globe-americas"></i>
-          <h3>Nationwide Coverage</h3>
-          <p>Free shipping available to all 50 states. No restrictions, no hidden fees.</p>
+          <i class="fas fa-truck"></i>
+          <h3>Track Your Shipment</h3>
+          <p>Track your order online every step of the way for peace of mind.</p>
         </div>
-
         <div class="info-card">
-          <i class="fas fa-exchange-alt"></i>
+          <i class="fas fa-thumbs-up"></i>
           <h3>Easy Returns</h3>
-          <p>Not satisfied? We offer free returns within 30 days. Your satisfaction is guaranteed.</p>
+          <p>Not happy with your order? No worries—return your items with ease.</p>
         </div>
       </div>
     </div>
@@ -611,121 +517,47 @@ Here's your enhanced code with both a floating animated search bar and a toggle 
 
   <section class="cta">
     <div class="container">
-      <h2>Ready to Step Up Your Shoe Game?</h2>
-      <p>Browse our latest collection and enjoy free shipping on every order.</p>
-      <a href="/shop" class="btn">Shop Now</a>
+      <h2>Start Shopping Today!</h2>
+      <p>Discover your next favorite pair of shoes. Shop now and enjoy free shipping on all orders.</p>
+      <a href="#" class="btn">Shop Now</a>
     </div>
   </section>
 
   <footer>
     <div class="container">
       <div class="footer-links">
-        <a href="/about">About Us</a>
-        <a href="/contact">Contact</a>
-        <a href="/faq">FAQs</a>
-        <a href="/policy">Shipping Policy</a>
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
       </div>
-      <p class="copyright">&copy; 2025 StepUp Shoes. All rights reserved.</p>
+      <div class="copyright">
+        &copy; 2025 STEPUP Shoe Store. All Rights Reserved.
+      </div>
     </div>
   </footer>
 
   <script>
-    // Enhanced Search Bar Functionality
-    const searchBar = document.querySelector('.search-bar');
-    const searchBtn = document.querySelector('.search-btn');
-    const closeBtn = document.querySelector('.close-btn');
-    const searchInput = document.querySelector('.search-bar input');
-
-    // Toggle search bar
-    searchBtn.addEventListener('click', () => {
-      searchBar.classList.add('active');
-      searchInput.focus();
-    });
-
-    // Close search bar
-    closeBtn.addEventListener('click', () => {
-      searchBar.classList.remove('active');
-      searchInput.value = '';
-    });
-
-    // Search functionality
-    searchBtn.addEventListener('click', function(e) {
-      if(searchBar.classList.contains('active') && searchInput.value.trim() !== '') {
-        e.preventDefault();
-        alert(`Searching for: ${searchInput.value}\nThis would normally redirect to search results.`);
-        // In a real implementation:
-        // window.location.href = `/search?q=${encodeURIComponent(searchInput.value)}`;
-      }
-    });
-
-    // Search on Enter key
-    searchInput.addEventListener('keypress', function(e) {
-      if(e.key === 'Enter' && searchInput.value.trim() !== '') {
-        alert(`Searching for: ${searchInput.value}\nThis would normally redirect to search results.`);
-        // window.location.href = `/search?q=${encodeURIComponent(searchInput.value)}`;
-      }
-    });
-
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-      if(!searchBar.contains(e.target) && !e.target.classList.contains('search-btn')) {
-        searchBar.classList.remove('active');
-        searchInput.value = '';
-      }
-    });
-
-    // Dark/Light Mode Toggle
-    const toggleBtn = document.querySelector('.toggle-btn');
+    const toggleContainer = document.querySelector('.toggle-container');
+    const toggleSticker = document.querySelector('.toggle-sticker');
     const body = document.body;
 
-    // Check for saved user preference
     if(localStorage.getItem('darkMode') === 'enabled') {
       body.classList.add('dark-mode');
-      toggleBtn.style.backgroundColor = '#333';
-      toggleBtn.querySelector('::before').style.left = '35px';
+      toggleSticker.textContent = '🌜';
     }
 
-    // Toggle dark/light mode
-    toggleBtn.addEventListener('click', () => {
+    toggleContainer.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       
-      // Save user preference
       if(body.classList.contains('dark-mode')) {
         localStorage.setItem('darkMode', 'enabled');
+        toggleSticker.textContent = '🌜';
       } else {
         localStorage.setItem('darkMode', 'disabled');
+        toggleSticker.textContent = '🌞';
       }
     });
   </script>
 </body>
-</html>
-```
-
-## Key Features Added:
-
-1. **Dark/Light Mode Toggle**:
-   - Slider-style toggle button with sun/moon icons
-   - Smooth transition between modes
-   - Saves user preference in localStorage
-   - Complete dark mode styling for all sections
-
-2. **Enhanced Floating Search Bar**:
-   - Positioned next to the toggle button
-   - Maintains all previous animation features
-   - Adapts to dark mode colors
-
-3. **Improved UI Elements**:
-   - Better spacing for the header elements
-   - Responsive adjustments for mobile
-   - Consistent styling across both color modes
-
-4. **Visual Feedback**:
-   - Clear visual indicators for active states
-   - Smooth transitions between states
-   - Appropriate contrast in both modes
-
-5. **Persistent Preferences**:
-   - Remembers user's dark/light mode choice
-   - Loads preferred mode on subsequent visits
-
-The toggle button is integrated seamlessly with the existing design and works in harmony with the floating search bar to provide a complete user experience. Both features are fully responsive and adapt to different screen sizes.
+</html> add some more proffesional colour combinations so that it look like a great website
