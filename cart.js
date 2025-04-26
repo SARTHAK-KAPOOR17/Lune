@@ -45,8 +45,18 @@ function renderProducts() {
       <h2>₹ ${item.price}.00</h2>
       <p>Stock: ${item.stock}</p>
       <button onclick='addToCart(${i})'>Add to Cart</button>
+      <button onclick='comparePrice(${i})'>Compare Price</button>
+      <div class="compare-price" id="compare-${i}"></div>
     </div>
   `).join('');
+}
+
+function comparePrice(index) {
+  const item = product[index];
+  const randomDiscount = Math.random() * 0.15; 
+  const newPrice = (item.price * (1 - randomDiscount)).toFixed(2);
+
+  document.getElementById(`compare-${index}`).innerHTML = `Best price: ₹ ${newPrice}`;
 }
 
 function addToCart(index) {
@@ -58,13 +68,11 @@ function addToCart(index) {
     alert(`Only ${item.stock} item(s) left in stock!`);
     return;
   }
-
   if (found) {
     found.quantity += 1;
   } else {
     cart.push({ ...item, quantity: 1 });
   }
-
   updateCart();
   saveCart();
   updateRecommendations();
@@ -113,14 +121,12 @@ function shareCart() {
   const cartData = JSON.stringify(cart);
   const cartDataEncoded = encodeURIComponent(cartData);
   const shareableLink = `${window.location.href}?cart=${cartDataEncoded}`;
-
   alert(`Share this link to share your cart: ${shareableLink}`);
 }
 
 function loadCartFromURL() {
   const urlParams = new URLSearchParams(window.location.search);
   const cartDataEncoded = urlParams.get('cart');
-  
   if (cartDataEncoded) {
     try {
       const cartData = decodeURIComponent(cartDataEncoded);
@@ -157,11 +163,9 @@ function applyCoupon() {
 function updateRecommendations() {
   const recommendationBox = document.getElementById('recommendationBox');
   recommendationBox.innerHTML = "";
-
   const cartTitles = cart.map(item => item.title);
   const recommendedItems = cartTitles.flatMap(title => recommendationsMap[title] || []);
   const uniqueRecommendedItems = [...new Set(recommendedItems)];
-
   uniqueRecommendedItems.forEach(title => {
     const recommendedProduct = product.find(p => p.title === title);
     recommendationBox.innerHTML += `
