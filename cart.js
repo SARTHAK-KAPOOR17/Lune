@@ -8,6 +8,19 @@ const product = [
 ];
 
 let cart = [];
+let discountApplied = false;
+
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function loadCart() {
+  const saved = localStorage.getItem("cart");
+  if (saved) {
+    cart = JSON.parse(saved);
+    updateCart();
+  }
+}
 
 function renderProducts() {
   document.getElementById('root').innerHTML = product.map((item, i) => `
@@ -29,11 +42,13 @@ function addToCart(index) {
     cart.push({ ...item, quantity: 1 });
   }
   updateCart();
+  saveCart();
 }
 
 function removeFromCart(index) {
   cart.splice(index, 1);
   updateCart();
+  saveCart();
 }
 
 function updateCart() {
@@ -42,6 +57,7 @@ function updateCart() {
   if (cart.length === 0) {
     document.getElementById('cartItem').innerHTML = "Your cart is empty";
     document.getElementById("total").innerText = "₹ 0.00";
+    discountApplied = false;
     return;
   }
 
@@ -61,7 +77,13 @@ function updateCart() {
       </div>
     `;
   }).join('');
-  document.getElementById("total").innerText = `₹ ${total}.00`;
+
+  // Apply discount if already applied
+  if (discountApplied) {
+    document.getElementById("total").innerText = `₹ ${(total * 0.9).toFixed(2)}`;
+  } else {
+    document.getElementById("total").innerText = `₹ ${total.toFixed(2)}`;
+  }
 }
 
 function changeQty(i, type) {
@@ -74,6 +96,23 @@ function changeQty(i, type) {
     }
   }
   updateCart();
+  saveCart();
+}
+
+function applyCoupon() {
+  if (discountApplied) {
+    alert("Coupon already applied.");
+    return;
+  }
+
+  const code = document.getElementById("couponCode").value.trim();
+  if (code === "SAVE10") {
+    discountApplied = true;
+    updateCart(); // triggers 10% discount display
+    alert("Coupon Applied: 10% Discount!");
+  } else {
+    alert("Invalid Coupon Code");
+  }
 }
 
 function toggleDarkMode() {
@@ -93,5 +132,8 @@ function showRecommendations() {
   `).join('');
 }
 
-renderProducts();
-showRecommendations();
+window.onload = function () {
+  renderProducts();
+  showRecommendations();
+  loadCart();
+};
