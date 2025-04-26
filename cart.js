@@ -68,113 +68,73 @@ function addToCart(index) {
     alert(`Only ${item.stock} item(s) left in stock!`);
     return;
   }
+  
   if (found) {
-    found.quantity += 1;
+    found.quantity++;
   } else {
     cart.push({ ...item, quantity: 1 });
   }
-  updateCart();
-  saveCart();
-  updateRecommendations();
-}
 
-function removeFromCart(index) {
-  cart.splice(index, 1);
-  updateCart();
   saveCart();
-  updateRecommendations();
+  updateCart();
 }
 
 function updateCart() {
-  let total = 0;
-  document.getElementById("count").innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-  if (cart.length === 0) {
-    document.getElementById('cartItem').innerHTML = "Your cart is empty";
-    document.getElementById("total").innerText = "₹ 0.00";
-    appliedCoupon = null;
-    return;
-  }
-
-  document.getElementById('cartItem').innerHTML = cart.map((item, i) => {
-    total += item.price * item.quantity;
-    return `
-      <div class='cart-item'>
-        <div class='row-img'>
-          <img class='rowimg' src='${item.image}'>
-        </div>
-        <p>${item.title}</p>
-        <p>₹ ${item.price} x ${item.quantity}</p>
-        <button onclick='removeFromCart(${i})'>Remove</button>
+  const cartContainer = document.getElementById('cartItem');
+  cartContainer.innerHTML = cart.length ? cart.map((item) => `
+    <div class="cart-item">
+      <div class="row-img"><img class="rowimg" src="${item.image}"></div>
+      <p>${item.title} (₹${item.price}.00)</p>
+      <div>
+        <p>Qty: ${item.quantity}</p>
+        <button onclick="removeFromCart(${item.id})">Remove</button>
       </div>
-    `;
-  }).join('');
+    </div>
+  `).join('') : 'Your cart is empty';
+  
+  const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  document.getElementById('total').innerText = `₹ ${total.toFixed(2)}`;
 
-  let finalTotal = total;
-  if (appliedCoupon) {
-    finalTotal = finalTotal - finalTotal * (appliedCoupon.discount / 100);
+  const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+  document.getElementById('count').innerText = count;
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(item => item.id !== id);
+  saveCart();
+  updateCart();
+}
+
+function applyCoupon() {
+  const code = document.getElementById("couponCode").value.toUpperCase();
+
+  if (coupons[code] && new Date(coupons[code].expiry) > new Date()) {
+    appliedCoupon = coupons[code];
+    alert(`Coupon applied! ${appliedCoupon.discount}% off`);
+  } else {
+    alert("Invalid or expired coupon code.");
   }
-  document.getElementById("total").innerText = `₹ ${finalTotal.toFixed(2)}`;
+}
+
+function loadShippingOptions() {
+  const options = ["Standard - ₹50", "Express - ₹150", "Overnight - ₹500"];
+  const shippingSelect = document.getElementById("shippingOptions");
+  shippingSelect.innerHTML = options.map(option => `<option>${option}</option>`).join('');
+}
+
+function calculateShipping() {
+  const selectedOption = document.getElementById("shippingOptions").value;
+  const shippingCost = selectedOption.includes("Standard") ? 50 : selectedOption.includes("Express") ? 150 : 500;
+  document.getElementById("shippingCost").innerText = `Shipping Cost: ₹${shippingCost}`;
 }
 
 function shareCart() {
-  const cartData = JSON.stringify(cart);
-  const cartDataEncoded = encodeURIComponent(cartData);
-  const shareableLink = `${window.location.href}?cart=${cartDataEncoded}`;
-  alert(`Share this link to share your cart: ${shareableLink}`);
-}
-
-function loadCartFromURL() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const cartDataEncoded = urlParams.get('cart');
-  if (cartDataEncoded) {
-    try {
-      const cartData = decodeURIComponent(cartDataEncoded);
-      cart = JSON.parse(cartData);
-      updateCart();
-    } catch (e) {
-      console.error("Error loading cart from URL:", e);
-    }
-  }
+  const cartDetails = cart.map(item => `${item.title}: ₹${item.price} x ${item.quantity}`).join('\n');
+  alert(`Share this cart:\n${cartDetails}`);
 }
 
 window.onload = function() {
-  loadCartFromURL();
   renderProducts();
-  updateRecommendations();
   loadCart();
+  loadShippingOptions();
 };
-
-function applyCoupon() {
-  const couponCode = document.getElementById('couponCode').value.toUpperCase();
-  if (coupons[couponCode]) {
-    const coupon = coupons[couponCode];
-    if (new Date(coupon.expiry) >= new Date()) {
-      alert(`Coupon applied: ${couponCode} - ${coupon.discount}% off`);
-      appliedCoupon = coupon;
-    } else {
-      alert("Coupon has expired");
-    }
-  } else {
-    alert("Invalid coupon code");
-  }
-}
-
-function updateRecommendations() {
-  const recommendationBox = document.getElementById('recommendationBox');
-  recommendationBox.innerHTML = "";
-  const cartTitles = cart.map(item => item.title);
-  const recommendedItems = cartTitles.flatMap(title => recommendationsMap[title] || []);
-  const uniqueRecommendedItems = [...new Set(recommendedItems)];
-  uniqueRecommendedItems.forEach(title => {
-    const recommendedProduct = product.find(p => p.title === title);
-    recommendationBox.innerHTML += `
-      <div class='box'>
-        <div class='img-box'><img class='images' src='${recommendedProduct.image}'></div>
-        <p>${recommendedProduct.title}</p>
-        <h2>₹ ${recommendedProduct.price}.00</h2>
-        <button onclick='addToCart(${recommendedProduct.id})'>Add to Cart</button>
-      </div>
-    `;
-  });
-}
