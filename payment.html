@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Enhanced Payment Page</title>
-  <link rel="stylesheet" href="payment.css">
+    <link rel="stylesheet" href="payment.css">
 </head>
 <body>
 
@@ -48,7 +48,10 @@
     <div id="upi-fields" style="display:none;">
       <div class="input-group"><label for="upi-id-field">UPI ID <sup>*</sup></label><input type="text" id="upi-id-field" placeholder="yourid@bank"></div>
     </div>
-    <button type="submit" id="pay-button">Pay Now</button>
+    <button type="submit" id="pay-button">
+      <span class="spinner" id="spinner" style="display:none;"></span>
+      <span id="button-text">Pay Now</span>
+    </button>
   </form>
 </div>
 
