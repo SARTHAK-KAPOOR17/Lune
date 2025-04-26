@@ -7,6 +7,7 @@ Clean, minimal, and intuitive design for smooth navigation and user engagement.
 
 🛒 Cart & Payment Functionality
 Easily add or remove items from the cart, view totals, and proceed with a mock payment process.
+Added the various payment functionality such as debit card, credit card and online bankings.
 
 🧾 Sign Up Page
 Simple and secure user registration form to get started quickly.
