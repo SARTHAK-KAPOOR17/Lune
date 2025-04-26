@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Shipping | Lune</title>
+  <title>Sole Haven - Free Shipping Worldwide</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Your original CSS here (keep all styling as you had) -->
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <!-- Header -->
   <header>
     <div class="container header-content">
       <div class="logo">
         <i class="fas fa-shoe-prints"></i>
-        <span>Lune</span>
+        <span>Sole Haven</span>
       </div>
       <nav class="nav-links">
         <a href="#">Home</a>
-        <!-- Removed: Shop, New Arrivals, Collections, About -->
+        <a href="#">Shop</a>
       </nav>
       <button class="search-trigger" id="searchTrigger">
         <i class="fas fa-search"></i>
@@ -38,71 +39,18 @@
     <div class="container">
       <h1>Free Shipping <span class="highlight">Worldwide</span></h1>
       <p>Enjoy complimentary shipping on all orders with no minimum purchase required. Your perfect pair of shoes is just a click away!</p>
-      <!-- Removed Shop Now and Learn More buttons -->
+      <a href="#" class="btn shop-btn">Shop Now</a>
     </div>
   </section>
 
-  <!-- Shipping Info Section -->
-  <section class="shipping-info">
-    <div class="container">
-      <h2 class="section-title">How Our Free Shipping Works</h2>
-      <p class="section-subtitle">We've made shipping easy, fast, and completely free for you</p>
+  <script>
+    const searchTrigger = document.getElementById('searchTrigger');
+    const searchContainer = document.getElementById('searchContainer');
 
-      <div class="info-grid">
-        <div class="info-card">
-          <i class="fas fa-globe"></i>
-          <h3>Global Delivery</h3>
-          <p>We ship to over 200 countries worldwide with reliable partners to ensure your shoes arrive safely.</p>
-        </div>
-
-        <div class="info-card">
-          <i class="fas fa-rocket"></i>
-          <h3>Fast Processing</h3>
-          <p>Orders are processed within 24 hours and typically delivered in 3-7 business days.</p>
-        </div>
-
-        <div class="info-card">
-          <i class="fas fa-undo"></i>
-          <h3>Easy Returns</h3>
-          <p>Not satisfied? We offer free returns within 30 days. No questions asked.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="cta">
-    <div class="container">
-      <h2>Ready to Step Up Your Shoe Game?</h2>
-      <p>Browse our latest collections and find your perfect pair with free shipping included.</p>
-      <!-- Removed: Start Shopping button -->
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-column">
-          <h3>Lune</h3>
-          <p>Your destination for premium footwear with unmatched comfort and style.</p>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
-          </div>
-        </div>
-
-        <!-- Removed Shop, Help, About sections in footer -->
-      </div>
-    </div>
-
-    <div class="copyright">
-      &copy; 2025 Sole Haven. All rights reserved.
-    </div>
-  </footer>
-
-  <!-- Removed Floating Dark Mode Toggle -->
+    searchTrigger.addEventListener('click', () => {
+      searchContainer.classList.toggle('visible');
+    });
+  </script>
 </body>
+
 </html>
