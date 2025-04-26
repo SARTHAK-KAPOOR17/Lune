@@ -1,30 +1,141 @@
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Modern Feedback Form</title>
-  <link rel="stylesheet" href="rating.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form-card, .form-card2 {
+      background: #d2cfcf;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #c6b1b1;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    input[type="file"] {
+      padding: 6px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .star-rating-wrapper {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .star-rating {
+      direction: rtl;
+      display: inline-flex;
+      gap: 5px;
+    }
+
+    .star-rating input {
+      display: none;
+    }
+
+    .star-rating label {
+      font-size: 28px;
+      color: #fbf8f8;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .star-rating input:checked ~ label,
+    .star-rating label:hover,
+    .star-rating label:hover ~ label {
+      color: #f8b851;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #3826d6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #4018de;
+    }
+
+    .form-card2 img {
+      border-radius: 8px;
+      margin-top: 8px;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .form-card2 p {
+      margin: 5px 0;
+    }
+
+    @media (max-width: 600px) {
+      .form-card, .form-card2 {
+        padding: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
 
+  <!-- Feedback Form -->
   <div class="form-card">
     <h2>Your Feedback</h2>
     <form action="submit_feedback.php" method="POST" enctype="multipart/form-data">
+      
       <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required>
+      <input type="text" id="name" name="name" placeholder="" required aria-label="Your Name">
 
       <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" required>
+      <input type="email" id="email" name="email" placeholder="" required aria-label="Your Email">
 
-      <!-- Dropdown for Shoe Types -->
       <label for="shoeType">Type of Shoe</label>
-      <select id="shoeType" name="shoeType" required>
+      <select id="shoeType" name="shoeType" required aria-label="Type of Shoe">
         <option value="" disabled selected>Select a shoe type</option>
         <option value="sneakers">Sneakers</option>
         <option value="boots">Boots</option>
@@ -35,10 +146,6 @@
         <option value="sports">Sports Shoes</option>
       </select>
 
-      <!--<label for="feedback">Your Feedback</label>
-      <textarea id="feedback" name="feedback" required></textarea>-->
-
-      <!-- Centered Star Rating -->
       <label for="rating">Rate Us</label>
       <div class="star-rating-wrapper">
         <div class="star-rating">
@@ -50,39 +157,39 @@
         </div>
       </div>
 
-      <!-- Overall Review -->
-      <label for="overallReview">Overall experience</label>
-      <textarea id="overallReview" name="overallReview" placeholder="Share your overall experience..."></textarea>
+      <label for="overallReview">Overall Experience</label>
+      <textarea id="overallReview" name="overallReview" placeholder="Share your overall experience..." aria-label="Overall Experience"></textarea>
 
-      <!-- Image Upload -->
       <label for="reviewImages">Upload Images (optional)</label>
-      <input type="file" id="reviewImages" name="reviewImages[]" accept="image/*" multiple>
+      <input type="file" id="reviewImages" name="reviewImages[]" accept="image/*" multiple aria-label="Upload Images">
+      <size>Max 5 images, 2MB each</size>
 
       <button type="submit">Submit Feedback</button>
     </form>
-  </div>
-  
-<div class="form-card2" style="margin-top: 20px;">
-  <h2>Customer Reviews</h2>
+  <!-- </div> -->
 
-  <div>
-    <p><strong>Jane D.</strong> (Sneakers) - ★★★★★</p>
-    <p>"Absolutely loved these sneakers! Super comfy and stylish."</p>
-    <img src="sneaker1.jpg" alt="Sneaker Review Image" width="200"><br><br>
-  </div>
+  <!-- Customer Reviews -->
+  <div class="form-card">
+    <h2>Customer Reviews</h2>
 
-  <div>
-    <p><strong>Mark T.</strong> (Boots) - ★★★★☆</p>
-    <p>"The boots are great for hiking and look amazing."</p>
-    <img src="boots1.jpg" alt="Boots Review Image" width="200"><br><br>
-  </div>
+    <div>
+      <p><strong>Jane D.</strong> (Sneakers) - ★★★★★</p>
+      <p>"Absolutely loved these sneakers! Super comfy and stylish."</p>
+      <img src="sneaker1.jpg" alt="Jane's sneaker review image">
+    </div><br>
 
-  <div>
-    <p><strong>Emily R.</strong> (Heels) - ★★★★★</p>
-    <p>"Perfect fit and great design. Got many compliments!"</p>
-    <img src="heels1.jpg" alt="Heels Review Image" width="200"><br><br>
+    <div>
+      <p><strong>Mark T.</strong> (Boots) - ★★★★☆</p>
+      <p>"The boots are great for hiking and look amazing."</p>
+      <img src="boots1.jpg" alt="Mark's boots review image">
+    </div><br>
+
+    <div>
+      <p><strong>Emily R.</strong> (Heels) - ★★★★★</p>
+      <p>"Perfect fit and great design. Got many compliments!"</p>
+      <img src="heels1.jpg" alt="Emily's heels review image">
+    </div>
   </div>
-</div>
 
 </body>
 </html>
