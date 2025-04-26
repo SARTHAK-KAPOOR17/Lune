@@ -16,6 +16,16 @@ const coupons = {
 let cart = [];
 let appliedCoupon = null;
 
+// Smart Recommendation Map
+const recommendationsMap = {
+  "Air Force": ["Air force 2", "Blazer"],
+  "Blazer": ["Jordan Premium", "Crater"],
+  "Crater": ["Hippie", "Air Force"],
+  "Air force 2": ["Air Force", "Hippie"],
+  "Hippie": ["Crater", "Jordan Premium"],
+  "Jordan Premium": ["Blazer", "Hippie"]
+};
+
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
@@ -59,12 +69,14 @@ function addToCart(index) {
 
   updateCart();
   saveCart();
+  updateRecommendations(); // New: Update smart recommendations
 }
 
 function removeFromCart(index) {
   cart.splice(index, 1);
   updateCart();
   saveCart();
+  updateRecommendations(); // New: Update smart recommendations
 }
 
 function updateCart() {
@@ -115,6 +127,7 @@ function changeQtyInput(i, newQty) {
   }
   updateCart();
   saveCart();
+  updateRecommendations(); // New: Update smart recommendations
 }
 
 function applyCoupon() {
@@ -145,16 +158,45 @@ function toggleDarkMode() {
   html.dataset.theme = html.dataset.theme === "light" ? "dark" : "light";
 }
 
-function showRecommendations() {
-  const recs = product.slice(0, 3);
-  document.getElementById("recommendationBox").innerHTML = recs.map((item, i) => `
+// Smart AI Recommendation Logic
+function getSmartRecommendations(cartItems) {
+  const titlesInCart = cartItems.map(item => item.title);
+  const recommendedTitles = new Set();
+
+  titlesInCart.forEach(title => {
+    if (recommendationsMap[title]) {
+      recommendationsMap[title].forEach(recTitle => {
+        if (!titlesInCart.includes(recTitle)) {
+          recommendedTitles.add(recTitle);
+        }
+      });
+    }
+  });
+
+  return product.filter(p => recommendedTitles.has(p.title));
+}
+
+// Update Recommendation Section
+function updateRecommendations() {
+  const smartRecs = getSmartRecommendations(cart);
+
+  if (smartRecs.length === 0) {
+    document.getElementById("recommendationBox").innerHTML = "<p>No recommendations yet! Buy Something to use this feature!!!</p>";
+    return;
+  }
+
+  document.getElementById("recommendationBox").innerHTML = smartRecs.map(item => `
     <div class='box'>
       <div class='img-box'><img class='images' src='${item.image}' /></div>
       <p>${item.title}</p>
       <h4>₹ ${item.price}</h4>
-      <button onclick="addToCart(${i})">Add</button>
+      <button onclick="addToCart(${item.id})">Add</button>
     </div>
   `).join('');
+}
+
+function showRecommendations() {
+  updateRecommendations(); // Now calling smart recommendations instead of random 3
 }
 
 window.onload = function () {
