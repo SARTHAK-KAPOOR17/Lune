@@ -45,15 +45,24 @@
     <p>Something went wrong. Please try again.</p>
     <button id="retry-button" onclick="retryPayment()" style="margin-top:15px;padding:12px 24px;background:#e74c3c;color:#fff;border:none;border-radius:8px;cursor:pointer;">Retry Payment</button>
   </div>
-
 </div>
+
+<!-- Chatbot -->
+<div class="chat-bot" id="chatbot">
+  <div class="chat-bot-header">Support Bot 🤖</div>
+  <div class="chat-bot-messages" id="chat-messages"></div>
+  <input type="text" id="chat-input" class="chat-bot-input" placeholder="Type a message..." />
+</div>
+
+<!-- Chatbot Button -->
+<div class="chat-bot-button" onclick="openChatbot()">💬</div>
 
 <!-- Sounds -->
 <audio id="success-sound" src="./Voice/success-221935.mp3" preload="auto"></audio>
 <audio id="thankyou-sound" src="./Voice/thank-you-168416.mp3" preload="auto"></audio>
 <audio id="error-sound" src="./Voice/cartoon-fail-trumpet-278822.mp3" preload="auto"></audio>
 
-<script src="Upi.js"></script>
+<script src = "Upi.js"></script>
 
 </body>
 </html>
