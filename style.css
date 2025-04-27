@@ -118,9 +118,30 @@ button:hover {
   font-weight: bold;
   transition: color 0.3s;
 }
+.menuitem{
+  box-shadow: 20px 20px 20px rgba(1, 1, 1, 0.1);
+  border-radius: 35%;
+}
+.menuItem.active {
+  color: #17d650;
+  box-shadow:20px 20px 20px rgba(1, 1, 1, 0.1);
+  border-radius: 35%;
+  padding: 10px;
+}
+.menuItem.active::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #17d650;
+  margin-top: 5px;
+}
 
 .menuItem:hover {
   color: #17d650;
+  box-shadow:20px 20px 20px rgba(1, 1, 1, 0.1);
+  border-radius: 35%;
+  padding: 10px;
 }
 
 .slider {
@@ -154,6 +175,10 @@ button:hover {
 .sliderImg {
   height: 300px;
   z-index: 2;
+  box-shadow:20px 20px 20px rgba(1, 1, 1, 0.1);
+  border-radius: 35%;
+  width: 100%;
+  max-width: 300px;
 }
 
 .sliderBg {
@@ -217,7 +242,9 @@ button:hover {
 .featureIcon {
   width: 50px;
   margin-bottom: 10px;
-}
+  box-shadow: 20px 20px 20px rgba(1, 1, 1, 0.1);
+  border-radius: 25%;
+  padding: 10px;}
 
 .featureTitle {
   font-weight: bold;
@@ -229,6 +256,10 @@ button:hover {
 }
 
 .productImg {
+  box-shadow:20px 20px 20px rgba(1, 1, 1, 0.1);
+  border-radius: 35%;
+  width: 100%;
+  max-width: 300px;
   width: 300px;
   margin: 20px;
 }
