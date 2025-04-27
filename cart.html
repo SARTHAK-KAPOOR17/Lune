@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shopping Cart with Dark Mode</title>
+  <title>LUNE || CART</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="cart.css" />
+  <link rel="stylesheet" href="cart.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
 </head>
 <body>
   <div class="header">
     <p class="logo">MyCart</p>
     <div style="display: flex; gap: 20px;">
-      <button class="toggle" onclick="toggleDarkMode()">Toggle Mode</button>
       <div class="cart">
         <i class="fa-solid fa-cart-shopping"></i>
         <p id="count">0</p>
@@ -28,14 +28,35 @@
         <h3>Total</h3>
         <h2 id="total">₹ 0.00</h2>
       </div>
+
+      <!-- Coupon Code Input -->
+      <div style="margin-top: 20px;">
+        <input type="text" id="couponCode" placeholder="Enter Coupon Code" style="padding: 6px; width: 70%; border-radius: 4px; border: 1px solid #ccc;">
+        <button onclick="applyCoupon()" style="margin-top: 10px;">Apply</button>
+      </div>
+
       <a href="payment.html"><button>Checkout</button></a>
     </div>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <button onclick="shareCart()">Share Cart</button>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <h3>Shipping Options</h3>
+    <select id="shippingOptions"></select>
+    <button onclick="calculateShipping()">Calculate Shipping</button>
+    <p id="shippingCost"></p>
   </div>
 
   <div class="recommendation">
     <h3>Recommended for You</h3>
     <div class="recommended-items" id="recommendationBox"></div>
   </div>
-<script src="cart.js"></script>
+
+  <p>© 2023 MyCart. All rights reserved.</p>
+
+  <script src="cart.js"></script>
 </body>
 </html>

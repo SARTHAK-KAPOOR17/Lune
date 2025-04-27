@@ -1,98 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="tailwindcss.css">
-    <link rel="stylesheet" href="payment.css ">
-    <title>Payment Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Payment Page</title>
+  <style>
+    /* CSS Variables for Theme */
+    :root {
+      --bg-gradient: linear-gradient(-45deg, #f093fb, #f5576c, #4facfe, #00f2fe);
+      --container-bg: rgba(255,255,255,0.85);
+      --text-color: #333;
+      --input-bg: #fff;
+      --input-border: #ccc;
+      --button-bg: #4a76ff;
+      --button-text: #fff;
+      --button-hover-scale: 1.03;
+      --overlay-bg: rgba(0,0,0,0.6);
+      --tick-stroke: #4CAF50;
+    }
+    [data-theme="dark"] {
+      --bg-gradient: linear-gradient(-45deg, #2c3e50, #34495e, #2c3e50, #34495e);
+      --container-bg: rgba(44,62,80,0.85);
+      --text-color: #ecf0f1;
+      --input-bg: #34495e;
+      --input-border: #566573;
+      --button-bg: #2980b9;
+      --button-text: #ecf0f1;
+      --overlay-bg: rgba(0,0,0,0.7);
+      --tick-stroke: #2ecc71;
+    }
+    /* Reset & Base Styles */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      display:flex; justify-content:center; align-items:center;
+      min-height:100vh;
+      background: var(--bg-gradient);
+      background-size:400% 400%; animation:gradientBG 15s ease infinite;
+      position:relative; overflow:hidden;
+      color: var(--text-color);
+      transition: background 1s, color 0.5s;
+    }
+    @keyframes gradientBG { 0%,100%{background-position:0%50%}50%{background-position:100%50%} }
+    .payment-container {
+      background: var(--container-bg);
+      backdrop-filter:blur(12px);
+      border-radius:16px;
+      box-shadow:0 16px 48px rgba(0,0,0,0.1);
+      width:90%; max-width:400px;
+      padding:32px;
+      position:relative; z-index:1;
+      animation:slideUp 0.6s ease-out;
+    }
+    @keyframes slideUp {
+      from { opacity:0; transform: translateY(40px); }
+      to { opacity:1; transform: translateY(0); }
+    }
+    h2 { text-align:center; font-size:1.75rem; margin-bottom:24px; }
+    .method-toggle{display:flex; margin-bottom:24px; gap:8px;}
+    .method-toggle button{
+      flex:1; padding:12px 0; border:none;
+      background:#e0e0e0; color:#555; font-weight:600;
+      cursor:pointer; transition:background .3s, transform .2s;
+      border-radius:8px;
+    }
+    .method-toggle button.active { background: var(--button-bg); color: var(--button-text); }
+    .method-toggle button:hover { transform: scale( var(--button-hover-scale) ); }
+
+    .card-preview{perspective:1000px; margin-bottom:24px; height:220px;}
+    .card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .6s ease;}
+    .card-face{position:absolute;width:100%;height:100%;border-radius:16px;backface-visibility:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);}
+    .card-front{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:space-between;}
+    .number{font-size:1.4rem;letter-spacing:4px;}
+    .details{display:flex;justify-content:space-between;font-size:1rem;}
+    .card-back{background:linear-gradient(135deg,#764ba2,#667eea);transform:rotateY(180deg);padding:24px;display:flex;flex-direction:column;}
+    .mag-strip{background:#000;height:48px;margin-bottom:24px;border-radius:4px;}
+    .signature{background:#fff;height:40px;margin-bottom:16px;border-radius:4px;}
+    .cvv-box{display:flex;justify-content:flex-end;}
+    .cvv-label{font-size:0.9rem;color:#fff;margin-right:12px;}
+    .cvv-value{background:#f0f0f0;padding:8px 12px;border-radius:4px;font-weight:700;color:#333;}
+
+    .input-group{margin-bottom:20px;}
+    .input-group label{display:block;margin-bottom:8px;color:var(--text-color);font-weight:500;}
+    .input-group input{
+      width:100%; padding:16px;
+      border:1px solid var(--input-border);
+      border-radius:8px;
+      background: var(--input-bg);
+      color: var(--text-color);
+      transition: border-color 0.3s;
+    }
+    .input-group input:focus{border-color:var(--button-bg);outline:none;}
+    .input-row{display:flex;gap:16px;}
+    .input-row .input-group{flex:1;}
+
+    #pay-button{
+      width:100%; padding:16px;
+      background: var(--button-bg); color: var(--button-text);
+      border:none; border-radius:8px; font-size:1rem; font-weight:700;
+      cursor:pointer; transition: background 0.3s, transform 0.2s;
+    }
+    #pay-button:hover{ background: var(--button-hover-bg); transform: scale(var(--button-hover-scale)); }
+
+    #overlay{
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background: var(--overlay-bg);
+      opacity:0; visibility:hidden;
+      transition: opacity 0.4s;
+      z-index:2;
+    }
+    #overlay.show{ opacity:1; visibility:visible; }
+
+    .success-popup{
+      position:fixed; top:50%; left:50%;
+      transform: translate(-50%,-50%) scale(0);
+      background:#fff; padding:32px; border-radius:12px;
+      text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.2);
+      z-index:3; animation:pop 0.4s forwards;
+    }
+    @keyframes pop{ to{ transform: translate(-50%,-50%) scale(1); } }
+    .tick{
+      stroke-dasharray:100; stroke-dashoffset:100;
+      animation:dash 0.8s ease forwards;
+      stroke: var(--tick-stroke);
+    }
+    @keyframes dash{ to{ stroke-dashoffset:0; } }
+    .theme-buttons{
+      position:absolute; top:16px; right:16px; display:flex; gap:8px; z-index:4;
+    }
+    .theme-buttons button{
+      padding:8px 14px; border:none; border-radius:6px;
+      cursor:pointer; background:var(--button-bg); color:var(--button-text);
+      font-size:0.9rem; transition: transform 0.2s;
+    }
+    .theme-buttons button:hover{ transform: scale( var(--button-hover-scale) ); }
+
+    /* Responsive */
+    @media(max-width: 400px) {
+      .payment-container { padding: 16px; width: 95%; }
+      .card-front, .card-back { padding:16px; }
+      .input-group input, #pay-button { padding:12px; }
+    }
+  </style>
 </head>
-<body>
-    
-    <!-- start: Payment -->
-    <section class="payment-section">
-        <div class="container">
-            <div class="payment-wrapper">
-                <div class="payment-left">
-                    <div class="payment-header">
-                        <div class="payment-header-icon"><i class="ri-flashlight-fill"></i></div>
-                        <div class="payment-header-title">Order Summary</div>
-                        <p class="payment-header-description">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                    </div>
-                    <div class="payment-content">
-                        <div class="payment-body">
-                            <div class="payment-plan">
-                                <div class="payment-plan-type">Pro</div>
-                                <div class="payment-plan-info">
-                                    <div class="payment-plan-info-name">Professional Plan</div>
-                                    <div class="payment-plan-info-price">$49 per month</div>
-                                </div>
-                                <a href="#" class="payment-plan-change">Change</a>
-                            </div>
-                            <div class="payment-summary">
-                                <div class="payment-summary-item">
-                                    <div class="payment-summary-name">Additional fee</div>
-                                    <div class="payment-summary-price">$10</div>
-                                </div>
-                                <div class="payment-summary-item">
-                                    <div class="payment-summary-name">Discount 20%</div>
-                                    <div class="payment-summary-price">-$10</div>
-                                </div>
-                                <div class="payment-summary-divider"></div>
-                                <div class="payment-summary-item payment-summary-total">
-                                    <div class="payment-summary-name">Total</div>
-                                    <div class="payment-summary-price">-$10</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="payment-right">
-                    <form action="" class="payment-form">
-                        <h1 class="payment-title">Payment Details</h1>
-                        <div class="payment-method">
-                            <input type="radio" name="payment-method" id="method-1" checked>
-                            <label for="method-1" class="payment-method-item">
-                                <img src="images/visa.png" alt="">
-                            </label>
-                            <input type="radio" name="payment-method" id="method-2">
-                            <label for="method-2" class="payment-method-item">
-                                <img src="images/master.png" alt="">
-                            </label>
-                            <input type="radio" name="payment-method" id="method-3">
-                            <label for="method-3" class="payment-method-item">
-                                <img src="images/paypal.png" alt="">
-                            </label>
-                            <input type="radio" name="payment-method" id="method-4">
-                            <label for="method-4" class="payment-method-item">
-                                <img src="images/upi.png" alt="">
-                            </label> 
-                        </div>
-                        <div class="payment-form-group">
-                            <input type="email" placeholder=" " class="payment-form-control" id="email">
-                            <label for="email" class="payment-form-label payment-form-label-required">Email Address</label>
-                        </div>
-                        <div class="payment-form-group">
-                            <input type="text" placeholder=" " class="payment-form-control" id="card-number">
-                            <label for="card-number" class="payment-form-label payment-form-label-required">Card Number</label>
-                        </div>
-                        <div class="payment-form-group-flex">
-                            <div class="payment-form-group">
-                                <input type="date" placeholder=" " class="payment-form-control" id="expiry-date">
-                                <label for="expiry-date" class="payment-form-label payment-form-label-required">Expiry Date</label>
-                            </div>
-                            <div class="payment-form-group">
-                                <input type="text" placeholder=" " class="payment-form-control" id="cvv">
-                                <label for="cvv" class="payment-form-label payment-form-label-required">CVV</label>
-                            </div>
-                        </div>
-                       <a href="order_animate.html"><button type="submit" id="submit-button" class="payment-form-submit-button"><i class="ri-wallet-line"></i> Pay</button></a>
-                    </form>
-                </div>
-            </div>
+<body data-theme="light">
+  <div class="floating-circle"></div>
+  <div class="floating-circle"></div>
+
+  <!-- Theme Toggler -->
+  <div class="theme-buttons" aria-label="Theme switcher">
+    <button id="light-btn" aria-label="Activate light theme">Light</button>
+    <button id="dark-btn" aria-label="Activate dark theme">Dark</button>
+  </div>
+
+  <div id="overlay"></div>
+  <div class="payment-container" role="region" aria-label="Payment Form">
+    <h2>Payment Details</h2>
+    <div class="method-toggle" role="tablist">
+      <button id="card-btn" class="active" role="tab" aria-selected="true">Card</button>
+      <button id="upi-btn" role="tab" aria-selected="false">UPI</button>
+    </div>
+    <div class="card-preview active" id="card-preview" role="tabpanel">
+      <div class="card-inner" id="card-inner">
+        <div class="card-face card-front">
+          <div class="number" id="preview-card-number">XXXX XXXX XXXX XXXX</div>
+          <div class="details"><span id="preview-name">Name</span><span id="preview-expiry">MM/YY</span></div>
         </div>
-    </section>
-<!-- <script src="payment.js"></script> -->
+        <div class="card-face card-back">
+          <div class="mag-strip"></div>
+          <div class="signature"></div>
+          <div class="cvv-box"><span class="cvv-label">CVV</span><span class="cvv-value" id="preview-cvv">***</span></div>
+        </div>
+      </div>
+    </div>
+    <form id="payment-form" novalidate>
+      <div class="input-group">
+        <label for="card-number">Card Number</label>
+        <input id="card-number" type="text" maxlength="19" inputmode="numeric" aria-describedby="card-number" required>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="expiry-date">Expiry</label>
+          <input id="expiry-date" type="text" maxlength="5" placeholder="MM/YY" inputmode="numeric" required>
+        </div>
+        <div class="input-group">
+          <label for="cvv">CVV</label>
+          <input id="cvv" type="text" maxlength="3" inputmode="numeric" required>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="name">Name on Card</label>
+        <input id="name" type="text" required>
+      </div>
+      <button type="submit" id="pay-button" aria-label="Submit payment">Pay Now</button>
+    </form>
+  </div>
+  <div id="success-popup" class="success-popup" style="display:none;" role="alertdialog" aria-labelledby="success-msg">
+    <svg width="80" height="80" viewBox="0 0 52 52">
+      <circle cx="26" cy="26" r="25" fill="none" stroke-width="2" stroke="var(--tick-stroke)"/>
+      <path class="tick" fill="none" stroke-width="5" d="M14 27 l7 7 l17 -17"/>
+    </svg>
+    <h2 id="success-msg">Payment Successful!</h2>
+  </div>
+  <script>
+    // Theme Engine
+    const lightBtn = document.getElementById('light-btn'), darkBtn = document.getElementById('dark-btn');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    document.body.classList.toggle('dark-mode', savedTheme==='dark');
+    lightBtn.addEventListener('click', () => {
+      html.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); document.body.classList.remove('dark-mode');
+    });
+    darkBtn.addEventListener('click', () => {
+      html.setAttribute('data-theme','dark'); localStorage.setItem('theme','dark'); document.body.classList.add('dark-mode');
+    });
+
+    // Card/UPI Toggle
+    const cardBtn=document.getElementById('card-btn'), upiBtn=document.getElementById('upi-btn');
+    const cardPreview=document.getElementById('card-preview');
+    cardBtn.addEventListener('click',()=>{ cardBtn.classList.add('active'); upiBtn.classList.remove('active'); cardPreview.classList.add('active'); });
+    upiBtn.addEventListener('click',()=>{ upiBtn.classList.add('active'); cardBtn.classList.remove('active'); cardPreview.classList.remove('active'); });
+
+    // 3D Tilt & Flip
+    const cardInner=document.getElementById('card-inner');
+    cardPreview.addEventListener('mousemove', e => {
+      const r = cardPreview.getBoundingClientRect();
+      const x = (e.clientX-r.left-r.width/2)/(r.width/2);
+      const y = (e.clientY-r.top-r.height/2)/(r.height/2);
+      cardInner.style.transform = `rotateY(${x*12}deg) rotateX(${-y*12}deg)`;
+    });
+    cardPreview.addEventListener('mouseleave', ()=>{ cardInner.style.transform='rotateY(0) rotateX(0)'; });
+    const cvvField = document.getElementById('cvv');
+    cvvField.addEventListener('focus', ()=> cardInner.style.transform='rotateY(180deg)');
+    cvvField.addEventListener('blur', ()=> cardInner.style.transform='rotateY(0)');
+
+    // Live Preview Bindings
+    const preview={ num:document.getElementById('preview-card-number'), exp:document.getElementById('preview-expiry'), nm:document.getElementById('preview-name'), cvv:document.getElementById('preview-cvv') };
+    document.getElementById('card-number').addEventListener('input', e => {
+      let v = e.target.value.replace(/\D/g,'').match(/.{1,4}/g)?.join(' ')||'';
+      e.target.value = v;
+      preview.num.innerText = v || 'XXXX XXXX XXXX XXXX';
+    });
+    document.getElementById('expiry-date').addEventListener('input', e => {
+      let v = e.target.value.replace(/\D/g,'');
+      if(v.length>2) v = v.slice(0,2) + '/' + v.slice(2,4);
+      e.target.value = v;
+      preview.exp.innerText = v || 'MM/YY';
+    });
+    document.getElementById('name').addEventListener('input', e => preview.nm.innerText = e.target.value||'Name');
+    cvvField.addEventListener('input', e => preview.cvv.innerText = e.target.value||'***');
+
+    // Submit & Success
+    const form=document.getElementById('payment-form'), overlay=document.getElementById('overlay'), successPopup=document.getElementById('success-popup');
+    const payBtn=document.getElementById('pay-button');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      payBtn.disabled=true;
+      overlay.classList.add('show');
+      setTimeout(()=>{
+        successPopup.style.display='block';
+        setTimeout(()=>{
+          successPopup.style.display='none';
+          overlay.classList.remove('show');
+          form.reset();
+          preview.num.innerText='XXXX XXXX XXXX XXXX'; preview.exp.innerText='MM/YY'; preview.nm.innerText='Name'; preview.cvv.innerText='***';
+          cardInner.style.transform='rotateY(0) rotateX(0)';
+          payBtn.disabled=false;
+        }, 2500);
+      }, 800);
+    });
+    document.getElementById('upi-btn').addEventListener('click', () => {
+        window.location.href = 'Upi.html';
+    });
+  </script>
 </body>
 </html>

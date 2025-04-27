@@ -1,0 +1,181 @@
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(45deg, #4a76ff, #2575fc);
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.payment-container {
+  background: rgba(255,255,255,0.95);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+#pay-button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 14px;
+  background: #4a76ff;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+#pay-button:hover {
+  background: #3652b3;
+}
+#success-container, #failure-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+.tick-mark {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+.tick-mark svg {
+  width: 100%;
+  height: 100%;
+  stroke: #2ecc71;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  animation: tickAnimation 0.8s ease forwards;
+}
+.cross-mark {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+.cross-mark svg {
+  width: 100%;
+  height: 100%;
+  stroke: #e74c3c;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  animation: crossAnimation 0.8s ease forwards;
+}
+@keyframes tickAnimation {
+  from { stroke-dasharray: 0 100; }
+  to { stroke-dasharray: 100 0; }
+}
+@keyframes crossAnimation {
+  from { stroke-dasharray: 0 100; }
+  to { stroke-dasharray: 100 0; }
+}
+h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Chat Bot Styles */
+.chat-bot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  display: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.chat-bot-header {
+  background: #4a76ff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.chat-bot-messages {
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: #f9f9f9;
+}
+
+.chat-bot-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-top: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.chat-bot-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4a76ff;
+  color: white;
+  padding: 12px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.chat-message {
+  margin: 10px 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #f1f1f1;
+}
+
+.bot-message {
+  background: #e0e0e0;
+  text-align: left;
+}
+
+.user-message {
+  background: #4a76ff;
+  color: white;
+  text-align: right;
+}

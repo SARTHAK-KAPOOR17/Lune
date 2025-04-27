@@ -20,7 +20,59 @@ header {
     padding: 10px 20px;
     border-bottom: 1px solid #283391;
 }
-
+/* Base variables for light mode */
+:root {
+    --background-color: #fff;
+    --text-color: #111;
+    --header-bg: #f8f9fa;
+    --card-bg: #fff;
+    --accent-color: #007BFF;
+  }
+  
+  /* Apply variables */
+  body {
+    background: var(--background-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  /* Example: header and cards using variables */
+  header, .main-header, .top-bar, .footer-links, .footer-group, .quick-links, .location-delivery, .return-item, .card {
+    background: var(--header-bg, #f8f9fa);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  /* Dark mode overrides */
+  body.dark-mode {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --header-bg: #1e1e1e;
+    --card-bg: #232323;
+    --accent-color: #90caf9;
+  }
+  
+  /* Optional: adjust buttons, links, etc. for dark mode */
+  body.dark-mode a { color: var(--accent-color); }
+  body.dark-mode button,
+  body.dark-mode .proceed-button {
+    background: var(--accent-color);
+    color: #121212;
+    border: none;
+  }
+  
+  body.dark-mode .top-bar,
+  body.dark-mode .main-header,
+  body.dark-mode .footer-links,
+  body.dark-mode .footer-group,
+  body.dark-mode .quick-links,
+  body.dark-mode .location-delivery,
+  body.dark-mode .return-item,
+  body.dark-mode .card {
+    background: var(--header-bg);
+    color: var(--text-color);
+  }
+  
 .top-bar {
     background-color: #cbe8cc;
     color: #333;

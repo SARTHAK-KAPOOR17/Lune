@@ -1,260 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Enhanced UPI Payment</title>
-  <style>
-    :root {
-      --bg: #ffffff;
-      --text: #333333;
-      --primary: #4caf50;
-      --input-bg: #f0f0f0;
-    }
-    body.dark {
-      --bg: #1e1e1e;
-      --text: #f0f0f0;
-      --primary: #90ee90;
-      --input-bg: #2a2a2a;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    .payment-container {
-      width: 350px;
-      padding: 25px;
-      border-radius: 10px;
-      background-color: var(--input-bg);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      transition: 0.3s;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: var(--primary);
-    }
-    .input-group {
-      margin-bottom: 15px;
-    }
-    .input-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
-    }
-    .input-group input, .input-group textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      background-color: var(--bg);
-      color: var(--text);
-      outline: none;
-    }
-    .pay-btn {
-      width: 100%;
-      padding: 12px;
-      background-color: var(--primary);
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .pay-btn:hover {
-      transform: scale(1.05);
-    }
-    .toggle-mode {
-      margin-top: 15px;
-      text-align: center;
-      cursor: pointer;
-      font-size: 14px;
-      color: var(--primary);
-    }
-    .success {
-      text-align: center;
-      font-weight: bold;
-      color: green;
-      margin-top: 10px;
-    }
-    #qrcode {
-      text-align: center;
-      margin-top: 10px;
-    }
-    .history {
-      margin-top: 20px;
-    }
-    .history h3 {
-      font-size: 18px;
-      color: var(--primary);
-      margin-bottom: 10px;
-    }
-    .history ul {
-      list-style: none;
-      padding: 0;
-      max-height: 150px;
-      overflow-y: auto;
-    }
-    .history li {
-      font-size: 14px;
-      background: var(--bg);
-      padding: 8px;
-      margin-bottom: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    canvas.confetti {
-      position: fixed;
-      pointer-events: none;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 99;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UPI Payment with Smart Retry</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="Upi.css">
 </head>
+
 <body>
 
-  <div class="payment-container">
+<div class="payment-container">
+  <div id="form-container">
     <h2>UPI Payment</h2>
     <div class="input-group">
-      <label for="upi">UPI ID</label>
-      <input type="text" id="upi" placeholder="example@upi" />
+      <label for="upi-id">UPI ID</label>
+      <input id="upi-id" type="text" placeholder="example@bank" />
     </div>
     <div class="input-group">
-      <label for="amount">Amount (₹)</label>
-      <input type="number" id="amount" placeholder="Enter amount" />
+      <label for="upi-pin">UPI PIN</label>
+      <input id="upi-pin" type="password" maxlength="6" placeholder="Enter PIN" />
     </div>
-    <div class="input-group">
-      <label for="note">Note (Optional)</label>
-      <textarea id="note" rows="3" placeholder="Payment note..."></textarea>
-    </div>
-    <button class="pay-btn" onclick="makePayment()">Pay Now</button>
-    <p id="successMessage" class="success"></p>
-    <div id="qrcode"></div>
-    <div class="toggle-mode" onclick="toggleDarkMode()">🌗 Toggle Dark Mode</div>
-    <div class="history">
-      <h3>🧾 Payment History</h3>
-      <ul id="historyList"></ul>
-    </div>
+    <button id="pay-button" onclick="handlePayment()">Pay Now</button>
   </div>
 
-  <canvas class="confetti" id="confettiCanvas"></canvas>
+  <div id="success-container">
+    <div class="tick-mark">
+      <svg viewBox="0 0 52 52">
+        <path d="M14 27 L22 35 L38 19" stroke-dasharray="100"></path>
+      </svg>
+    </div>
+    <h2>Payment Successful!</h2>
+    <p>Thank you for purchasing.</p>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-  <script>
-    const canvas = document.getElementById('confettiCanvas');
-    const ctx = canvas.getContext('2d');
+  <div id="failure-container">
+    <div class="cross-mark">
+      <svg viewBox="0 0 52 52">
+        <path d="M16 16 L36 36 M36 16 L16 36" stroke-dasharray="100"></path>
+      </svg>
+    </div>
+    <h2>Payment Failed</h2>
+    <p>Something went wrong. Please try again.</p>
+    <button id="retry-button" onclick="retryPayment()" style="margin-top:15px;padding:12px 24px;background:#e74c3c;color:#fff;border:none;border-radius:8px;cursor:pointer;">Retry Payment</button>
+  </div>
+</div>
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+<!-- Chatbot -->
+<div class="chat-bot" id="chatbot">
+  <div class="chat-bot-header">Support Bot 🤖</div>
+  <div class="chat-bot-messages" id="chat-messages"></div>
+  <input type="text" id="chat-input" class="chat-bot-input" placeholder="Type a message..." />
+</div>
 
-    function launchConfetti() {
-      const confettiCount = 150;
-      const confetti = [];
+<!-- Chatbot Button -->
+<div class="chat-bot-button" onclick="openChatbot()">💬</div>
 
-      for (let i = 0; i < confettiCount; i++) {
-        confetti.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: Math.random() * 6 + 4,
-          d: Math.random() * confettiCount,
-          color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-          tilt: Math.random() * 10 - 5,
-        });
-      }
+<!-- Sounds -->
+<audio id="success-sound" src="./Voice/success-221935.mp3" preload="auto"></audio>
+<audio id="thankyou-sound" src="./Voice/thank-you-168416.mp3" preload="auto"></audio>
+<audio id="error-sound" src="./Voice/cartoon-fail-trumpet-278822.mp3" preload="auto"></audio>
 
-      function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        confetti.forEach(c => {
-          ctx.beginPath();
-          ctx.lineWidth = c.r / 2;
-          ctx.strokeStyle = c.color;
-          ctx.moveTo(c.x + c.tilt, c.y);
-          ctx.lineTo(c.x, c.y + c.tilt + c.r);
-          ctx.stroke();
-        });
-        update();
-        requestAnimationFrame(draw);
-      }
+<script src = "Upi.js"></script>
 
-      function update() {
-        confetti.forEach(c => {
-          c.y += Math.cos(c.d) + 1 + c.r / 2;
-          c.x += Math.sin(c.d);
-          c.tilt += Math.random() * 0.2 - 0.1;
-
-          if (c.y > canvas.height) {
-            c.y = -10;
-            c.x = Math.random() * canvas.width;
-          }
-        });
-      }
-
-      draw();
-      setTimeout(() => ctx.clearRect(0, 0, canvas.width, canvas.height), 3000);
-    }
-
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark");
-    }
-
-    function makePayment() {
-      const upi = document.getElementById("upi").value.trim();
-      const amount = parseFloat(document.getElementById("amount").value);
-      const note = document.getElementById("note").value.trim();
-      const message = document.getElementById("successMessage");
-      const qrDiv = document.getElementById("qrcode");
-
-      message.innerText = "";
-      qrDiv.innerHTML = "";
-
-      if (!upi.includes("@")) {
-        alert("Enter a valid UPI ID");
-        return;
-      }
-      if (isNaN(amount) || amount <= 0) {
-        alert("Enter a valid amount");
-        return;
-      }
-
-      const upiLink = `upi://pay?pa=${upi}&pn=User&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
-      QRCode.toCanvas(document.createElement("canvas"), upiLink, function (error, canvas) {
-        if (error) console.error(error);
-        qrDiv.appendChild(canvas);
-      });
-
-      message.innerText = `✅ Payment of ₹${amount.toFixed(2)} to ${upi} ready!`;
-      launchConfetti();
-
-      // Save to localStorage
-      const history = JSON.parse(localStorage.getItem("paymentHistory")) || [];
-      history.unshift(`₹${amount} to ${upi} - ${new Date().toLocaleString()}`);
-      localStorage.setItem("paymentHistory", JSON.stringify(history));
-      renderHistory();
-    }
-
-    function renderHistory() {
-      const list = document.getElementById("historyList");
-      const history = JSON.parse(localStorage.getItem("paymentHistory")) || [];
-      list.innerHTML = history.slice(0, 10).map(item => `<li>${item}</li>`).join("");
-    }
-
-    renderHistory();
-  </script>
 </body>
 </html>
