@@ -34,6 +34,7 @@ Open index.html in your browser
 - Integrated a secure and reliable payment gateway to handle transactions.
 - Supports real-time payment verification and user-friendly error handling.
 - Ensures safe checkout experience for users.
+- Upi payment gateway with the sound effects(sucess or failing of payment).
 
 ### ✅ Order Completion Animation
 - Added a sleek order success animation post-payment.
