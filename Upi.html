@@ -3,43 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UPI Payment Pro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>UPI Payment with Smart Retry</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="Upi.css">
 </head>
+
 <body>
 
-  <div class="payment-container" id="payment-container">
+<div class="payment-container">
+  <div id="form-container">
     <h2>UPI Payment</h2>
-
-    <div id="form-container">
-      <div class="input-group">
-        <label for="upi-id">UPI ID</label>
-        <input id="upi-id" type="text" placeholder="example@bank">
-      </div>
-
-      <div class="input-group">
-        <label for="upi-pin">UPI PIN</label>
-        <input id="upi-pin" type="password" maxlength="6" placeholder="Enter 6-digit PIN">
-      </div>
-
-      <button id="pay-button" onclick="handlePayment()">Pay Now</button>
+    <div class="input-group">
+      <label for="upi-id">UPI ID</label>
+      <input id="upi-id" type="text" placeholder="example@bank" />
     </div>
-
-    <div class="success-container" id="success-container">
-      <div class="tick"></div>
-      <h3>Payment Successful!</h3>
-      <p>Your transaction has been completed.</p>
-      <button class="download-btn" onclick="downloadReceipt()">Download Receipt</button>
+    <div class="input-group">
+      <label for="upi-pin">UPI PIN</label>
+      <input id="upi-pin" type="password" maxlength="6" placeholder="Enter PIN" />
     </div>
-
+    <button id="pay-button" onclick="handlePayment()">Pay Now</button>
   </div>
 
-  <!-- Success Sound -->
-  <audio id="success-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.wav" preload="auto"></audio>
+  <div id="success-container">
+    <div class="tick-mark">
+      <svg viewBox="0 0 52 52">
+        <path d="M14 27 L22 35 L38 19" stroke-dasharray="100"></path>
+      </svg>
+    </div>
+    <h2>Payment Successful!</h2>
+    <p>Thank you for purchasing.</p>
+  </div>
 
-  <script src = "Upi.js"></script>
+  <div id="failure-container">
+    <div class="cross-mark">
+      <svg viewBox="0 0 52 52">
+        <path d="M16 16 L36 36 M36 16 L16 36" stroke-dasharray="100"></path>
+      </svg>
+    </div>
+    <h2>Payment Failed</h2>
+    <p>Something went wrong. Please try again.</p>
+    <button id="retry-button" onclick="retryPayment()" style="margin-top:15px;padding:12px 24px;background:#e74c3c;color:#fff;border:none;border-radius:8px;cursor:pointer;">Retry Payment</button>
+  </div>
+
+</div>
+
+<!-- Sounds -->
+<audio id="success-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.wav" preload="auto"></audio>
+<audio id="thankyou-sound" src="https://www.soundjay.com/human/thank-you-1.mp3" preload="auto"></audio>
+<audio id="error-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.wav" preload="auto"></audio>
+
+<script src="Upi.js"></script>
 
 </body>
 </html>
