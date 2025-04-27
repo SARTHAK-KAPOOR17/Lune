@@ -7,7 +7,7 @@
 
 body {
   align-self: auto;
-  background-color: #5ea737;
+  background:linear-gradient(to right, #484eb5, #c0863a);
 }
 
 .aboutus{
@@ -16,11 +16,11 @@ body {
 
 nav {
   width: 100%;
-  background-color: #269518;
+  background: linear-gradient(to right, #484eb5, #c0863a);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 5px rgba(168, 9, 9, 0.1);
+  box-shadow: 0 10px 5px rgba(168, 9, 9, 0.1);
 }
 
 .navTop {
@@ -49,7 +49,7 @@ nav {
 .search {
   display: flex;
   align-items: center;
-  background-color: #24c254;
+  background: linear-gradient(to right, #3339ac, #c0863a);
   padding: 10px 20px;
   border-radius: 10px;
 }
@@ -57,9 +57,10 @@ nav {
 .search-bar {
   padding: 10px;
   width: 200px;
-  border: 2px solid #d94c4c;
+  border: 2px solid #343704;
   border-radius: 20px;
   transition: all 0.4s ease;
+  background: linear-gradient(to right, #26d941, #384297);
   outline: none;
 }
 
@@ -75,7 +76,7 @@ nav {
 }
 
 .searchInput::placeholder {
-  color: #21ebeb;
+  color: #c3ef31;
 }
 
 .searchIcon {
@@ -88,8 +89,8 @@ nav {
 }
 
 button {
-  background-color: #0d9f58;
-  color: white;
+  background:linear-gradient(to right, #425d4a, #091e03);
+  color: rgb(138, 144, 196);
   padding: 10px 16px;
   border: none;
   cursor: pointer;
@@ -106,7 +107,7 @@ button:hover {
   justify-content: center;
   gap: 40px;
   padding: 10px 0;
-  background-color: #94e068;
+  background: linear-gradient(to right, #be1eb1, #42bcc5);
 }
 
 .menuItem {
@@ -181,11 +182,11 @@ button:hover {
   border-radius: 30px;
 }
 
-.sliderItem:nth-child(1) .sliderBg { background-color: #369e62; }
-.sliderItem:nth-child(2) .sliderBg { background-color: rebeccapurple; }
-.sliderItem:nth-child(3) .sliderBg { background-color: teal; }
-.sliderItem:nth-child(4) .sliderBg { background-color: cornflowerblue; }
-.sliderItem:nth-child(5) .sliderBg { background-color: #7c7350; }
+.sliderItem:nth-child(1) .sliderBg { background:linear-gradient(to right,black,rgb(58, 146, 31)) }
+.sliderItem:nth-child(2) .sliderBg { background:linear-gradient(to right,black,rgb(160, 195, 32)) }
+.sliderItem:nth-child(3) .sliderBg { background:linear-gradient(to right,black,rgb(197, 20, 32)) }
+.sliderItem:nth-child(4) .sliderBg { background:linear-gradient(to right,black,blue) }
+.sliderItem:nth-child(5) .sliderBg { background :linear-gradient(to right,black,rgb(19, 127, 195))}
 
 .sliderItem:nth-child(1) .sliderPrice { color: #369e62; }
 .sliderItem:nth-child(2) .sliderPrice { color: #bb3e3e; }
@@ -201,7 +202,7 @@ button:hover {
 }
 
 .features {
-  background-color: #b1e48a;
+  background:linear-gradient(to right, #db68dd, #9b9bd5);
 }
 
 .feature {
@@ -221,7 +222,7 @@ button:hover {
 }
 
 .product {
-  background-color: #65e282;
+  background:linear-gradient(to right, #18a9c6, #f8d7da);
 }
 
 .productImg {
@@ -275,7 +276,7 @@ button:hover {
 }
 
 .gallery {
-  background-color: #92e2cf;
+  background:linear-gradient(to right, #f8d7da, #18a9c6);
 }
 
 .galleryItem {
@@ -298,7 +299,8 @@ button:hover {
 }
 
 .newSeason {
-  background-color: #a7cce3;
+  background:linear-gradient(to right, #18a9c6, #f8d7da);
+  padding: 50px 20px;
   align-items: center;
 }
 
@@ -330,7 +332,8 @@ button:hover {
 }
 
 footer {
-  background-color: #111;
+  background:linear-gradient(to right, #48b594, #271c0e);
+  position: relative;
   color: #fff;
   display: flex;
   flex-wrap: wrap;
