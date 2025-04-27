@@ -108,3 +108,74 @@ h2 {
   font-weight: 600;
   color: #333;
 }
+
+/* Chat Bot Styles */
+.chat-bot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  display: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.chat-bot-header {
+  background: #4a76ff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.chat-bot-messages {
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: #f9f9f9;
+}
+
+.chat-bot-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-top: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.chat-bot-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4a76ff;
+  color: white;
+  padding: 12px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.chat-message {
+  margin: 10px 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #f1f1f1;
+}
+
+.bot-message {
+  background: #e0e0e0;
+  text-align: left;
+}
+
+.user-message {
+  background: #4a76ff;
+  color: white;
+  text-align: right;
+}
