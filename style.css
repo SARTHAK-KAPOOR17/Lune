@@ -67,7 +67,8 @@ nav {
 }
 
 .search-bar:focus {
-  width: 300px;
+  background: linear-gradient(to right, #cfd45f, #bec0d2);
+  width: 300px; 
   border-color: #bebdd5;
   box-shadow: 0 10px 8px rgba(97, 95, 142, 0.6);
 }
