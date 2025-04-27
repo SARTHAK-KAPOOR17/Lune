@@ -1,4 +1,7 @@
-function handlePayment() {
+let isPaymentSuccessful = false;
+
+  // Handle Payment
+  function handlePayment() {
     const upiID = document.getElementById('upi-id').value.trim();
     const upiPIN = document.getElementById('upi-pin').value;
     const payButton = document.getElementById('pay-button');
@@ -12,16 +15,13 @@ function handlePayment() {
     payButton.disabled = true;
 
     setTimeout(() => {
-      const isSuccess = Math.random() < 0.8; // 80% chance success, 20% chance fail (smart fallback)
+      const isSuccess = Math.random() < 0.8;
 
       if (isSuccess) {
-        // SUCCESS
         document.getElementById('form-container').style.display = 'none';
         document.getElementById('success-container').style.display = 'flex';
         document.getElementById('success-sound').play();
-        setTimeout(() => {
-          document.getElementById('thankyou-sound').play();
-        }, 1000);
+        isPaymentSuccessful = true;
 
         confetti({
           particleCount: 150,
@@ -29,19 +29,16 @@ function handlePayment() {
           origin: { y: 0.6 }
         });
 
-        const history = JSON.parse(localStorage.getItem('paymentHistory')) || [];
-        history.push({ upiID: upiID, time: new Date().toLocaleString() });
-        localStorage.setItem('paymentHistory', JSON.stringify(history));
-
         setTimeout(() => {
-          generateReceipt(upiID);
-        }, 2000);
-
+          document.getElementById('thankyou-sound').play();
+        }, 1000);
       } else {
-        // FAIL
         document.getElementById('form-container').style.display = 'none';
         document.getElementById('failure-container').style.display = 'flex';
         document.getElementById('error-sound').play();
+        isPaymentSuccessful = false;
+
+        openChatbot();
       }
 
       payButton.innerHTML = "Pay Now";
@@ -49,21 +46,51 @@ function handlePayment() {
     }, 3000);
   }
 
+  // Retry Payment
   function retryPayment() {
     document.getElementById('failure-container').style.display = 'none';
     document.getElementById('form-container').style.display = 'block';
   }
 
-  function generateReceipt(upiID) {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+  // Open Chatbot
+  function openChatbot() {
+    document.getElementById('chatbot').style.display = 'block';
+    const chatMessages = document.getElementById('chat-messages');
+    const userMessage = document.createElement('div');
+    userMessage.classList.add('chat-message', 'user-message');
+    userMessage.textContent = "Hello, I need help!";
+    chatMessages.appendChild(userMessage);
 
-    doc.setFontSize(22);
-    doc.text("Payment Receipt", 20, 20);
-    doc.setFontSize(16);
-    doc.text(`UPI ID: ${upiID}`, 20, 40);
-    doc.text(`Transaction ID: ${Math.floor(Math.random() * 1000000000)}`, 20, 55);
-    doc.text(`Date: ${new Date().toLocaleString()}`, 20, 70);
-
-    doc.save("payment_receipt.pdf");
+    const botMessage = document.createElement('div');
+    botMessage.classList.add('chat-message', 'bot-message');
+    botMessage.textContent = isPaymentSuccessful ? "Your payment was successful!" : "There was an issue with your payment. Would you like to retry?";
+    chatMessages.appendChild(botMessage);
   }
+
+  // Chatbot Message Sending
+  document.getElementById('chat-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      const userInput = this.value;
+      this.value = '';
+
+      const chatMessages = document.getElementById('chat-messages');
+      const userMessage = document.createElement('div');
+      userMessage.classList.add('chat-message', 'user-message');
+      userMessage.textContent = userInput;
+      chatMessages.appendChild(userMessage);
+
+      // Bot Response
+      const botMessage = document.createElement('div');
+      botMessage.classList.add('chat-message', 'bot-message');
+      if (userInput.toLowerCase().includes("retry")) {
+        botMessage.textContent = "Okay, let's try again!";
+        retryPayment();
+      } else {
+        botMessage.textContent = "Thank you for your message! We'll assist you shortly.";
+      }
+      chatMessages.appendChild(botMessage);
+      
+      // Scroll to the bottom
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  });
